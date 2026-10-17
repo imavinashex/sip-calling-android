@@ -65,4 +65,8 @@ dependencies {
 
     // Liblinphone Android SDK - Official SIP & Media Engine
     implementation("org.linphone:linphone-sdk-android:5.3.77")
+    implementation(libs.google.libphonenumber)
+    debugImplementation(libs.leakcanary)
+
+    testImplementation("junit:junit:4.13.2")
 }

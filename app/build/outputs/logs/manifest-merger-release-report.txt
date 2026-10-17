@@ -1,0 +1,494 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:2:1-98:12
+INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:2:1-98:12
+INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:2:1-98:12
+INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:2:1-98:12
+MERGED from [androidx.databinding:viewbinding:8.4.1] C:\Users\theao\.gradle\caches\transforms-4\5e8fd5b488c0a312a63c2b2a769eca44\transformed\viewbinding-8.4.1\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\theao\.gradle\caches\transforms-4\21944759e1efb0f70f4aa9125063aa3e\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\theao\.gradle\caches\transforms-4\4a1a04f73e1c69510ad976c0dea2422d\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\theao\.gradle\caches\transforms-4\adee9d4526e22ffb86063d516ed34a9d\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\theao\.gradle\caches\transforms-4\c77b78faf6b4bc4c2c55d43281433586\transformed\appcompat-1.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\ecdc7c7a2b2f96b4880556e2a60485da\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\3e044c03c842868931d6a95a3cd64ad0\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\theao\.gradle\caches\transforms-4\b1893e6096e75205a29f2c3dca8ddab3\transformed\fragment-1.5.4\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.8.0] C:\Users\theao\.gradle\caches\transforms-4\e237daa5187facf975555f777f7cd302\transformed\activity-1.8.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\93787fc51cad3cff130efc0f6185e881\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\cb9d66372da43b117004e4fcb5b6a36b\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.5.0] C:\Users\theao\.gradle\caches\transforms-4\b7ac9b3f95ff501bea00ce9c32763625\transformed\transition-1.5.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\85b417630d26bed3e760123209cf7789\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\5427b000e723649ac4b25fef84826223\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\97c0850ae03357bd503a1e9a2568c08e\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\f6be020d86bf3f1cede5e0a37a1e2d5e\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\000259c33fb47b2340d9e53064c311f4\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\d51128916d02c962b5a2e744d951f1e5\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\2f73c4784af5af3fb1d3ef77a15317bd\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\dcf13372f024b155314b72747ba8bb94\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\theao\.gradle\caches\transforms-4\15cb74679938a571511f934d26d136f3\transformed\savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\2d180e28ff832798b16af254b0ded798\transformed\lifecycle-livedata-core-ktx-2.8.4\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3272c958c185407709663fc8fe82f481\transformed\lifecycle-livedata-2.8.4\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\ea878b874fb23f63ccbee38861e5d38d\transformed\lifecycle-runtime-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\13b7788fbd4ee823629cd3b6bb78922c\transformed\lifecycle-viewmodel-2.8.4\AndroidManifest.xml:2:1-5:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\d75cd9784d8eaa356fd0cfac5b2e7f53\transformed\lifecycle-viewmodel-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\fd734c690a5e58edf64b42b533c6aa20\transformed\lifecycle-livedata-core-2.8.4\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\87a50aef0a6396985d21b8220617dc1a\transformed\lifecycle-runtime-ktx-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3036229fde287d70d1702ed1bdeacda8\transformed\lifecycle-viewmodel-ktx-2.8.4\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\fc9de1d8ed937b399143fb802f910156\transformed\lifecycle-viewmodel-savedstate-2.8.4\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\3ef463eaf0feb9df9f0748c42b9888d7\transformed\core-ktx-1.13.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\theao\.gradle\caches\transforms-4\8699b434a18035c99f237706caabce93\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\990a05a82a838b7c06278d4e872897b9\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\b0226e9f30135cab303fdc527de68696\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\404228b4cde1b085bdfcc59c5cb8212e\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\13d47405764fc6e177e83db9791d92f4\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\8f0f07724430ae57ba0149522a3e7a1c\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\7a1d1ca975704038ecfbb6529a869e3a\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\theao\.gradle\caches\transforms-4\5c23eaeefa20a21ed0aaf87131ace226\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\aea63ca74fe5adde91dfd2d8e84cbe59\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\f8296a559a5fe7a5bfed8d8aceb99f99\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\2e98006184ad317ea89abf73e85ab750\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:2:1-39:12
+	package
+		INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:5:5-67
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:8:5-67
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:8:5-67
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:5:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:6:5-79
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:10:5-79
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:10:5-79
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:6:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:7:5-76
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:28:5-76
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:28:5-76
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:7:22-73
+uses-permission#android.permission.CHANGE_WIFI_MULTICAST_STATE
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:8:5-86
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:13:5-86
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:13:5-86
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:8:22-83
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:11:5-71
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:9:5-71
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:9:5-71
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:11:22-68
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:12:5-80
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:22:5-80
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:22:5-80
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:12:22-77
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:13:5-65
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:14:5-65
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:14:5-65
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:13:22-62
+uses-permission#android.permission.WAKE_LOCK
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:16:5-68
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:11:5-68
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:11:5-68
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:16:22-65
+uses-permission#android.permission.VIBRATE
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:17:5-66
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:24:5-66
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:24:5-66
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:17:22-63
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:18:5-77
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:33:5-77
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:33:5-77
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:18:22-74
+uses-permission#android.permission.FOREGROUND_SERVICE_PHONE_CALL
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:19:5-88
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:36:5-88
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:36:5-88
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:19:22-85
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:20:5-77
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:20:22-74
+uses-permission#android.permission.USE_FULL_SCREEN_INTENT
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:21:5-81
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:21:22-78
+uses-permission#android.permission.MANAGE_OWN_CALLS
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:22:5-75
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:22:22-72
+uses-feature#android.hardware.microphone
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:25:5-27:35
+	android:required
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:27:9-32
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:26:9-51
+uses-feature#android.hardware.camera
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:28:5-30:36
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:16:5-18:36
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:16:5-18:36
+	android:required
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:30:9-33
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:29:9-47
+application
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:32:5-96:19
+INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:32:5-96:19
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\theao\.gradle\caches\transforms-4\21944759e1efb0f70f4aa9125063aa3e\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\theao\.gradle\caches\transforms-4\21944759e1efb0f70f4aa9125063aa3e\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\theao\.gradle\caches\transforms-4\4a1a04f73e1c69510ad976c0dea2422d\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\theao\.gradle\caches\transforms-4\4a1a04f73e1c69510ad976c0dea2422d\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\13d47405764fc6e177e83db9791d92f4\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\13d47405764fc6e177e83db9791d92f4\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\8f0f07724430ae57ba0149522a3e7a1c\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\8f0f07724430ae57ba0149522a3e7a1c\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+	android:extractNativeLibs
+		INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:38:9-35
+	android:label
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:36:9-41
+	android:roundIcon
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:37:9-46
+	android:icon
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:35:9-41
+	android:allowBackup
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:34:9-35
+	android:theme
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:39:9-51
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:33:9-39
+activity#com.antigravity.sipcalling.ui.MainActivity
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:42:9-61:20
+	android:launchMode
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:45:13-44
+	android:windowSoftInputMode
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:46:13-55
+	android:exported
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:44:13-36
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:43:13-44
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:47:13-50:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:48:17-69
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:48:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:49:17-77
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:49:27-74
+intent-filter#action:name:android.intent.action.DIAL+action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:sip+data:scheme:sips+data:scheme:tel
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:52:13-60:29
+action#android.intent.action.VIEW
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:53:17-69
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:53:25-66
+action#android.intent.action.DIAL
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:54:17-69
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:54:25-66
+category#android.intent.category.DEFAULT
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:55:17-76
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:55:27-73
+category#android.intent.category.BROWSABLE
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:56:17-78
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:56:27-75
+data
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:57:17-46
+	android:scheme
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:57:23-43
+activity#com.antigravity.sipcalling.ui.SipSettingsActivity
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:64:9-68:61
+	android:parentActivityName
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:68:13-58
+	android:label
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:67:13-55
+	android:exported
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:66:13-37
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:65:13-51
+activity#com.antigravity.sipcalling.ui.CallActivity
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:71:9-77:43
+	android:screenOrientation
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:75:13-49
+	android:turnScreenOn
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:77:13-40
+	android:showWhenLocked
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:76:13-42
+	android:launchMode
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:74:13-43
+	android:exported
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:73:13-37
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:72:13-44
+activity#com.antigravity.sipcalling.ui.IncomingCallActivity
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:80:9-87:43
+	android:screenOrientation
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:85:13-49
+	android:turnScreenOn
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:87:13-40
+	android:excludeFromRecents
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:82:13-46
+	android:showWhenLocked
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:86:13-42
+	android:launchMode
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:84:13-43
+	android:exported
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:83:13-37
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:81:13-52
+service#com.antigravity.sipcalling.service.SipForegroundService
+ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:90:9-94:57
+	android:enabled
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:92:13-35
+	android:exported
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:93:13-37
+	android:foregroundServiceType
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:94:13-54
+	android:name
+		ADDED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:91:13-57
+uses-sdk
+INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml
+MERGED from [androidx.databinding:viewbinding:8.4.1] C:\Users\theao\.gradle\caches\transforms-4\5e8fd5b488c0a312a63c2b2a769eca44\transformed\viewbinding-8.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.databinding:viewbinding:8.4.1] C:\Users\theao\.gradle\caches\transforms-4\5e8fd5b488c0a312a63c2b2a769eca44\transformed\viewbinding-8.4.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\theao\.gradle\caches\transforms-4\21944759e1efb0f70f4aa9125063aa3e\transformed\material-1.12.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\theao\.gradle\caches\transforms-4\21944759e1efb0f70f4aa9125063aa3e\transformed\material-1.12.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\theao\.gradle\caches\transforms-4\4a1a04f73e1c69510ad976c0dea2422d\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\theao\.gradle\caches\transforms-4\4a1a04f73e1c69510ad976c0dea2422d\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\theao\.gradle\caches\transforms-4\adee9d4526e22ffb86063d516ed34a9d\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\theao\.gradle\caches\transforms-4\adee9d4526e22ffb86063d516ed34a9d\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\theao\.gradle\caches\transforms-4\c77b78faf6b4bc4c2c55d43281433586\transformed\appcompat-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\theao\.gradle\caches\transforms-4\c77b78faf6b4bc4c2c55d43281433586\transformed\appcompat-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\ecdc7c7a2b2f96b4880556e2a60485da\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\ecdc7c7a2b2f96b4880556e2a60485da\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\3e044c03c842868931d6a95a3cd64ad0\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\3e044c03c842868931d6a95a3cd64ad0\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\theao\.gradle\caches\transforms-4\b1893e6096e75205a29f2c3dca8ddab3\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\theao\.gradle\caches\transforms-4\b1893e6096e75205a29f2c3dca8ddab3\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.8.0] C:\Users\theao\.gradle\caches\transforms-4\e237daa5187facf975555f777f7cd302\transformed\activity-1.8.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.0] C:\Users\theao\.gradle\caches\transforms-4\e237daa5187facf975555f777f7cd302\transformed\activity-1.8.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\93787fc51cad3cff130efc0f6185e881\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\93787fc51cad3cff130efc0f6185e881\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\cb9d66372da43b117004e4fcb5b6a36b\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\cb9d66372da43b117004e4fcb5b6a36b\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.5.0] C:\Users\theao\.gradle\caches\transforms-4\b7ac9b3f95ff501bea00ce9c32763625\transformed\transition-1.5.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.transition:transition:1.5.0] C:\Users\theao\.gradle\caches\transforms-4\b7ac9b3f95ff501bea00ce9c32763625\transformed\transition-1.5.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\85b417630d26bed3e760123209cf7789\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\85b417630d26bed3e760123209cf7789\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\5427b000e723649ac4b25fef84826223\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\5427b000e723649ac4b25fef84826223\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\97c0850ae03357bd503a1e9a2568c08e\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\97c0850ae03357bd503a1e9a2568c08e\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\f6be020d86bf3f1cede5e0a37a1e2d5e\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\f6be020d86bf3f1cede5e0a37a1e2d5e\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\000259c33fb47b2340d9e53064c311f4\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\000259c33fb47b2340d9e53064c311f4\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\d51128916d02c962b5a2e744d951f1e5\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\d51128916d02c962b5a2e744d951f1e5\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\2f73c4784af5af3fb1d3ef77a15317bd\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\2f73c4784af5af3fb1d3ef77a15317bd\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\dcf13372f024b155314b72747ba8bb94\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\theao\.gradle\caches\transforms-4\dcf13372f024b155314b72747ba8bb94\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\theao\.gradle\caches\transforms-4\15cb74679938a571511f934d26d136f3\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\theao\.gradle\caches\transforms-4\15cb74679938a571511f934d26d136f3\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\2d180e28ff832798b16af254b0ded798\transformed\lifecycle-livedata-core-ktx-2.8.4\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\2d180e28ff832798b16af254b0ded798\transformed\lifecycle-livedata-core-ktx-2.8.4\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3272c958c185407709663fc8fe82f481\transformed\lifecycle-livedata-2.8.4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3272c958c185407709663fc8fe82f481\transformed\lifecycle-livedata-2.8.4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\ea878b874fb23f63ccbee38861e5d38d\transformed\lifecycle-runtime-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\ea878b874fb23f63ccbee38861e5d38d\transformed\lifecycle-runtime-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\13b7788fbd4ee823629cd3b6bb78922c\transformed\lifecycle-viewmodel-2.8.4\AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\13b7788fbd4ee823629cd3b6bb78922c\transformed\lifecycle-viewmodel-2.8.4\AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\d75cd9784d8eaa356fd0cfac5b2e7f53\transformed\lifecycle-viewmodel-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\d75cd9784d8eaa356fd0cfac5b2e7f53\transformed\lifecycle-viewmodel-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\fd734c690a5e58edf64b42b533c6aa20\transformed\lifecycle-livedata-core-2.8.4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\fd734c690a5e58edf64b42b533c6aa20\transformed\lifecycle-livedata-core-2.8.4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\87a50aef0a6396985d21b8220617dc1a\transformed\lifecycle-runtime-ktx-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\87a50aef0a6396985d21b8220617dc1a\transformed\lifecycle-runtime-ktx-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3036229fde287d70d1702ed1bdeacda8\transformed\lifecycle-viewmodel-ktx-2.8.4\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3036229fde287d70d1702ed1bdeacda8\transformed\lifecycle-viewmodel-ktx-2.8.4\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\fc9de1d8ed937b399143fb802f910156\transformed\lifecycle-viewmodel-savedstate-2.8.4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\fc9de1d8ed937b399143fb802f910156\transformed\lifecycle-viewmodel-savedstate-2.8.4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\3ef463eaf0feb9df9f0748c42b9888d7\transformed\core-ktx-1.13.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\3ef463eaf0feb9df9f0748c42b9888d7\transformed\core-ktx-1.13.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\theao\.gradle\caches\transforms-4\8699b434a18035c99f237706caabce93\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\theao\.gradle\caches\transforms-4\8699b434a18035c99f237706caabce93\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\990a05a82a838b7c06278d4e872897b9\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\990a05a82a838b7c06278d4e872897b9\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\b0226e9f30135cab303fdc527de68696\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\b0226e9f30135cab303fdc527de68696\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\404228b4cde1b085bdfcc59c5cb8212e\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\404228b4cde1b085bdfcc59c5cb8212e\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\13d47405764fc6e177e83db9791d92f4\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\13d47405764fc6e177e83db9791d92f4\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\8f0f07724430ae57ba0149522a3e7a1c\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\8f0f07724430ae57ba0149522a3e7a1c\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\7a1d1ca975704038ecfbb6529a869e3a\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\7a1d1ca975704038ecfbb6529a869e3a\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\theao\.gradle\caches\transforms-4\5c23eaeefa20a21ed0aaf87131ace226\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\theao\.gradle\caches\transforms-4\5c23eaeefa20a21ed0aaf87131ace226\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\aea63ca74fe5adde91dfd2d8e84cbe59\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\aea63ca74fe5adde91dfd2d8e84cbe59\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\f8296a559a5fe7a5bfed8d8aceb99f99\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\f8296a559a5fe7a5bfed8d8aceb99f99\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\2e98006184ad317ea89abf73e85ab750\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\2e98006184ad317ea89abf73e85ab750\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:5:5-44
+MERGED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:5:5-44
+	android:targetSdkVersion
+		INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\8f0f07724430ae57ba0149522a3e7a1c\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\theao\.gradle\caches\transforms-4\8f0f07724430ae57ba0149522a3e7a1c\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+permission#com.antigravity.sipcalling.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+uses-permission#com.antigravity.sipcalling.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:30:17-78
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+uses-permission#android.permission.BLUETOOTH
+ADDED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:20:5-68
+	android:name
+		ADDED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:20:22-65
+uses-permission#android.permission.ACCESS_NOTIFICATION_POLICY
+ADDED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:26:5-85
+	android:name
+		ADDED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:26:22-82
+uses-permission#android.permission.FOREGROUND_SERVICE_CAMERA
+ADDED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:34:5-84
+	android:name
+		ADDED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:34:22-81
+uses-permission#android.permission.FOREGROUND_SERVICE_MICROPHONE
+ADDED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:35:5-88
+	android:name
+		ADDED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:35:22-85
+uses-permission#android.permission.FOREGROUND_SERVICE_DATA_SYNC
+ADDED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:37:5-87
+	android:name
+		ADDED from [org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:37:22-84

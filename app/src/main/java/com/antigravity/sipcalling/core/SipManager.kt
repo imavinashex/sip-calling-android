@@ -6,10 +6,13 @@ import android.media.AudioDeviceInfo
 import android.media.AudioManager
 import android.os.Build
 import android.util.Log
+import com.antigravity.sipcalling.data.CallLogRepository
 import com.antigravity.sipcalling.model.*
 import com.antigravity.sipcalling.service.SipForegroundService
 import com.antigravity.sipcalling.ui.CallActivity
 import com.antigravity.sipcalling.ui.IncomingCallActivity
+import com.antigravity.sipcalling.util.CallerIdResolver
+import com.antigravity.sipcalling.util.PhoneNumberNormalizer
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,6 +44,14 @@ object SipManager {
 
     private var currentAccount: SipAccount? = null
     private var isSpeakerphoneOn = false
+
+    // Call history tracking
+    private var trackingCallType: CallType = CallType.OUTGOING
+    private var trackingPhoneNumber: String = ""
+    private var trackingDisplayName: String = ""
+    private var trackingStartTime: Long = 0L
+    private var trackingCallConnected: Boolean = false
+    private var trackingDurationSeconds: Long = 0L
 
     private val coreListener = object : CoreListenerStub() {
         override fun onAccountRegistrationStateChanged(
@@ -187,8 +198,14 @@ object SipManager {
      */
     fun makeCall(destination: String, isVideo: Boolean = false): Boolean {
         val c = core ?: return false
-        val cleanDest = destination.trim()
-        if (cleanDest.isEmpty()) return false
+        val rawDest = destination.trim()
+        if (rawDest.isEmpty()) return false
+
+        val cleanDest = if (rawDest.startsWith("sip:") || rawDest.startsWith("sips:")) {
+            PhoneNumberNormalizer.normalizeSipUri(rawDest)
+        } else {
+            PhoneNumberNormalizer.normalize(rawDest)
+        }
 
         try {
             val address = if (cleanDest.startsWith("sip:") || cleanDest.startsWith("sips:")) {
@@ -309,11 +326,22 @@ object SipManager {
     }
 
     private fun handleCallStateChange(call: Call, state: Call.State, message: String) {
-        val remoteAddress = call.remoteAddress?.asStringUriOnly() ?: "Unknown"
-        val remoteDisplayName = call.remoteAddress?.displayName?.ifEmpty { remoteAddress } ?: remoteAddress
+        val rawRemoteAddress = call.remoteAddress?.asStringUriOnly() ?: "Unknown"
+        val rawDisplayName = call.remoteAddress?.displayName?.ifEmpty { null }
+
+        val callerInfo = CallerIdResolver.resolve(rawRemoteAddress, rawDisplayName)
+        val remoteDisplayName = callerInfo.name
+        val remoteAddress = callerInfo.number
 
         when (state) {
             Call.State.IncomingReceived -> {
+                trackingCallType = CallType.INCOMING
+                trackingPhoneNumber = callerInfo.number
+                trackingDisplayName = callerInfo.name
+                trackingStartTime = System.currentTimeMillis()
+                trackingCallConnected = false
+                trackingDurationSeconds = 0L
+
                 val data = ActiveCallData(
                     remoteAddress = remoteAddress,
                     remoteDisplayName = remoteDisplayName,
@@ -338,9 +366,17 @@ object SipManager {
             }
 
             Call.State.OutgoingInit -> {
+                val outgoingInfo = CallerIdResolver.resolve(remoteAddress, remoteDisplayName)
+                trackingCallType = CallType.OUTGOING
+                trackingPhoneNumber = outgoingInfo.number
+                trackingDisplayName = outgoingInfo.name
+                trackingStartTime = System.currentTimeMillis()
+                trackingCallConnected = false
+                trackingDurationSeconds = 0L
+
                 _activeCallData.value = ActiveCallData(
-                    remoteAddress = remoteAddress,
-                    remoteDisplayName = remoteDisplayName,
+                    remoteAddress = outgoingInfo.number,
+                    remoteDisplayName = outgoingInfo.name,
                     state = VoipCallState.OutgoingInit
                 )
             }
@@ -356,6 +392,7 @@ object SipManager {
             }
 
             Call.State.Connected, Call.State.StreamsRunning -> {
+                trackingCallConnected = true
                 val codec = call.currentParams.usedAudioPayloadType?.mimeType ?: "Opus"
                 _activeCallData.value = _activeCallData.value?.copy(
                     state = VoipCallState.Connected,
@@ -385,6 +422,24 @@ object SipManager {
 
             Call.State.End, Call.State.Released, Call.State.Error -> {
                 stopCallTimer()
+
+                if (trackingPhoneNumber.isNotBlank()) {
+                    val finalType = if (trackingCallType == CallType.INCOMING) {
+                        if (trackingCallConnected) CallType.INCOMING else CallType.MISSED
+                    } else {
+                        CallType.OUTGOING
+                    }
+                    val entry = CallLogEntry(
+                        phoneNumber = trackingPhoneNumber,
+                        displayName = trackingDisplayName,
+                        type = finalType,
+                        timestamp = if (trackingStartTime > 0) trackingStartTime else System.currentTimeMillis(),
+                        durationSeconds = trackingDurationSeconds
+                    )
+                    CallLogRepository.insertCall(entry)
+                    trackingPhoneNumber = ""
+                }
+
                 _activeCallData.value = _activeCallData.value?.copy(
                     state = VoipCallState.Terminated
                 )
@@ -406,6 +461,7 @@ object SipManager {
             while (isActive) {
                 delay(1000)
                 seconds++
+                trackingDurationSeconds = seconds
                 val current = _activeCallData.value ?: break
                 _activeCallData.value = current.copy(durationSeconds = seconds)
             }

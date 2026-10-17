@@ -625,6 +625,12 @@
     </attr>
     <bool name="abc_action_bar_embed_tabs">true</bool>
     <bool name="abc_config_actionMenuItemAllCaps">true</bool>
+    <bool name="leak_canary_add_dynamic_shortcut">true</bool>
+    <bool name="leak_canary_add_launcher_icon">true</bool>
+    <bool name="leak_canary_allow_in_non_debuggable_build">false</bool>
+    <bool name="leak_canary_plumber_auto_install">true</bool>
+    <bool name="leak_canary_watcher_auto_install">true</bool>
+    <bool name="leak_canary_watcher_watch_dismissed_dialogs">false</bool>
     <bool name="mtrl_btn_textappearance_all_caps">true</bool>
     <color name="abc_decor_view_status_guard">#ff000000</color>
     <color name="abc_decor_view_status_guard_light">#ffffffff</color>
@@ -714,6 +720,46 @@
     <color name="foreground_material_light">@android:color/black</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
+    <color name="leak_canary_background_color">#242424</color>
+    <color name="leak_canary_class_name">#bababa</color>
+    <color name="leak_canary_count_default">#26FFCC32</color>
+    <color name="leak_canary_count_new">#FFD34C</color>
+    <color name="leak_canary_count_new_border">@color/leak_canary_yellow</color>
+    <color name="leak_canary_extra">#919191</color>
+    <color name="leak_canary_gray">#2F2F2F</color>
+    <color name="leak_canary_gray_3f">#3F3F3F</color>
+    <color name="leak_canary_gray_6f">#6f6f6f</color>
+    <color name="leak_canary_gray_darkest">#151C1F</color>
+    <color name="leak_canary_gray_darkest_25p">#40151C1F</color>
+    <color name="leak_canary_gray_darkest_40p">#66151C1F</color>
+    <color name="leak_canary_gray_light">#939CA3</color>
+    <color name="leak_canary_gray_lightest">#F2F4F5</color>
+    <color name="leak_canary_heap_app">#00ffff</color>
+    <color name="leak_canary_heap_boolean_array">#383838</color>
+    <color name="leak_canary_heap_byte_array">#e23ff7</color>
+    <color name="leak_canary_heap_char_array">#ffa500</color>
+    <color name="leak_canary_heap_class_dump">#689959</color>
+    <color name="leak_canary_heap_double_array">#4d4d4d</color>
+    <color name="leak_canary_heap_float_array">#4d4d4d</color>
+    <color name="leak_canary_heap_hprof_string">#900000</color>
+    <color name="leak_canary_heap_image">#039dff</color>
+    <color name="leak_canary_heap_instance">#72547a</color>
+    <color name="leak_canary_heap_instance_string">#ff0000</color>
+    <color name="leak_canary_heap_int_array">#797979</color>
+    <color name="leak_canary_heap_load_class">#12580f</color>
+    <color name="leak_canary_heap_long_array">#797979</color>
+    <color name="leak_canary_heap_object_array">#ffffff</color>
+    <color name="leak_canary_heap_other">#000000</color>
+    <color name="leak_canary_heap_short_array">#797979</color>
+    <color name="leak_canary_heap_stack_trace">#ffd40b</color>
+    <color name="leak_canary_heap_zygote">#000a8b</color>
+    <color name="leak_canary_help">#6a98b9</color>
+    <color name="leak_canary_leak">#be383f</color>
+    <color name="leak_canary_reference">#9976a8</color>
+    <color name="leak_canary_white">#ffffff</color>
+    <color name="leak_canary_yellow">#FFCC32</color>
+    <color name="leak_canary_yellow_button">#FFE79F</color>
+    <color name="leak_canary_yellow_button_pressed">#c4b47f</color>
     <color name="m3_ref_palette_black">#ff000000</color>
     <color name="m3_ref_palette_error0">#ff000000</color>
     <color name="m3_ref_palette_error10">#ff410e0b</color>
@@ -1143,6 +1189,22 @@
     <dimen name="item_touch_helper_max_drag_scroll_per_frame">20dp</dimen>
     <dimen name="item_touch_helper_swipe_escape_max_velocity">800dp</dimen>
     <dimen name="item_touch_helper_swipe_escape_velocity">120dp</dimen>
+    <dimen name="leak_canary_connector_center_y">24dp</dimen>
+    <dimen name="leak_canary_connector_leak_dash_gap">1dp</dimen>
+    <dimen name="leak_canary_connector_leak_dash_line">5dp</dimen>
+    <dimen name="leak_canary_connector_stroke_size">2dp</dimen>
+    <dimen name="leak_canary_connector_width">16dp</dimen>
+    <dimen name="leak_canary_more_margin_top">18dp</dimen>
+    <dimen name="leak_canary_more_size">12dp</dimen>
+    <dimen name="leak_canary_more_stroke_width">2dp</dimen>
+    <dimen name="leak_canary_row_margins">20dp</dimen>
+    <dimen name="leak_canary_row_min">48dp</dimen>
+    <dimen name="leak_canary_row_title_margin_top">14.5dp</dimen>
+    <dimen name="leak_canary_squiggly_span_amplitude">1dp</dimen>
+    <dimen name="leak_canary_squiggly_span_period_degrees">4dp</dimen>
+    <dimen name="leak_canary_squiggly_span_stroke_width">1dp</dimen>
+    <dimen name="leak_canary_toast_icon_size">64dp</dimen>
+    <dimen name="leak_canary_toast_icon_tv_padding">10dp</dimen>
     <dimen name="m3_alert_dialog_action_bottom_padding">14dp</dimen>
     <dimen name="m3_alert_dialog_action_top_padding">14dp</dimen>
     <dimen name="m3_alert_dialog_corner_size">28dp</dimen>
@@ -1835,6 +1897,14 @@
     <item name="ghost_view_holder" type="id"/>
     <item name="home" type="id"/>
     <item name="item_touch_helper_previous_elevation" type="id"/>
+    <item name="leak_canary_notification_analysis_result" type="id"/>
+    <item name="leak_canary_notification_analyzing_heap" type="id"/>
+    <item name="leak_canary_notification_dumping_heap" type="id"/>
+    <item name="leak_canary_notification_no_retained_object_on_tap" type="id"/>
+    <item name="leak_canary_notification_on_screen_exit" type="id"/>
+    <item name="leak_canary_notification_retained_objects" type="id"/>
+    <item name="leak_canary_notification_write_permission" type="id"/>
+    <item name="leak_canary_restored_view_state" type="id"/>
     <item name="line1" type="id"/>
     <item name="line3" type="id"/>
     <item name="material_clock_face" type="id"/>
@@ -1972,6 +2042,18 @@
     <integer name="mtrl_view_visible">0</integer>
     <integer name="show_password_duration">200</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
+    <plurals name="leak_canary_distinct_leaks">
+    <item quantity="one">%d Distinct Leak</item>
+    <item quantity="other">%d Distinct Leaks</item>
+  </plurals>
+    <plurals name="leak_canary_group_screen_title">
+    <item quantity="one">%1$d leak at %2$s</item>
+    <item quantity="other">%1$d leaks at %2$s</item>
+  </plurals>
+    <plurals name="leak_canary_heap_analysis_list_screen_title">
+    <item quantity="one">%d Heap Dump</item>
+    <item quantity="other">%d Heap Dumps</item>
+  </plurals>
     <plurals description="Plural form content description for number of new notifications [CHAR_LIMIT=NONE]" name="mtrl_badge_content_description">
     <item quantity="one"><ns2:g id="count">%d</ns2:g> new notification</item>
     <item quantity="other"><ns2:g id="count">%d</ns2:g> new notifications</item>
@@ -2019,9 +2101,11 @@
     <string description="A description of an action that a user of an accessibility service can perform to expand a bottomsheet halfway to its full height. [CHAR LIMIT=25]" name="bottomsheet_action_expand_halfway">Expand halfway</string>
     <string description="An accessibility feedback when the bottom sheet drag handle is clicked [CHAR LIMIT=NONE]" name="bottomsheet_drag_handle_clicked">Drag handle double-tapped</string>
     <string description="The content description of bottom sheet drag handles [CHAR LIMIT=NONE]" name="bottomsheet_drag_handle_content_description">Drag handle</string>
+    <string name="btn_add_contact">Add Contact</string>
     <string name="btn_call">Call</string>
     <string name="btn_configure">Setup SIP Account</string>
     <string name="btn_disconnect">Disconnect / Unregister</string>
+    <string name="btn_import_contacts">Import</string>
     <string name="btn_save_register">Save &amp; Connect</string>
     <string name="call_connected">Connected</string>
     <string name="call_ended">Call Ended</string>
@@ -2037,8 +2121,15 @@
     <string name="character_counter_content_description">Characters entered %1$d of %2$d</string>
     <string name="character_counter_overflowed_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d/%2$d</string>
+    <string name="clear_history">Clear History</string>
+    <string name="clear_history_confirm">Are you sure you want to clear all call history?</string>
     <string name="clear_text_end_icon_content_description">Clear text</string>
     <string name="configure_account_banner">Configure your SIP extension to start making and receiving VoIP calls.</string>
+    <string name="contacts_imported">Imported %1$d contacts</string>
+    <string name="delete_call_confirm">Delete this call from history?</string>
+    <string name="delete_call_log">Delete</string>
+    <string name="delete_contact">Delete Contact</string>
+    <string name="delete_contact_confirm">Delete this contact?</string>
     <string name="dialer_hint">Enter number or SIP address…</string>
     <string description="Screen reader announcement for when a checkbox is on error. [CHAR LIMIT=NONE]" name="error_a11y_label">
     Error: invalid
@@ -2051,6 +2142,81 @@
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
     <string name="incoming_call_title">Incoming SIP Call</string>
     <string name="item_view_role_description">Tab</string>
+    <string name="leak_canary_about_enable_heap_dump">Dump heap automatically</string>
+    <string name="leak_canary_about_enable_heap_dump_textOff">Disable</string>
+    <string name="leak_canary_about_enable_heap_dump_textOn">Enable</string>
+    <string name="leak_canary_about_menu">About LeakCanary</string>
+    <string name="leak_canary_about_message"><![CDATA[This is a dev extension for
+  <b>%1$s</b> (<i>%2$s</i>), automatically added by the LeakCanary library.<br><br>
+  <a href="https://square.github.io/leakcanary/">LeakCanary</a> is a memory leak detection library for Android, created
+  and open sourced by <a href="https://twitter.com/Piwai">Pierre-Yves Ricau</a> at <a href="https://square.github.io">Square</a>.<br><br>
+  You can learn more about memory leaks at <a href="https://squ.re/leaks">https://squ.re/leaks</a>.<br><br>
+  We welcome contributions from the community - please do not hesitate to
+  <a href="https://github.com/square/leakcanary/issues">report an issue</a> or open a pull request!<br><br>
+]]></string>
+    <string name="leak_canary_about_title">About LeakCanary %s</string>
+    <string name="leak_canary_analysis_deleted_title">Analysis Deleted</string>
+    <string name="leak_canary_analysis_failed">Heap analysis failed</string>
+    <string name="leak_canary_analysis_success_notification">Found %1$d retained objects grouped as %2$d distinct leaks (%3$d new)</string>
+    <string name="leak_canary_class_has_leaked">%1$s Leaked</string>
+    <string name="leak_canary_delete">Delete</string>
+    <string name="leak_canary_delete_all">Delete all</string>
+    <string name="leak_canary_delete_all_leaks_title">Are you sure you want to delete all leaks?</string>
+    <string name="leak_canary_display_activity_label">Leaks</string>
+    <string name="leak_canary_dump_heap">Dump Heap Now</string>
+    <string name="leak_canary_explore_heap_dump">Explore Heap Dump</string>
+    <string name="leak_canary_explorer_search_classes">Search classes</string>
+    <string name="leak_canary_failure_clipdata_label">LeakCanary failure stacktrace</string>
+    <string name="leak_canary_failure_copied">Stacktrace copied to clipboard</string>
+    <string name="leak_canary_generating_hq_bitmap_toast_failure_notice">Could not save HQ Bitmap</string>
+    <string name="leak_canary_generating_hq_bitmap_toast_notice">Rendering HQ Bitmap, this may take a while…</string>
+    <string name="leak_canary_go_to_heap_analysis">Go to Heap Analysis</string>
+    <string name="leak_canary_group_list_time_label">Last leaked %s</string>
+    <string name="leak_canary_heap_analysis_success_screen_row_time_format">Latest: %s</string>
+    <string name="leak_canary_heap_dump_disabled_by_app">LeakCanary.Config.dumpHeap is set to false</string>
+    <string name="leak_canary_heap_dump_disabled_from_ui">heap dumping disabled from LeakCanary About screen</string>
+    <string name="leak_canary_heap_dump_disabled_running_tests">test class "%s" was found in classpath</string>
+    <string name="leak_canary_heap_dump_disabled_text">LeakCanary is currently disabled: <i>%s</i>.</string>
+    <string name="leak_canary_heap_dump_enabled_text">LeakCanary is running and ready to detect memory leaks.</string>
+    <string name="leak_canary_heap_dump_not_installed_text">AppWatcher is not installed</string>
+    <string name="leak_canary_heap_dump_screen_title">Heap Dump %s</string>
+    <string name="leak_canary_help_title">Tap here to learn more</string>
+    <string name="leak_canary_import_from_title">Import From…</string>
+    <string name="leak_canary_import_hprof_file">Import Heap Dump</string>
+    <string name="leak_canary_import_unsupported_file_extension">Could not import %s, this is not an hprof file.</string>
+    <string name="leak_canary_leak_clipdata_label">LeakCanary Leak Trace</string>
+    <string name="leak_canary_leak_copied">Leak info copied to clipboard</string>
+    <string name="leak_canary_leak_missing_browser_error">No browser app installed</string>
+    <string name="leak_canary_leak_not_found">Leak not found</string>
+    <string name="leak_canary_loading_title">Loading…</string>
+    <string name="leak_canary_notification_analysing">Analyzing Heap Dump</string>
+    <string name="leak_canary_notification_channel_low">LeakCanary Low Priority</string>
+    <string name="leak_canary_notification_channel_result">LeakCanary Result</string>
+    <string name="leak_canary_notification_dumping">Dumping Heap</string>
+    <string name="leak_canary_notification_message">Tap for more details</string>
+    <string name="leak_canary_notification_no_retained_object_content">Tap to dismiss</string>
+    <string name="leak_canary_notification_no_retained_object_title">All retained objects were garbage collected</string>
+    <string name="leak_canary_notification_retained_debugger_attached">Waiting for debugger to detach</string>
+    <string name="leak_canary_notification_retained_dump_failed">Failed to dump heap</string>
+    <string name="leak_canary_notification_retained_dump_wait">Last heap dump was less than a minute ago</string>
+    <string name="leak_canary_notification_retained_title">%d retained objects, tap to dump heap</string>
+    <string name="leak_canary_notification_retained_visible">App visible, waiting until %d retained objects</string>
+    <string name="leak_canary_options_menu_generate_hq_bitmap">Generate HQ Bitmap</string>
+    <string name="leak_canary_options_menu_permission_toast">Please grant the External Storage Permission first, see notification…</string>
+    <string name="leak_canary_options_menu_render_heap_dump">Render Heap Dump</string>
+    <string name="leak_canary_permission_not_granted">Please grant requested permission, otherwise memory leak detection may not work.</string>
+    <string name="leak_canary_permission_notification_text">Click to enable storage permission for %s.</string>
+    <string name="leak_canary_permission_notification_title">Leak detected, need permission</string>
+    <string name="leak_canary_share_heap_dump_bitmap_screen_title">Share Heap Dump Bitmap</string>
+    <string name="leak_canary_share_with">Share with…</string>
+    <string name="leak_canary_shortcut_label">Leaks</string>
+    <string name="leak_canary_stackoverflow_share">Share Leak On Stack Overflow</string>
+    <string name="leak_canary_storage_permission_activity_label">Storage permission</string>
+    <string name="leak_canary_test_class_name" translatable="false">org.junit.Test</string>
+    <string name="leak_canary_toast_heap_dump">LeakCanary is dumping memory to investigate leaks.</string>
+    <string name="leak_canary_tv_analysis_failure">Heap Analysis failed, see details in Logcat</string>
+    <string name="leak_canary_tv_analysis_success">Heap Analysis performed: %1$d application leaks, %2$d library leaks. See details in Logcat</string>
+    <string name="leak_canary_tv_toast_retained_objects">%1$d retained objects. Heap dump threshold is %2$d.\nBackground the app to trigger heap dump immediately</string>
     <string name="linphone_sdk_branch" translatable="false">tags/5.3.77^0</string>
     <string name="linphone_sdk_version" translatable="false">5.3.77</string>
     <string name="m3_exceed_max_badge_text_suffix" translatable="false"><ns2:g example="Some te" id="part of a long text">%1$s</ns2:g><ns2:g example="…" id="suffix">%2$s</ns2:g></string>
@@ -2159,6 +2325,10 @@
     <string name="mtrl_switch_track_path" translatable="false">M0,16 A16,16 0 0,1 16,0 H36 A16,16 0 0,1 36,32 H16 A16,16 0 0,1 0,16</string>
     <string description="Button text to indicate that the widget will ignore the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_cancel">Cancel</string>
     <string description="Button text to indicate that the widget will save the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_confirm">OK</string>
+    <string name="no_contacts">No contacts yet</string>
+    <string name="no_contacts_desc">Add contacts or import from your phonebook</string>
+    <string name="no_recent_calls">No recent calls yet</string>
+    <string name="no_recent_calls_desc">Your call history will appear here</string>
     <string name="notification_active_call">Active Call in progress</string>
     <string name="notification_channel_desc">Handles background SIP connectivity and active VoIP calls</string>
     <string name="notification_channel_name">SIP Calling Service</string>
@@ -2169,6 +2339,7 @@
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
     <string name="ringing">Ringing…</string>
+    <string name="search_contacts_hint">Search contacts…</string>
     <string name="search_menu_title">Search</string>
     <string name="searchbar_scrolling_view_behavior" translatable="false">
     com.google.android.material.search.SearchBar$ScrollingViewBehavior
@@ -2197,6 +2368,11 @@
     <string name="status_registered">Online &amp; Registered</string>
     <string name="status_registering">Connecting to PBX…</string>
     <string name="status_unregistered">Not Configured</string>
+    <string name="tab_contacts">Contacts</string>
+    <string name="tab_dialer">Dialer</string>
+    <string name="tab_recents">Recents</string>
+    <string name="title_contacts">Contacts</string>
+    <string name="title_recent_calls">Recent Calls</string>
     <string name="title_sip_settings">SIP Account Settings</string>
     <string name="transport_tcp">TCP</string>
     <string name="transport_tls">TLS (Secure)</string>
@@ -9329,6 +9505,21 @@
     <style name="Widget.Support.CoordinatorLayout" parent="android:Widget">
         <item name="statusBarBackground">#000000</item>
     </style>
+    <style name="leak_canary_LeakCanary.Base" parent="android:Theme.Holo">
+    <item name="android:windowBackground">@color/leak_canary_background_color</item>
+    <item name="android:actionBarStyle">@style/leak_canary_Widget.ActionBar</item>
+  </style>
+    <style name="leak_canary_Theme.Transparent" parent="android:Theme">
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:backgroundDimEnabled">false</item>
+  </style>
+    <style name="leak_canary_Widget.ActionBar" parent="android:Widget.Holo.ActionBar">
+    <item name="android:background">@color/leak_canary_background_color</item>
+    <item name="android:windowContentOverlay">@null</item>
+  </style>
     <declare-styleable name="ActionBar">
         
         <attr name="navigationMode">
@@ -13561,6 +13752,9 @@
     <declare-styleable name="include">
         <attr name="constraintSet"/>
     </declare-styleable>
+    <declare-styleable name="leak_canary_MoreDetailsView">
+    <attr format="color" name="leak_canary_plus_color"/>
+  </declare-styleable>
     <macro name="m3_comp_assist_chip_container_shape">?attr/shapeAppearanceCornerSmall</macro>
     <macro name="m3_comp_assist_chip_label_text_type">?attr/textAppearanceLabelLarge</macro>
     <macro name="m3_comp_badge_color">?attr/colorError</macro>

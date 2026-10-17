@@ -4,7 +4,24 @@
             "outputFile": "com.antigravity.sipcalling.app-mergeDebugResources-2:/values-ms/values-ms.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\theao\\.gradle\\caches\\transforms-4\\db0b7e4ee15b05a1161079ebd3930b71\\transformed\\material-1.12.0\\res\\values-ms\\values-ms.xml",
+                    "source": "C:\\Users\\theao\\.gradle\\caches\\transforms-4\\49c551d57a419a0d28321382275f5c8d\\transformed\\core-1.13.1\\res\\values-ms\\values-ms.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,150,252,349,459,565,683,798",
+                        "endColumns": "94,101,96,109,105,117,114,100",
+                        "endOffsets": "145,247,344,454,560,678,793,894"
+                    },
+                    "to": {
+                        "startLines": "38,39,40,41,42,43,44,116",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "3449,3544,3646,3743,3853,3959,4077,9829",
+                        "endColumns": "94,101,96,109,105,117,114,100",
+                        "endOffsets": "3539,3641,3738,3848,3954,4072,4187,9925"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\theao\\.gradle\\caches\\transforms-4\\21944759e1efb0f70f4aa9125063aa3e\\transformed\\material-1.12.0\\res\\values-ms\\values-ms.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -23,24 +40,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\theao\\.gradle\\caches\\transforms-4\\47cfbd21bb27e2cc5aa078ab7d597529\\transformed\\core-1.13.1\\res\\values-ms\\values-ms.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,150,252,349,459,565,683,798",
-                        "endColumns": "94,101,96,109,105,117,114,100",
-                        "endOffsets": "145,247,344,454,560,678,793,894"
-                    },
-                    "to": {
-                        "startLines": "38,39,40,41,42,43,44,116",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "3449,3544,3646,3743,3853,3959,4077,9829",
-                        "endColumns": "94,101,96,109,105,117,114,100",
-                        "endOffsets": "3539,3641,3738,3848,3954,4072,4187,9925"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\theao\\.gradle\\caches\\transforms-4\\19b334d130729e349038387057ae882a\\transformed\\appcompat-1.7.0\\res\\values-ms\\values-ms.xml",
+                    "source": "C:\\Users\\theao\\.gradle\\caches\\transforms-4\\c77b78faf6b4bc4c2c55d43281433586\\transformed\\appcompat-1.7.0\\res\\values-ms\\values-ms.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

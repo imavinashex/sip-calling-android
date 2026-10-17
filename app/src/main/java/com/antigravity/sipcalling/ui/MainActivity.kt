@@ -10,16 +10,25 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.antigravity.sipcalling.R
 import com.antigravity.sipcalling.core.SipManager
+import com.antigravity.sipcalling.data.CallLogRepository
+import com.antigravity.sipcalling.data.ContactRepository
 import com.antigravity.sipcalling.databinding.ActivityMainBinding
+import com.antigravity.sipcalling.databinding.DialogAddContactBinding
+import com.antigravity.sipcalling.model.CallLogEntry
+import com.antigravity.sipcalling.model.Contact
 import com.antigravity.sipcalling.model.RegistrationStatus
 import com.antigravity.sipcalling.model.VoipCallState
+import com.antigravity.sipcalling.util.PhoneNumberNormalizer
 import com.antigravity.sipcalling.util.SoundManager
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -27,6 +36,18 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var recentCallsAdapter: RecentCallsAdapter
+    private lateinit var contactsAdapter: ContactsAdapter
+
+    private val contactsPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) {
+            importContacts()
+        } else {
+            Toast.makeText(this, "Contacts permission required to import", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     private val permissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -49,8 +70,13 @@ class MainActivity : AppCompatActivity() {
         checkPermissions()
         setupDialpad()
         setupActions()
+        setupRecentCalls()
+        setupContacts()
+        setupTabs()
         observeRegistrationState()
         observeActiveCall()
+        observeRecentCalls()
+        observeContacts()
     }
 
     private fun checkPermissions() {
@@ -136,23 +162,234 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initiateCall() {
-        val destination = binding.etTargetNumber.text?.toString()?.trim().orEmpty()
-        if (destination.isEmpty()) {
+        val rawDestination = binding.etTargetNumber.text?.toString()?.trim().orEmpty()
+        if (rawDestination.isEmpty()) {
             Toast.makeText(this, "Please enter a phone number or SIP address", Toast.LENGTH_SHORT).show()
             return
         }
+        callNumber(rawDestination)
+    }
+
+    private fun callNumber(destination: String) {
+        val normalized = PhoneNumberNormalizer.normalize(destination)
+        binding.etTargetNumber.setText(normalized)
+        binding.etTargetNumber.setSelection(normalized.length)
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             checkPermissions()
             return
         }
 
-        val success = SipManager.makeCall(destination)
+        val success = SipManager.makeCall(normalized)
         if (success) {
             val callIntent = Intent(this, CallActivity::class.java)
             startActivity(callIntent)
         } else {
             Toast.makeText(this, "Failed to initiate call. Check SIP account settings.", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun setupRecentCalls() {
+        recentCallsAdapter = RecentCallsAdapter(
+            onCallClick = { entry ->
+                callNumber(entry.phoneNumber)
+            },
+            onLongClick = { entry ->
+                showDeleteEntryDialog(entry)
+            }
+        )
+
+        binding.rvRecentCalls.layoutManager = LinearLayoutManager(this)
+        binding.rvRecentCalls.adapter = recentCallsAdapter
+
+        binding.btnClearHistory.setOnClickListener {
+            showClearAllDialog()
+        }
+    }
+
+    private fun showDeleteEntryDialog(entry: CallLogEntry) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.delete_call_log)
+            .setMessage("${getString(R.string.delete_call_confirm)}\n${entry.displayTitle}")
+            .setPositiveButton(R.string.delete_call_log) { _, _ ->
+                CallLogRepository.deleteCall(entry.id)
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
+    }
+
+    private fun showClearAllDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.clear_history)
+            .setMessage(R.string.clear_history_confirm)
+            .setPositiveButton(R.string.clear_history) { _, _ ->
+                CallLogRepository.clearAll()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
+    }
+
+    enum class MainTab {
+        DIALER,
+        RECENTS,
+        CONTACTS
+    }
+
+    private fun setupTabs() {
+        binding.tabDialer.setOnClickListener { switchTab(MainTab.DIALER) }
+        binding.tabRecents.setOnClickListener { switchTab(MainTab.RECENTS) }
+        binding.tabContacts.setOnClickListener { switchTab(MainTab.CONTACTS) }
+    }
+
+    private fun switchTab(tab: MainTab) {
+        val primaryColor = ContextCompat.getColor(this, R.color.primary)
+        val hintColor = ContextCompat.getColor(this, R.color.text_hint)
+
+        binding.layoutDialer.visibility = if (tab == MainTab.DIALER) View.VISIBLE else View.GONE
+        binding.layoutRecents.visibility = if (tab == MainTab.RECENTS) View.VISIBLE else View.GONE
+        binding.layoutContacts.visibility = if (tab == MainTab.CONTACTS) View.VISIBLE else View.GONE
+
+        // Tab Dialer
+        val isDialer = tab == MainTab.DIALER
+        binding.ivTabDialer.imageTintList = ColorStateList.valueOf(if (isDialer) primaryColor else hintColor)
+        binding.tvTabDialer.setTextColor(if (isDialer) primaryColor else hintColor)
+
+        // Tab Recents
+        val isRecents = tab == MainTab.RECENTS
+        binding.ivTabRecents.imageTintList = ColorStateList.valueOf(if (isRecents) primaryColor else hintColor)
+        binding.tvTabRecents.setTextColor(if (isRecents) primaryColor else hintColor)
+
+        // Tab Contacts
+        val isContacts = tab == MainTab.CONTACTS
+        binding.ivTabContacts.imageTintList = ColorStateList.valueOf(if (isContacts) primaryColor else hintColor)
+        binding.tvTabContacts.setTextColor(if (isContacts) primaryColor else hintColor)
+    }
+
+    private fun setupContacts() {
+        contactsAdapter = ContactsAdapter(
+            onCallClick = { contact ->
+                callNumber(contact.phoneNumber)
+            },
+            onLongClick = { contact ->
+                showDeleteContactDialog(contact)
+            }
+        )
+
+        binding.rvContacts.layoutManager = LinearLayoutManager(this)
+        binding.rvContacts.adapter = contactsAdapter
+
+        binding.btnAddContact.setOnClickListener {
+            showAddContactDialog()
+        }
+
+        binding.btnImportContacts.setOnClickListener {
+            checkContactsPermissionAndImport()
+        }
+
+        binding.btnEmptyImport.setOnClickListener {
+            checkContactsPermissionAndImport()
+        }
+
+        binding.etSearchContacts.addTextChangedListener { text ->
+            val query = text?.toString().orEmpty()
+            val filtered = ContactRepository.search(query)
+            contactsAdapter.submitList(filtered)
+        }
+    }
+
+    private fun checkContactsPermissionAndImport() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+            importContacts()
+        } else {
+            contactsPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
+        }
+    }
+
+    private fun importContacts() {
+        Toast.makeText(this, "Importing & normalizing contacts…", Toast.LENGTH_SHORT).show()
+        lifecycleScope.launch {
+            val count = ContactRepository.importDeviceContacts(this@MainActivity)
+            Toast.makeText(this@MainActivity, getString(R.string.contacts_imported, count), Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun showAddContactDialog() {
+        val dialogBinding = DialogAddContactBinding.inflate(layoutInflater)
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogBinding.root)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        dialogBinding.btnCancelContact.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogBinding.btnSaveContact.setOnClickListener {
+            val name = dialogBinding.etContactName.text?.toString()?.trim().orEmpty()
+            val number = dialogBinding.etContactNumber.text?.toString()?.trim().orEmpty()
+
+            if (name.isEmpty()) {
+                dialogBinding.tilContactName.error = "Name is required"
+                return@setOnClickListener
+            }
+            if (number.isEmpty()) {
+                dialogBinding.tilContactNumber.error = "Phone number is required"
+                return@setOnClickListener
+            }
+
+            ContactRepository.insertContact(name, number)
+            dialog.dismiss()
+            Toast.makeText(this, "Contact saved", Toast.LENGTH_SHORT).show()
+        }
+
+        dialog.show()
+    }
+
+    private fun showDeleteContactDialog(contact: Contact) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.delete_contact)
+            .setMessage("${getString(R.string.delete_contact_confirm)}\n${contact.name} (${contact.phoneNumber})")
+            .setPositiveButton(R.string.delete_contact) { _, _ ->
+                ContactRepository.deleteContact(contact.id)
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
+    }
+
+    private fun observeContacts() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                ContactRepository.contacts.collectLatest { list ->
+                    val query = binding.etSearchContacts.text?.toString().orEmpty()
+                    val toDisplay = if (query.isBlank()) list else ContactRepository.search(query)
+                    contactsAdapter.submitList(toDisplay)
+                    if (list.isEmpty()) {
+                        binding.layoutEmptyContacts.visibility = View.VISIBLE
+                        binding.rvContacts.visibility = View.GONE
+                    } else {
+                        binding.layoutEmptyContacts.visibility = View.GONE
+                        binding.rvContacts.visibility = View.VISIBLE
+                    }
+                }
+            }
+        }
+    }
+
+    private fun observeRecentCalls() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                CallLogRepository.recentCalls.collectLatest { list ->
+                    recentCallsAdapter.submitList(list)
+                    if (list.isEmpty()) {
+                        binding.layoutEmptyRecents.visibility = View.VISIBLE
+                        binding.rvRecentCalls.visibility = View.GONE
+                    } else {
+                        binding.layoutEmptyRecents.visibility = View.GONE
+                        binding.rvRecentCalls.visibility = View.VISIBLE
+                    }
+                }
+            }
         }
     }
 

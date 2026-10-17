@@ -11,6 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.antigravity.sipcalling.core.SipManager
 import com.antigravity.sipcalling.databinding.ActivityIncomingCallBinding
 import com.antigravity.sipcalling.model.VoipCallState
+import com.antigravity.sipcalling.util.PhoneNumberNormalizer
 import com.antigravity.sipcalling.util.SoundManager
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -29,8 +30,8 @@ class IncomingCallActivity : AppCompatActivity() {
         val callerName = intent.getStringExtra("CALLER_NAME") ?: "SIP Caller"
         val callerUri = intent.getStringExtra("CALLER_URI") ?: "sip:unknown"
 
-        binding.tvCallerName.text = callerName
-        binding.tvCallerUri.text = callerUri
+        binding.tvCallerName.text = PhoneNumberNormalizer.formatCallerDisplay(callerUri, callerName)
+        binding.tvCallerUri.text = PhoneNumberNormalizer.normalizeSipUri(callerUri)
 
         SoundManager.startRingtoneAndVibration(this)
 
