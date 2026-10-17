@@ -31,31 +31,63 @@
 
     <GridLayout
         android:id="@+id/dtmfGrid"
-        android:layout_width="wrap_content"
+        android:layout_width="108dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:columnCount="3"
         android:rowCount="4">
 
         <!-- 1, 2, 3 -->
-        <include layout="@layout/view_dialpad_key" android:id="@+id/dtmf1" />
-        <include layout="@layout/view_dialpad_key" android:id="@+id/dtmf2" />
-        <include layout="@layout/view_dialpad_key" android:id="@+id/dtmf3" />
+        <include
+            android:id="@+id/dtmf1"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf2"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf3"
+            layout="@layout/view_dialpad_key" />
 
         <!-- 4, 5, 6 -->
-        <include layout="@layout/view_dialpad_key" android:id="@+id/dtmf4" />
-        <include layout="@layout/view_dialpad_key" android:id="@+id/dtmf5" />
-        <include layout="@layout/view_dialpad_key" android:id="@+id/dtmf6" />
+        <include
+            android:id="@+id/dtmf4"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf5"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf6"
+            layout="@layout/view_dialpad_key" />
 
         <!-- 7, 8, 9 -->
-        <include layout="@layout/view_dialpad_key" android:id="@+id/dtmf7" />
-        <include layout="@layout/view_dialpad_key" android:id="@+id/dtmf8" />
-        <include layout="@layout/view_dialpad_key" android:id="@+id/dtmf9" />
+        <include
+            android:id="@+id/dtmf7"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf8"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf9"
+            layout="@layout/view_dialpad_key" />
 
         <!-- *, 0, # -->
-        <include layout="@layout/view_dialpad_key" android:id="@+id/dtmfStar" />
-        <include layout="@layout/view_dialpad_key" android:id="@+id/dtmf0" />
-        <include layout="@layout/view_dialpad_key" android:id="@+id/dtmfHash" />
+        <include
+            android:id="@+id/dtmfStar"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf0"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmfHash"
+            layout="@layout/view_dialpad_key" />
     </GridLayout>
 
     <com.google.android.material.button.MaterialButton

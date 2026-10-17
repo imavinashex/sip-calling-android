@@ -7,16 +7,19 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.antigravity.sipcalling.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -29,10 +32,25 @@ public final class ActivityMainBinding implements ViewBinding {
   public final CardView bannerConfigure;
 
   @NonNull
+  public final MaterialCardView bottomNavigationCard;
+
+  @NonNull
+  public final ImageButton btnAddContact;
+
+  @NonNull
   public final ImageButton btnBackspace;
 
   @NonNull
   public final ImageButton btnCall;
+
+  @NonNull
+  public final ImageButton btnClearHistory;
+
+  @NonNull
+  public final MaterialButton btnEmptyImport;
+
+  @NonNull
+  public final MaterialButton btnImportContacts;
 
   @NonNull
   public final ImageButton btnSettings;
@@ -44,16 +62,31 @@ public final class ActivityMainBinding implements ViewBinding {
   public final LinearLayout callActionContainer;
 
   @NonNull
+  public final LinearLayout contactsHeaderBar;
+
+  @NonNull
   public final GridLayout dialpadGrid;
 
   @NonNull
   public final ConstraintLayout displayContainer;
 
   @NonNull
+  public final EditText etSearchContacts;
+
+  @NonNull
   public final EditText etTargetNumber;
 
   @NonNull
   public final ConstraintLayout headerLayout;
+
+  @NonNull
+  public final ImageView ivTabContacts;
+
+  @NonNull
+  public final ImageView ivTabDialer;
+
+  @NonNull
+  public final ImageView ivTabRecents;
 
   @NonNull
   public final ViewDialpadKeyBinding key0;
@@ -92,10 +125,46 @@ public final class ActivityMainBinding implements ViewBinding {
   public final ViewDialpadKeyBinding keyStar;
 
   @NonNull
+  public final ConstraintLayout layoutContacts;
+
+  @NonNull
+  public final ConstraintLayout layoutDialer;
+
+  @NonNull
+  public final LinearLayout layoutEmptyContacts;
+
+  @NonNull
+  public final LinearLayout layoutEmptyRecents;
+
+  @NonNull
+  public final ConstraintLayout layoutRecents;
+
+  @NonNull
+  public final LinearLayout recentsHeaderBar;
+
+  @NonNull
+  public final RecyclerView rvContacts;
+
+  @NonNull
+  public final RecyclerView rvRecentCalls;
+
+  @NonNull
+  public final LinearLayout searchContainer;
+
+  @NonNull
   public final LinearLayout statusBadge;
 
   @NonNull
   public final View statusDot;
+
+  @NonNull
+  public final LinearLayout tabContacts;
+
+  @NonNull
+  public final LinearLayout tabDialer;
+
+  @NonNull
+  public final LinearLayout tabRecents;
 
   @NonNull
   public final TextView tvAppTitle;
@@ -103,30 +172,61 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final TextView tvStatus;
 
+  @NonNull
+  public final TextView tvTabContacts;
+
+  @NonNull
+  public final TextView tvTabDialer;
+
+  @NonNull
+  public final TextView tvTabRecents;
+
   private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull CardView bannerConfigure,
+      @NonNull MaterialCardView bottomNavigationCard, @NonNull ImageButton btnAddContact,
       @NonNull ImageButton btnBackspace, @NonNull ImageButton btnCall,
-      @NonNull ImageButton btnSettings, @NonNull MaterialButton btnSetupAccount,
-      @NonNull LinearLayout callActionContainer, @NonNull GridLayout dialpadGrid,
-      @NonNull ConstraintLayout displayContainer, @NonNull EditText etTargetNumber,
-      @NonNull ConstraintLayout headerLayout, @NonNull ViewDialpadKeyBinding key0,
+      @NonNull ImageButton btnClearHistory, @NonNull MaterialButton btnEmptyImport,
+      @NonNull MaterialButton btnImportContacts, @NonNull ImageButton btnSettings,
+      @NonNull MaterialButton btnSetupAccount, @NonNull LinearLayout callActionContainer,
+      @NonNull LinearLayout contactsHeaderBar, @NonNull GridLayout dialpadGrid,
+      @NonNull ConstraintLayout displayContainer, @NonNull EditText etSearchContacts,
+      @NonNull EditText etTargetNumber, @NonNull ConstraintLayout headerLayout,
+      @NonNull ImageView ivTabContacts, @NonNull ImageView ivTabDialer,
+      @NonNull ImageView ivTabRecents, @NonNull ViewDialpadKeyBinding key0,
       @NonNull ViewDialpadKeyBinding key1, @NonNull ViewDialpadKeyBinding key2,
       @NonNull ViewDialpadKeyBinding key3, @NonNull ViewDialpadKeyBinding key4,
       @NonNull ViewDialpadKeyBinding key5, @NonNull ViewDialpadKeyBinding key6,
       @NonNull ViewDialpadKeyBinding key7, @NonNull ViewDialpadKeyBinding key8,
       @NonNull ViewDialpadKeyBinding key9, @NonNull ViewDialpadKeyBinding keyHash,
-      @NonNull ViewDialpadKeyBinding keyStar, @NonNull LinearLayout statusBadge,
-      @NonNull View statusDot, @NonNull TextView tvAppTitle, @NonNull TextView tvStatus) {
+      @NonNull ViewDialpadKeyBinding keyStar, @NonNull ConstraintLayout layoutContacts,
+      @NonNull ConstraintLayout layoutDialer, @NonNull LinearLayout layoutEmptyContacts,
+      @NonNull LinearLayout layoutEmptyRecents, @NonNull ConstraintLayout layoutRecents,
+      @NonNull LinearLayout recentsHeaderBar, @NonNull RecyclerView rvContacts,
+      @NonNull RecyclerView rvRecentCalls, @NonNull LinearLayout searchContainer,
+      @NonNull LinearLayout statusBadge, @NonNull View statusDot, @NonNull LinearLayout tabContacts,
+      @NonNull LinearLayout tabDialer, @NonNull LinearLayout tabRecents,
+      @NonNull TextView tvAppTitle, @NonNull TextView tvStatus, @NonNull TextView tvTabContacts,
+      @NonNull TextView tvTabDialer, @NonNull TextView tvTabRecents) {
     this.rootView = rootView;
     this.bannerConfigure = bannerConfigure;
+    this.bottomNavigationCard = bottomNavigationCard;
+    this.btnAddContact = btnAddContact;
     this.btnBackspace = btnBackspace;
     this.btnCall = btnCall;
+    this.btnClearHistory = btnClearHistory;
+    this.btnEmptyImport = btnEmptyImport;
+    this.btnImportContacts = btnImportContacts;
     this.btnSettings = btnSettings;
     this.btnSetupAccount = btnSetupAccount;
     this.callActionContainer = callActionContainer;
+    this.contactsHeaderBar = contactsHeaderBar;
     this.dialpadGrid = dialpadGrid;
     this.displayContainer = displayContainer;
+    this.etSearchContacts = etSearchContacts;
     this.etTargetNumber = etTargetNumber;
     this.headerLayout = headerLayout;
+    this.ivTabContacts = ivTabContacts;
+    this.ivTabDialer = ivTabDialer;
+    this.ivTabRecents = ivTabRecents;
     this.key0 = key0;
     this.key1 = key1;
     this.key2 = key2;
@@ -139,10 +239,25 @@ public final class ActivityMainBinding implements ViewBinding {
     this.key9 = key9;
     this.keyHash = keyHash;
     this.keyStar = keyStar;
+    this.layoutContacts = layoutContacts;
+    this.layoutDialer = layoutDialer;
+    this.layoutEmptyContacts = layoutEmptyContacts;
+    this.layoutEmptyRecents = layoutEmptyRecents;
+    this.layoutRecents = layoutRecents;
+    this.recentsHeaderBar = recentsHeaderBar;
+    this.rvContacts = rvContacts;
+    this.rvRecentCalls = rvRecentCalls;
+    this.searchContainer = searchContainer;
     this.statusBadge = statusBadge;
     this.statusDot = statusDot;
+    this.tabContacts = tabContacts;
+    this.tabDialer = tabDialer;
+    this.tabRecents = tabRecents;
     this.tvAppTitle = tvAppTitle;
     this.tvStatus = tvStatus;
+    this.tvTabContacts = tvTabContacts;
+    this.tvTabDialer = tvTabDialer;
+    this.tvTabRecents = tvTabRecents;
   }
 
   @Override
@@ -178,6 +293,18 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.bottomNavigationCard;
+      MaterialCardView bottomNavigationCard = ViewBindings.findChildViewById(rootView, id);
+      if (bottomNavigationCard == null) {
+        break missingId;
+      }
+
+      id = R.id.btnAddContact;
+      ImageButton btnAddContact = ViewBindings.findChildViewById(rootView, id);
+      if (btnAddContact == null) {
+        break missingId;
+      }
+
       id = R.id.btnBackspace;
       ImageButton btnBackspace = ViewBindings.findChildViewById(rootView, id);
       if (btnBackspace == null) {
@@ -187,6 +314,24 @@ public final class ActivityMainBinding implements ViewBinding {
       id = R.id.btnCall;
       ImageButton btnCall = ViewBindings.findChildViewById(rootView, id);
       if (btnCall == null) {
+        break missingId;
+      }
+
+      id = R.id.btnClearHistory;
+      ImageButton btnClearHistory = ViewBindings.findChildViewById(rootView, id);
+      if (btnClearHistory == null) {
+        break missingId;
+      }
+
+      id = R.id.btnEmptyImport;
+      MaterialButton btnEmptyImport = ViewBindings.findChildViewById(rootView, id);
+      if (btnEmptyImport == null) {
+        break missingId;
+      }
+
+      id = R.id.btnImportContacts;
+      MaterialButton btnImportContacts = ViewBindings.findChildViewById(rootView, id);
+      if (btnImportContacts == null) {
         break missingId;
       }
 
@@ -208,6 +353,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.contactsHeaderBar;
+      LinearLayout contactsHeaderBar = ViewBindings.findChildViewById(rootView, id);
+      if (contactsHeaderBar == null) {
+        break missingId;
+      }
+
       id = R.id.dialpadGrid;
       GridLayout dialpadGrid = ViewBindings.findChildViewById(rootView, id);
       if (dialpadGrid == null) {
@@ -220,6 +371,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.etSearchContacts;
+      EditText etSearchContacts = ViewBindings.findChildViewById(rootView, id);
+      if (etSearchContacts == null) {
+        break missingId;
+      }
+
       id = R.id.etTargetNumber;
       EditText etTargetNumber = ViewBindings.findChildViewById(rootView, id);
       if (etTargetNumber == null) {
@@ -229,6 +386,24 @@ public final class ActivityMainBinding implements ViewBinding {
       id = R.id.headerLayout;
       ConstraintLayout headerLayout = ViewBindings.findChildViewById(rootView, id);
       if (headerLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.ivTabContacts;
+      ImageView ivTabContacts = ViewBindings.findChildViewById(rootView, id);
+      if (ivTabContacts == null) {
+        break missingId;
+      }
+
+      id = R.id.ivTabDialer;
+      ImageView ivTabDialer = ViewBindings.findChildViewById(rootView, id);
+      if (ivTabDialer == null) {
+        break missingId;
+      }
+
+      id = R.id.ivTabRecents;
+      ImageView ivTabRecents = ViewBindings.findChildViewById(rootView, id);
+      if (ivTabRecents == null) {
         break missingId;
       }
 
@@ -316,6 +491,60 @@ public final class ActivityMainBinding implements ViewBinding {
       }
       ViewDialpadKeyBinding binding_keyStar = ViewDialpadKeyBinding.bind(keyStar);
 
+      id = R.id.layoutContacts;
+      ConstraintLayout layoutContacts = ViewBindings.findChildViewById(rootView, id);
+      if (layoutContacts == null) {
+        break missingId;
+      }
+
+      id = R.id.layoutDialer;
+      ConstraintLayout layoutDialer = ViewBindings.findChildViewById(rootView, id);
+      if (layoutDialer == null) {
+        break missingId;
+      }
+
+      id = R.id.layoutEmptyContacts;
+      LinearLayout layoutEmptyContacts = ViewBindings.findChildViewById(rootView, id);
+      if (layoutEmptyContacts == null) {
+        break missingId;
+      }
+
+      id = R.id.layoutEmptyRecents;
+      LinearLayout layoutEmptyRecents = ViewBindings.findChildViewById(rootView, id);
+      if (layoutEmptyRecents == null) {
+        break missingId;
+      }
+
+      id = R.id.layoutRecents;
+      ConstraintLayout layoutRecents = ViewBindings.findChildViewById(rootView, id);
+      if (layoutRecents == null) {
+        break missingId;
+      }
+
+      id = R.id.recentsHeaderBar;
+      LinearLayout recentsHeaderBar = ViewBindings.findChildViewById(rootView, id);
+      if (recentsHeaderBar == null) {
+        break missingId;
+      }
+
+      id = R.id.rvContacts;
+      RecyclerView rvContacts = ViewBindings.findChildViewById(rootView, id);
+      if (rvContacts == null) {
+        break missingId;
+      }
+
+      id = R.id.rvRecentCalls;
+      RecyclerView rvRecentCalls = ViewBindings.findChildViewById(rootView, id);
+      if (rvRecentCalls == null) {
+        break missingId;
+      }
+
+      id = R.id.searchContainer;
+      LinearLayout searchContainer = ViewBindings.findChildViewById(rootView, id);
+      if (searchContainer == null) {
+        break missingId;
+      }
+
       id = R.id.statusBadge;
       LinearLayout statusBadge = ViewBindings.findChildViewById(rootView, id);
       if (statusBadge == null) {
@@ -325,6 +554,24 @@ public final class ActivityMainBinding implements ViewBinding {
       id = R.id.statusDot;
       View statusDot = ViewBindings.findChildViewById(rootView, id);
       if (statusDot == null) {
+        break missingId;
+      }
+
+      id = R.id.tabContacts;
+      LinearLayout tabContacts = ViewBindings.findChildViewById(rootView, id);
+      if (tabContacts == null) {
+        break missingId;
+      }
+
+      id = R.id.tabDialer;
+      LinearLayout tabDialer = ViewBindings.findChildViewById(rootView, id);
+      if (tabDialer == null) {
+        break missingId;
+      }
+
+      id = R.id.tabRecents;
+      LinearLayout tabRecents = ViewBindings.findChildViewById(rootView, id);
+      if (tabRecents == null) {
         break missingId;
       }
 
@@ -340,11 +587,34 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((ConstraintLayout) rootView, bannerConfigure, btnBackspace,
-          btnCall, btnSettings, btnSetupAccount, callActionContainer, dialpadGrid, displayContainer,
-          etTargetNumber, headerLayout, binding_key0, binding_key1, binding_key2, binding_key3,
-          binding_key4, binding_key5, binding_key6, binding_key7, binding_key8, binding_key9,
-          binding_keyHash, binding_keyStar, statusBadge, statusDot, tvAppTitle, tvStatus);
+      id = R.id.tvTabContacts;
+      TextView tvTabContacts = ViewBindings.findChildViewById(rootView, id);
+      if (tvTabContacts == null) {
+        break missingId;
+      }
+
+      id = R.id.tvTabDialer;
+      TextView tvTabDialer = ViewBindings.findChildViewById(rootView, id);
+      if (tvTabDialer == null) {
+        break missingId;
+      }
+
+      id = R.id.tvTabRecents;
+      TextView tvTabRecents = ViewBindings.findChildViewById(rootView, id);
+      if (tvTabRecents == null) {
+        break missingId;
+      }
+
+      return new ActivityMainBinding((ConstraintLayout) rootView, bannerConfigure,
+          bottomNavigationCard, btnAddContact, btnBackspace, btnCall, btnClearHistory,
+          btnEmptyImport, btnImportContacts, btnSettings, btnSetupAccount, callActionContainer,
+          contactsHeaderBar, dialpadGrid, displayContainer, etSearchContacts, etTargetNumber,
+          headerLayout, ivTabContacts, ivTabDialer, ivTabRecents, binding_key0, binding_key1,
+          binding_key2, binding_key3, binding_key4, binding_key5, binding_key6, binding_key7,
+          binding_key8, binding_key9, binding_keyHash, binding_keyStar, layoutContacts,
+          layoutDialer, layoutEmptyContacts, layoutEmptyRecents, layoutRecents, recentsHeaderBar,
+          rvContacts, rvRecentCalls, searchContainer, statusBadge, statusDot, tabContacts,
+          tabDialer, tabRecents, tvAppTitle, tvStatus, tvTabContacts, tvTabDialer, tvTabRecents);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

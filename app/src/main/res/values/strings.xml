@@ -56,4 +56,27 @@
     <string name="notification_channel_desc">Handles background SIP connectivity and active VoIP calls</string>
     <string name="notification_active_call">Active Call in progress</string>
     <string name="notification_tap_to_return">Tap to return to call</string>
+
+    <!-- Recent Calls -->
+    <string name="tab_dialer">Dialer</string>
+    <string name="tab_recents">Recents</string>
+    <string name="title_recent_calls">Recent Calls</string>
+    <string name="no_recent_calls">No recent calls yet</string>
+    <string name="no_recent_calls_desc">Your call history will appear here</string>
+    <string name="clear_history">Clear History</string>
+    <string name="clear_history_confirm">Are you sure you want to clear all call history?</string>
+    <string name="delete_call_log">Delete</string>
+    <string name="delete_call_confirm">Delete this call from history?</string>
+
+    <!-- Contacts -->
+    <string name="tab_contacts">Contacts</string>
+    <string name="title_contacts">Contacts</string>
+    <string name="no_contacts">No contacts yet</string>
+    <string name="no_contacts_desc">Add contacts or import from your phonebook</string>
+    <string name="btn_import_contacts">Import</string>
+    <string name="btn_add_contact">Add Contact</string>
+    <string name="delete_contact">Delete Contact</string>
+    <string name="delete_contact_confirm">Delete this contact?</string>
+    <string name="search_contacts_hint">Search contacts…</string>
+    <string name="contacts_imported">Imported %1$d contacts</string>
 </resources>

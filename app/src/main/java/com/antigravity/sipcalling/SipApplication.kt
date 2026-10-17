@@ -10,6 +10,8 @@ class SipApplication : Application() {
         super.onCreate()
         Log.i(TAG, "Initializing SIP Calling Application")
         SipManager.initialize(this)
+        com.antigravity.sipcalling.data.CallLogRepository.initialize(this)
+        com.antigravity.sipcalling.data.ContactRepository.initialize(this)
     }
 
     companion object {

@@ -4,7 +4,7 @@
             "outputFile": "com.antigravity.sipcalling.app-mergeDebugResources-2:/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\theao\\.gradle\\caches\\transforms-4\\19b334d130729e349038387057ae882a\\transformed\\appcompat-1.7.0\\res\\values-v25\\values-v25.xml",
+                    "source": "C:\\Users\\theao\\.gradle\\caches\\transforms-4\\c77b78faf6b4bc4c2c55d43281433586\\transformed\\appcompat-1.7.0\\res\\values-v25\\values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",

@@ -55,241 +55,429 @@
 29    <uses-permission android:name="android.permission.MANAGE_OWN_CALLS" />
 29-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:22:5-75
 29-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:22:22-72
-30
-31    <!-- Hardware requirements (audio required, camera optional) -->
-32    <uses-feature
-32-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:25:5-27:35
-33        android:name="android.hardware.microphone"
-33-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:26:9-51
-34        android:required="true" />
-34-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:27:9-32
-35    <uses-feature
-35-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:28:5-30:36
-36        android:name="android.hardware.camera"
-36-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:29:9-47
-37        android:required="false" />
-37-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:30:9-33
-38
-39    <permission
-39-->[androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\47cfbd21bb27e2cc5aa078ab7d597529\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
-40        android:name="com.antigravity.sipcalling.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-40-->[androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\47cfbd21bb27e2cc5aa078ab7d597529\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
-41        android:protectionLevel="signature" />
-41-->[androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\47cfbd21bb27e2cc5aa078ab7d597529\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
-42
-43    <uses-permission android:name="com.antigravity.sipcalling.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Needed for bluetooth -->
-43-->[androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\47cfbd21bb27e2cc5aa078ab7d597529\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
-43-->[androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\47cfbd21bb27e2cc5aa078ab7d597529\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
-44    <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- Needed to check current do not disturb policy -->
-44-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\4958c1b9bf9faec639e9fa981dd88090\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:20:5-68
-44-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\4958c1b9bf9faec639e9fa981dd88090\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:20:22-65
-45    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
-45-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\4958c1b9bf9faec639e9fa981dd88090\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:26:5-85
-45-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\4958c1b9bf9faec639e9fa981dd88090\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:26:22-82
-46    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
-46-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\4958c1b9bf9faec639e9fa981dd88090\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:34:5-84
-46-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\4958c1b9bf9faec639e9fa981dd88090\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:34:22-81
-47    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
-47-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\4958c1b9bf9faec639e9fa981dd88090\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:35:5-88
-47-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\4958c1b9bf9faec639e9fa981dd88090\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:35:22-85
-48    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
-48-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\4958c1b9bf9faec639e9fa981dd88090\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:37:5-87
-48-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\4958c1b9bf9faec639e9fa981dd88090\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:37:22-84
+30    <uses-permission android:name="android.permission.READ_CONTACTS" />
+30-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:23:5-72
+30-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:23:22-69
+31
+32    <!-- Hardware requirements (audio required, camera optional) -->
+33    <uses-feature
+33-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:26:5-28:35
+34        android:name="android.hardware.microphone"
+34-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:27:9-51
+35        android:required="true" />
+35-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:28:9-32
+36    <uses-feature
+36-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:29:5-31:36
+37        android:name="android.hardware.camera"
+37-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:30:9-47
+38        android:required="false" />
+38-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:31:9-33
+39
+40    <permission
+40-->[androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+41        android:name="com.antigravity.sipcalling.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+41-->[androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+42        android:protectionLevel="signature" />
+42-->[androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+43
+44    <uses-permission android:name="com.antigravity.sipcalling.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+44-->[androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+44-->[androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+45
+46    <permission
+46-->[com.android.tools.studio.leakcanary:leakcanary:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\984a0d04ba90645ce39b71c6800f48ec\transformed\leakcanary-1.0.0\AndroidManifest.xml:22:5-24:47
+47        android:name="com.antigravity.sipcalling.permission.LEAK_CANARY_INTERNAL"
+47-->[com.android.tools.studio.leakcanary:leakcanary:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\984a0d04ba90645ce39b71c6800f48ec\transformed\leakcanary-1.0.0\AndroidManifest.xml:23:9-72
+48        android:protectionLevel="signature" />
+48-->[com.android.tools.studio.leakcanary:leakcanary:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\984a0d04ba90645ce39b71c6800f48ec\transformed\leakcanary-1.0.0\AndroidManifest.xml:24:9-44
 49
-50    <application
-50-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:32:5-96:19
-51        android:name="com.antigravity.sipcalling.SipApplication"
-51-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:33:9-39
-52        android:allowBackup="true"
-52-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:34:9-35
-53        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-53-->[androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\47cfbd21bb27e2cc5aa078ab7d597529\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
-54        android:debuggable="true"
-55        android:extractNativeLibs="true"
-56        android:icon="@drawable/ic_call"
-56-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:35:9-41
-57        android:label="@string/app_name"
-57-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:36:9-41
-58        android:roundIcon="@drawable/ic_call"
-58-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:37:9-46
-59        android:supportsRtl="true"
-59-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:38:9-35
-60        android:theme="@style/Theme.SipCallingApp" >
-60-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:39:9-51
-61
-62        <!-- Main Dashboard & Dialer Activity -->
-63        <activity
-63-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:42:9-61:20
-64            android:name="com.antigravity.sipcalling.ui.MainActivity"
-64-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:43:13-44
-65            android:exported="true"
-65-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:44:13-36
-66            android:launchMode="singleTask"
-66-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:45:13-44
-67            android:windowSoftInputMode="adjustResize" >
-67-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:46:13-55
-68            <intent-filter>
-68-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:47:13-50:29
-69                <action android:name="android.intent.action.MAIN" />
-69-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:48:17-69
-69-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:48:25-66
+50    <uses-permission android:name="com.antigravity.sipcalling.permission.LEAK_CANARY_INTERNAL" /> <!-- To store the heap dumps and leak analysis results. -->
+50-->[com.android.tools.studio.leakcanary:leakcanary:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\984a0d04ba90645ce39b71c6800f48ec\transformed\leakcanary-1.0.0\AndroidManifest.xml:26:5-88
+50-->[com.android.tools.studio.leakcanary:leakcanary:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\984a0d04ba90645ce39b71c6800f48ec\transformed\leakcanary-1.0.0\AndroidManifest.xml:26:22-85
+51    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+51-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:25:5-80
+51-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:25:22-77
+52    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Needed for bluetooth -->
+52-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:26:5-81
+52-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:26:22-78
+53    <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- Needed to check current do not disturb policy -->
+53-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:20:5-68
+53-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:20:22-65
+54    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+54-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:26:5-85
+54-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:26:22-82
+55    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+55-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:34:5-84
+55-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:34:22-81
+56    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+56-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:35:5-88
+56-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:35:22-85
+57    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+57-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:37:5-87
+57-->[org.linphone:linphone-sdk-android:5.3.77] C:\Users\theao\.gradle\caches\transforms-4\3b94292d58fe0d109a0a80f01b67e35f\transformed\linphone-sdk-android-5.3.77\AndroidManifest.xml:37:22-84
+58
+59    <application
+59-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:33:5-97:19
+60        android:name="com.antigravity.sipcalling.SipApplication"
+60-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:34:9-39
+61        android:allowBackup="true"
+61-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:35:9-35
+62        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+62-->[androidx.core:core:1.13.1] C:\Users\theao\.gradle\caches\transforms-4\49c551d57a419a0d28321382275f5c8d\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+63        android:debuggable="true"
+64        android:extractNativeLibs="true"
+65        android:icon="@drawable/ic_call"
+65-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:36:9-41
+66        android:label="@string/app_name"
+66-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:37:9-41
+67        android:roundIcon="@drawable/ic_call"
+67-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:38:9-46
+68        android:supportsRtl="true"
+68-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:39:9-35
+69        android:theme="@style/Theme.SipCallingApp" >
+69-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:40:9-51
 70
-71                <category android:name="android.intent.category.LAUNCHER" />
-71-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:49:17-77
-71-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:49:27-74
-72            </intent-filter>
-73            <!-- Handle sip: and tel: URIs -->
-74            <intent-filter>
-74-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:52:13-60:29
-75                <action android:name="android.intent.action.VIEW" />
-75-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:53:17-69
-75-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:53:25-66
-76                <action android:name="android.intent.action.DIAL" />
-76-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:54:17-69
-76-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:54:25-66
-77
-78                <category android:name="android.intent.category.DEFAULT" />
-78-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:55:17-76
-78-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:55:27-73
-79                <category android:name="android.intent.category.BROWSABLE" />
-79-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:56:17-78
-79-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:56:27-75
-80
-81                <data android:scheme="sip" />
-81-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:57:17-46
-81-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:57:23-43
-82                <data android:scheme="sips" />
-82-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:57:17-46
-82-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:57:23-43
-83                <data android:scheme="tel" />
-83-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:57:17-46
-83-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:57:23-43
-84            </intent-filter>
-85        </activity>
+71        <!-- Main Dashboard & Dialer Activity -->
+72        <activity
+72-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:43:9-62:20
+73            android:name="com.antigravity.sipcalling.ui.MainActivity"
+73-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:44:13-44
+74            android:exported="true"
+74-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:45:13-36
+75            android:launchMode="singleTask"
+75-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:46:13-44
+76            android:windowSoftInputMode="adjustResize" >
+76-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:47:13-55
+77            <intent-filter>
+77-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:48:13-51:29
+78                <action android:name="android.intent.action.MAIN" />
+78-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:49:17-69
+78-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:49:25-66
+79
+80                <category android:name="android.intent.category.LAUNCHER" />
+80-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:50:17-77
+80-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:50:27-74
+81            </intent-filter>
+82            <!-- Handle sip: and tel: URIs -->
+83            <intent-filter>
+83-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:53:13-61:29
+84                <action android:name="android.intent.action.VIEW" />
+84-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:54:17-69
+84-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:54:25-66
+85                <action android:name="android.intent.action.DIAL" />
+85-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:55:17-69
+85-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:55:25-66
 86
-87        <!-- SIP Account Settings -->
-88        <activity
-88-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:64:9-68:61
-89            android:name="com.antigravity.sipcalling.ui.SipSettingsActivity"
-89-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:65:13-51
-90            android:exported="false"
-90-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:66:13-37
-91            android:label="@string/title_sip_settings"
-91-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:67:13-55
-92            android:parentActivityName="com.antigravity.sipcalling.ui.MainActivity" />
-92-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:68:13-58
-93
-94        <!-- In-Call Active Screen -->
-95        <activity
-95-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:71:9-77:43
-96            android:name="com.antigravity.sipcalling.ui.CallActivity"
-96-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:72:13-44
-97            android:exported="false"
-97-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:73:13-37
-98            android:launchMode="singleTop"
-98-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:74:13-43
-99            android:screenOrientation="portrait"
-99-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:75:13-49
-100            android:showWhenLocked="true"
-100-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:76:13-42
-101            android:turnScreenOn="true" />
-101-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:77:13-40
+87                <category android:name="android.intent.category.DEFAULT" />
+87-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:56:17-76
+87-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:56:27-73
+88                <category android:name="android.intent.category.BROWSABLE" />
+88-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:57:17-78
+88-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:57:27-75
+89
+90                <data android:scheme="sip" />
+90-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+90-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:23-43
+91                <data android:scheme="sips" />
+91-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+91-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:23-43
+92                <data android:scheme="tel" />
+92-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+92-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:23-43
+93            </intent-filter>
+94        </activity>
+95
+96        <!-- SIP Account Settings -->
+97        <activity
+97-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:65:9-69:61
+98            android:name="com.antigravity.sipcalling.ui.SipSettingsActivity"
+98-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:66:13-51
+99            android:exported="false"
+99-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:67:13-37
+100            android:label="@string/title_sip_settings"
+100-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:68:13-55
+101            android:parentActivityName="com.antigravity.sipcalling.ui.MainActivity" />
+101-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:69:13-58
 102
-103        <!-- Incoming Call Full Screen Notification / Activity -->
+103        <!-- In-Call Active Screen -->
 104        <activity
-104-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:80:9-87:43
-105            android:name="com.antigravity.sipcalling.ui.IncomingCallActivity"
-105-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:81:13-52
-106            android:excludeFromRecents="true"
-106-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:82:13-46
-107            android:exported="false"
-107-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:83:13-37
-108            android:launchMode="singleTop"
-108-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:84:13-43
-109            android:screenOrientation="portrait"
-109-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:85:13-49
-110            android:showWhenLocked="true"
-110-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:86:13-42
-111            android:turnScreenOn="true" />
-111-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:87:13-40
-112
-113        <!-- Background Foreground Service for SIP Registration & Active Calls -->
-114        <service
-114-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:90:9-94:57
-115            android:name="com.antigravity.sipcalling.service.SipForegroundService"
-115-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:91:13-57
-116            android:enabled="true"
-116-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:92:13-35
-117            android:exported="false"
-117-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:93:13-37
-118            android:foregroundServiceType="phoneCall" />
-118-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:94:13-54
-119
-120        <provider
-120-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\8907080a6244700e8f26c1c23eeec537\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-121            android:name="androidx.startup.InitializationProvider"
-121-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\8907080a6244700e8f26c1c23eeec537\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
-122            android:authorities="com.antigravity.sipcalling.androidx-startup"
-122-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\8907080a6244700e8f26c1c23eeec537\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
-123            android:exported="false" >
-123-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\8907080a6244700e8f26c1c23eeec537\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
-124            <meta-data
-124-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\8907080a6244700e8f26c1c23eeec537\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
-125                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-125-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\8907080a6244700e8f26c1c23eeec537\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
-126                android:value="androidx.startup" />
-126-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\8907080a6244700e8f26c1c23eeec537\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
-127            <meta-data
-127-->[androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\bd7591fd4cc09f91ab3edfa5d3834a2f\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:29:13-31:52
-128                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-128-->[androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\bd7591fd4cc09f91ab3edfa5d3834a2f\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:30:17-78
-129                android:value="androidx.startup" />
-129-->[androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\bd7591fd4cc09f91ab3edfa5d3834a2f\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:31:17-49
-130            <meta-data
-130-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
-131                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-131-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
-132                android:value="androidx.startup" />
-132-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
-133        </provider>
-134
-135        <receiver
-135-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
-136            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-136-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
-137            android:directBootAware="false"
-137-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
-138            android:enabled="true"
-138-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
-139            android:exported="true"
-139-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
-140            android:permission="android.permission.DUMP" >
-140-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
-141            <intent-filter>
-141-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
-142                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-142-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
-142-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
-143            </intent-filter>
-144            <intent-filter>
-144-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
-145                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-145-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
-145-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
-146            </intent-filter>
-147            <intent-filter>
-147-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
-148                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-148-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
-148-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
-149            </intent-filter>
-150            <intent-filter>
-150-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
-151                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-151-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
-151-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\78c0ee2b7bafb2df87718097a97eaf1a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
-152            </intent-filter>
-153        </receiver>
-154    </application>
-155
-156</manifest>
+104-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:72:9-78:43
+105            android:name="com.antigravity.sipcalling.ui.CallActivity"
+105-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:73:13-44
+106            android:exported="false"
+106-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:74:13-37
+107            android:launchMode="singleTop"
+107-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:75:13-43
+108            android:screenOrientation="portrait"
+108-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:76:13-49
+109            android:showWhenLocked="true"
+109-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:77:13-42
+110            android:turnScreenOn="true" />
+110-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:78:13-40
+111
+112        <!-- Incoming Call Full Screen Notification / Activity -->
+113        <activity
+113-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:81:9-88:43
+114            android:name="com.antigravity.sipcalling.ui.IncomingCallActivity"
+114-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:82:13-52
+115            android:excludeFromRecents="true"
+115-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:83:13-46
+116            android:exported="false"
+116-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:84:13-37
+117            android:launchMode="singleTop"
+117-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:85:13-43
+118            android:screenOrientation="portrait"
+118-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:86:13-49
+119            android:showWhenLocked="true"
+119-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:87:13-42
+120            android:turnScreenOn="true" />
+120-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:88:13-40
+121
+122        <!-- Background Foreground Service for SIP Registration & Active Calls -->
+123        <service
+123-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:91:9-95:57
+124            android:name="com.antigravity.sipcalling.service.SipForegroundService"
+124-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:92:13-57
+125            android:enabled="true"
+125-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:93:13-35
+126            android:exported="false"
+126-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:94:13-37
+127            android:foregroundServiceType="phoneCall" />
+127-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:95:13-54
+128
+129        <provider
+129-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+130            android:name="androidx.startup.InitializationProvider"
+130-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+131            android:authorities="com.antigravity.sipcalling.androidx-startup"
+131-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+132            android:exported="false" >
+132-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+133            <meta-data
+133-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+134                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+134-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+135                android:value="androidx.startup" />
+135-->[androidx.emoji2:emoji2:1.3.0] C:\Users\theao\.gradle\caches\transforms-4\fc349949aab8349510c0ef0e34b12a2f\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+136            <meta-data
+136-->[androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:29:13-31:52
+137                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+137-->[androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:30:17-78
+138                android:value="androidx.startup" />
+138-->[androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\theao\.gradle\caches\transforms-4\3100c34171f798c319c428e19cc7a8cc\transformed\lifecycle-process-2.8.4\AndroidManifest.xml:31:17-49
+139            <meta-data
+139-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+140                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+140-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+141                android:value="androidx.startup" />
+141-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+142        </provider>
+143        <!--
+144          Initialize after LeakCanary's own AppWatcherInstaller, which has a high initOrder.
+145          This allows us to modify its configuration after it has been set up.
+146        -->
+147        <provider
+147-->[com.android.tools.studio.leakcanary:leakcanary:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\984a0d04ba90645ce39b71c6800f48ec\transformed\leakcanary-1.0.0\AndroidManifest.xml:34:9-38:38
+148            android:name="com.android.tools.studio.leakcanary.HelperInitializer"
+148-->[com.android.tools.studio.leakcanary:leakcanary:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\984a0d04ba90645ce39b71c6800f48ec\transformed\leakcanary-1.0.0\AndroidManifest.xml:35:13-81
+149            android:authorities="com.antigravity.sipcalling.studio-leakcanary-helper-init"
+149-->[com.android.tools.studio.leakcanary:leakcanary:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\984a0d04ba90645ce39b71c6800f48ec\transformed\leakcanary-1.0.0\AndroidManifest.xml:36:13-81
+150            android:exported="false"
+150-->[com.android.tools.studio.leakcanary:leakcanary:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\984a0d04ba90645ce39b71c6800f48ec\transformed\leakcanary-1.0.0\AndroidManifest.xml:37:13-37
+151            android:initOrder="-1" />
+151-->[com.android.tools.studio.leakcanary:leakcanary:1.0.0] C:\Users\theao\.gradle\caches\transforms-4\984a0d04ba90645ce39b71c6800f48ec\transformed\leakcanary-1.0.0\AndroidManifest.xml:38:13-35
+152        <provider
+152-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:32:9-40:20
+153            android:name="leakcanary.internal.LeakCanaryFileProvider"
+153-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:33:13-70
+154            android:authorities="com.squareup.leakcanary.fileprovider.com.antigravity.sipcalling"
+154-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:34:13-88
+155            android:exported="false"
+155-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:35:13-37
+156            android:grantUriPermissions="true" >
+156-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:36:13-47
+157            <meta-data
+157-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:37:13-39:66
+158                android:name="android.support.FILE_PROVIDER_PATHS"
+158-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:38:17-67
+159                android:resource="@xml/leak_canary_file_paths" />
+159-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:39:17-63
+160        </provider>
+161
+162        <activity
+162-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:42:9-73:20
+163            android:name="leakcanary.internal.activity.LeakActivity"
+163-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:43:13-69
+164            android:exported="true"
+164-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:44:13-36
+165            android:icon="@mipmap/leak_canary_icon"
+165-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:45:13-52
+166            android:label="@string/leak_canary_display_activity_label"
+166-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:46:13-71
+167            android:taskAffinity="com.squareup.leakcanary.com.antigravity.sipcalling"
+167-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:47:13-76
+168            android:theme="@style/leak_canary_LeakCanary.Base" >
+168-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:48:13-63
+169            <intent-filter android:label="@string/leak_canary_import_hprof_file" >
+169-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:49:13-72:29
+169-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:49:28-81
+170                <action android:name="android.intent.action.VIEW" />
+170-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:54:17-69
+170-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:54:25-66
+171
+172                <category android:name="android.intent.category.DEFAULT" />
+172-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:56:17-76
+172-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:56:27-73
+173                <category android:name="android.intent.category.BROWSABLE" />
+173-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:57:17-78
+173-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:57:27-75
+174
+175                <data android:scheme="file" />
+175-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+175-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:23-43
+176                <data android:scheme="content" />
+176-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+176-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:23-43
+177                <data android:mimeType="*/*" />
+177-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+178                <data android:host="*" />
+178-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+179                <data android:pathPattern=".*\\.hprof" />
+179-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+180                <data android:pathPattern=".*\\..*\\.hprof" />
+180-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+181                <data android:pathPattern=".*\\..*\\..*\\.hprof" />
+181-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+182                <data android:pathPattern=".*\\..*\\..*\\..*\\.hprof" />
+182-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+183                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.hprof" />
+183-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+184                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.hprof" />
+184-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+185                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\.hprof" />
+185-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:58:17-46
+186                <!--
+187            Since hprof isn't a standard MIME type, we have to declare such patterns.
+188            Most file providers will generate URIs including their own package name,
+189            which contains `.` characters that must be explicitly escaped in pathPattern.
+190            @see https://stackoverflow.com/a/31028507/703646
+191                -->
+192            </intent-filter>
+193        </activity>
+194
+195        <activity-alias
+195-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:75:9-92:26
+196            android:name="leakcanary.internal.activity.LeakLauncherActivity"
+196-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:76:13-77
+197            android:banner="@drawable/leak_canary_tv_icon"
+197-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:77:13-59
+198            android:enabled="@bool/leak_canary_add_launcher_icon"
+198-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:78:13-66
+199            android:exported="true"
+199-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:79:13-36
+200            android:icon="@mipmap/leak_canary_icon"
+200-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:80:13-52
+201            android:label="@string/leak_canary_display_activity_label"
+201-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:81:13-71
+202            android:targetActivity="leakcanary.internal.activity.LeakActivity"
+202-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:82:13-79
+203            android:taskAffinity="com.squareup.leakcanary.com.antigravity.sipcalling"
+203-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:83:13-76
+204            android:theme="@style/leak_canary_LeakCanary.Base" >
+204-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:84:13-63
+205            <intent-filter>
+205-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:85:13-91:29
+206                <action android:name="android.intent.action.MAIN" />
+206-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:49:17-69
+206-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:49:25-66
+207
+208                <category android:name="android.intent.category.LAUNCHER" />
+208-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:50:17-77
+208-->C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android\app\src\main\AndroidManifest.xml:50:27-74
+209                <!-- Android TV launcher intent -->
+210                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+210-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:90:17-86
+210-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:90:27-83
+211            </intent-filter>
+212        </activity-alias>
+213
+214        <activity
+214-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:94:9-100:68
+215            android:name="leakcanary.internal.RequestPermissionActivity"
+215-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:95:13-73
+216            android:excludeFromRecents="true"
+216-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:96:13-46
+217            android:icon="@mipmap/leak_canary_icon"
+217-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:97:13-52
+218            android:label="@string/leak_canary_storage_permission_activity_label"
+218-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:98:13-82
+219            android:taskAffinity="com.squareup.leakcanary.com.antigravity.sipcalling"
+219-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:99:13-76
+220            android:theme="@style/leak_canary_Theme.Transparent" />
+220-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:100:13-65
+221
+222        <receiver android:name="leakcanary.internal.NotificationReceiver" />
+222-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:102:9-77
+222-->[com.squareup.leakcanary:leakcanary-android-core:2.14] C:\Users\theao\.gradle\caches\transforms-4\43acdc95aa9123f0c0999e667f039b86\transformed\leakcanary-android-core-2.14\AndroidManifest.xml:102:19-74
+223
+224        <provider
+224-->[com.squareup.leakcanary:leakcanary-object-watcher-android:2.14] C:\Users\theao\.gradle\caches\transforms-4\7cd1d49b9413635495f27f471352963e\transformed\leakcanary-object-watcher-android-2.14\AndroidManifest.xml:8:9-12:40
+225            android:name="leakcanary.internal.MainProcessAppWatcherInstaller"
+225-->[com.squareup.leakcanary:leakcanary-object-watcher-android:2.14] C:\Users\theao\.gradle\caches\transforms-4\7cd1d49b9413635495f27f471352963e\transformed\leakcanary-object-watcher-android-2.14\AndroidManifest.xml:9:13-78
+226            android:authorities="com.antigravity.sipcalling.leakcanary-installer"
+226-->[com.squareup.leakcanary:leakcanary-object-watcher-android:2.14] C:\Users\theao\.gradle\caches\transforms-4\7cd1d49b9413635495f27f471352963e\transformed\leakcanary-object-watcher-android-2.14\AndroidManifest.xml:10:13-72
+227            android:enabled="@bool/leak_canary_watcher_auto_install"
+227-->[com.squareup.leakcanary:leakcanary-object-watcher-android:2.14] C:\Users\theao\.gradle\caches\transforms-4\7cd1d49b9413635495f27f471352963e\transformed\leakcanary-object-watcher-android-2.14\AndroidManifest.xml:11:13-69
+228            android:exported="false" />
+228-->[com.squareup.leakcanary:leakcanary-object-watcher-android:2.14] C:\Users\theao\.gradle\caches\transforms-4\7cd1d49b9413635495f27f471352963e\transformed\leakcanary-object-watcher-android-2.14\AndroidManifest.xml:12:13-37
+229        <provider
+229-->[com.squareup.leakcanary:plumber-android:2.14] C:\Users\theao\.gradle\caches\transforms-4\c935d368421cd192b40f61a6c3a9968a\transformed\plumber-android-2.14\AndroidManifest.xml:8:9-12:40
+230            android:name="leakcanary.internal.PlumberInstaller"
+230-->[com.squareup.leakcanary:plumber-android:2.14] C:\Users\theao\.gradle\caches\transforms-4\c935d368421cd192b40f61a6c3a9968a\transformed\plumber-android-2.14\AndroidManifest.xml:9:13-64
+231            android:authorities="com.antigravity.sipcalling.plumber-installer"
+231-->[com.squareup.leakcanary:plumber-android:2.14] C:\Users\theao\.gradle\caches\transforms-4\c935d368421cd192b40f61a6c3a9968a\transformed\plumber-android-2.14\AndroidManifest.xml:10:13-69
+232            android:enabled="@bool/leak_canary_plumber_auto_install"
+232-->[com.squareup.leakcanary:plumber-android:2.14] C:\Users\theao\.gradle\caches\transforms-4\c935d368421cd192b40f61a6c3a9968a\transformed\plumber-android-2.14\AndroidManifest.xml:11:13-69
+233            android:exported="false" />
+233-->[com.squareup.leakcanary:plumber-android:2.14] C:\Users\theao\.gradle\caches\transforms-4\c935d368421cd192b40f61a6c3a9968a\transformed\plumber-android-2.14\AndroidManifest.xml:12:13-37
+234
+235        <receiver
+235-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+236            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+236-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+237            android:directBootAware="false"
+237-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+238            android:enabled="true"
+238-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+239            android:exported="true"
+239-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+240            android:permission="android.permission.DUMP" >
+240-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+241            <intent-filter>
+241-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+242                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+242-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+242-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+243            </intent-filter>
+244            <intent-filter>
+244-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+245                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+245-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+245-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+246            </intent-filter>
+247            <intent-filter>
+247-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+248                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+248-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+248-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+249            </intent-filter>
+250            <intent-filter>
+250-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+251                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+251-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+251-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\theao\.gradle\caches\transforms-4\c041ebfb4319f5bf3476c4a20eb78633\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+252            </intent-filter>
+253        </receiver>
+254    </application>
+255
+256</manifest>
