@@ -1,0 +1,447 @@
+package com.antigravity.sipcalling.core
+
+import android.content.Context
+import android.content.Intent
+import android.media.AudioDeviceInfo
+import android.media.AudioManager
+import android.os.Build
+import android.util.Log
+import com.antigravity.sipcalling.model.*
+import com.antigravity.sipcalling.service.SipForegroundService
+import com.antigravity.sipcalling.ui.CallActivity
+import com.antigravity.sipcalling.ui.IncomingCallActivity
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import org.linphone.core.*
+
+object SipManager {
+    private const val TAG = "SipManager"
+
+    private var appContext: Context? = null
+    private var core: Core? = null
+    private val scope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    private var callDurationJob: Job? = null
+
+    // Registration state flow
+    private val _registrationState = MutableStateFlow<RegistrationStatus>(RegistrationStatus.Unregistered)
+    val registrationState: StateFlow<RegistrationStatus> = _registrationState.asStateFlow()
+
+    // Active call data flow
+    private val _activeCallData = MutableStateFlow<ActiveCallData?>(null)
+    val activeCallData: StateFlow<ActiveCallData?> = _activeCallData.asStateFlow()
+
+    // UI event navigation channel
+    private val _incomingCallEvents = MutableSharedFlow<ActiveCallData>()
+    val incomingCallEvents: SharedFlow<ActiveCallData> = _incomingCallEvents.asSharedFlow()
+
+    private var currentAccount: SipAccount? = null
+    private var isSpeakerphoneOn = false
+
+    private val coreListener = object : CoreListenerStub() {
+        override fun onAccountRegistrationStateChanged(
+            c: Core,
+            account: Account,
+            state: RegistrationState,
+            message: String
+        ) {
+            Log.d(TAG, "Registration state changed: $state - $message")
+            when (state) {
+                RegistrationState.Ok -> {
+                    val identity = account.params.identityAddress?.asStringUriOnly() ?: "Registered"
+                    _registrationState.value = RegistrationStatus.Registered(identity)
+                }
+                RegistrationState.Progress, RegistrationState.Refreshing -> {
+                    _registrationState.value = RegistrationStatus.Registering
+                }
+                RegistrationState.Failed -> {
+                    _registrationState.value = RegistrationStatus.Failed(message.ifEmpty { "Registration error" })
+                }
+                RegistrationState.Cleared, RegistrationState.None -> {
+                    _registrationState.value = RegistrationStatus.Unregistered
+                }
+            }
+        }
+
+        override fun onCallStateChanged(
+            c: Core,
+            call: Call,
+            state: Call.State,
+            message: String
+        ) {
+            Log.d(TAG, "Call state changed: $state ($message)")
+            handleCallStateChange(call, state, message)
+        }
+    }
+
+    /**
+     * Initializes the Linphone Core engine with application context.
+     */
+    fun initialize(context: Context) {
+        if (core != null) return
+        appContext = context.applicationContext
+
+        try {
+            val factory = Factory.instance()
+            val createdCore = factory.createCore(null, null, context.applicationContext)
+            createdCore.addListener(coreListener)
+            createdCore.isMicEnabled = true
+
+            // Set media codecs and audio settings
+            createdCore.setEchoCancellationEnabled(true)
+
+            createdCore.start()
+            core = createdCore
+            Log.i(TAG, "Liblinphone Core initialized successfully, version: ${createdCore.version}")
+
+            // Auto-register if saved account exists
+            val saved = SipAccount.load(context)
+            if (saved != null && saved.isValid()) {
+                registerAccount(saved)
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to initialize Liblinphone Core", e)
+        }
+    }
+
+    /**
+     * Registers a SIP account to the configured PBX or SIP server.
+     */
+    fun registerAccount(account: SipAccount) {
+        val c = core ?: run {
+            Log.e(TAG, "Core not initialized")
+            return
+        }
+
+        currentAccount = account
+        _registrationState.value = RegistrationStatus.Registering
+
+        try {
+            // Clear prior accounts
+            c.clearAccounts()
+            c.clearAllAuthInfo()
+
+            val factory = Factory.instance()
+
+            // 1. Configure Authentication Info
+            val authInfo = factory.createAuthInfo(
+                account.username,
+                null,
+                account.password,
+                null,
+                null,
+                account.domain
+            )
+            c.addAuthInfo(authInfo)
+
+            // 2. Configure Account Params
+            val accountParams = c.createAccountParams()
+            val identity = factory.createAddress("sip:${account.username}@${account.domain}")
+            if (account.displayName.isNotBlank()) {
+                identity?.displayName = account.displayName
+            }
+            accountParams.identityAddress = identity
+
+            // 3. Configure Server Address with Port & Transport
+            val transportParam = account.transport.name.lowercase()
+            val serverUri = "sip:${account.domain}:${account.port};transport=$transportParam"
+            val serverAddress = factory.createAddress(serverUri)
+            accountParams.serverAddress = serverAddress
+            accountParams.isRegisterEnabled = true
+            accountParams.expires = 300 // 5 minutes registration interval
+
+            // 4. Configure STUN Server for NAT traversal if specified
+            if (account.stunServer.isNotBlank()) {
+                accountParams.natPolicy?.stunServer = account.stunServer
+            }
+
+            // 5. Create and activate account
+            val linphoneAccount = c.createAccount(accountParams)
+            c.addAccount(linphoneAccount)
+            c.defaultAccount = linphoneAccount
+
+            Log.i(TAG, "Account registered initiated for: ${account.fullSipAddress} on $serverUri")
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to register account", e)
+            _registrationState.value = RegistrationStatus.Failed(e.localizedMessage ?: "Setup failed")
+        }
+    }
+
+    /**
+     * Unregisters the current SIP account.
+     */
+    fun unregister() {
+        val c = core ?: return
+        c.clearAccounts()
+        c.clearAllAuthInfo()
+        currentAccount = null
+        _registrationState.value = RegistrationStatus.Unregistered
+    }
+
+    /**
+     * Initiates an outgoing audio VoIP call.
+     */
+    fun makeCall(destination: String, isVideo: Boolean = false): Boolean {
+        val c = core ?: return false
+        val cleanDest = destination.trim()
+        if (cleanDest.isEmpty()) return false
+
+        try {
+            val address = if (cleanDest.startsWith("sip:") || cleanDest.startsWith("sips:")) {
+                Factory.instance().createAddress(cleanDest)
+            } else {
+                val domain = currentAccount?.domain ?: ""
+                if (domain.isNotEmpty()) {
+                    Factory.instance().createAddress("sip:$cleanDest@$domain")
+                } else {
+                    Factory.instance().createAddress(cleanDest)
+                }
+            } ?: run {
+                Log.e(TAG, "Invalid address format: $cleanDest")
+                return false
+            }
+
+            val params = c.createCallParams(null) ?: return false
+            params.setAudioEnabled(true)
+            params.setVideoEnabled(isVideo)
+
+            val call = c.inviteAddressWithParams(address, params)
+            if (call != null) {
+                Log.i(TAG, "Outgoing call initiated to: ${address.asStringUriOnly()}")
+                startForegroundService(address.asStringUriOnly())
+                return true
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error initiating call", e)
+        }
+        return false
+    }
+
+    /**
+     * Accepts the currently incoming call.
+     */
+    fun acceptCall(): Boolean {
+        val call = core?.currentCall ?: core?.calls?.firstOrNull() ?: return false
+        try {
+            call.accept()
+            Log.i(TAG, "Incoming call accepted")
+            return true
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to accept call", e)
+        }
+        return false
+    }
+
+    /**
+     * Terminates or declines the current active/incoming call.
+     */
+    fun terminateCall() {
+        val c = core ?: return
+        val call = c.currentCall ?: c.calls.firstOrNull()
+        try {
+            call?.terminate()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error terminating call", e)
+        }
+        stopForegroundService()
+    }
+
+    /**
+     * Toggles microphone mute.
+     */
+    fun toggleMute(): Boolean {
+        val c = core ?: return false
+        val isMuted = !c.isMicEnabled
+        c.isMicEnabled = isMuted
+        val current = _activeCallData.value
+        if (current != null) {
+            _activeCallData.value = current.copy(isMuted = !c.isMicEnabled)
+        }
+        return !c.isMicEnabled
+    }
+
+    /**
+     * Toggles speakerphone on/off.
+     */
+    fun toggleSpeaker(context: Context): Boolean {
+        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager ?: return false
+        isSpeakerphoneOn = !isSpeakerphoneOn
+
+        audioManager.mode = AudioManager.MODE_IN_COMMUNICATION
+        audioManager.isSpeakerphoneOn = isSpeakerphoneOn
+
+        val current = _activeCallData.value
+        if (current != null) {
+            _activeCallData.value = current.copy(isSpeakerOn = isSpeakerphoneOn)
+        }
+        return isSpeakerphoneOn
+    }
+
+    /**
+     * Toggles hold/resume on the active call.
+     */
+    fun toggleHold(): Boolean {
+        val call = core?.currentCall ?: return false
+        val isCurrentlyPaused = call.state == Call.State.Paused
+        if (isCurrentlyPaused) {
+            call.resume()
+        } else {
+            call.pause()
+        }
+        return !isCurrentlyPaused
+    }
+
+    /**
+     * Sends DTMF digit (0-9, *, #) across active RTP stream.
+     */
+    fun sendDtmf(dtmfChar: Char) {
+        val call = core?.currentCall ?: return
+        try {
+            call.sendDtmf(dtmfChar)
+            Log.d(TAG, "Sent DTMF: $dtmfChar")
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to send DTMF", e)
+        }
+    }
+
+    private fun handleCallStateChange(call: Call, state: Call.State, message: String) {
+        val remoteAddress = call.remoteAddress?.asStringUriOnly() ?: "Unknown"
+        val remoteDisplayName = call.remoteAddress?.displayName?.ifEmpty { remoteAddress } ?: remoteAddress
+
+        when (state) {
+            Call.State.IncomingReceived -> {
+                val data = ActiveCallData(
+                    remoteAddress = remoteAddress,
+                    remoteDisplayName = remoteDisplayName,
+                    state = VoipCallState.IncomingReceived
+                )
+                _activeCallData.value = data
+                startForegroundService(remoteDisplayName)
+
+                // Launch Incoming Call Activity
+                appContext?.let { ctx ->
+                    val intent = Intent(ctx, IncomingCallActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        putExtra("CALLER_NAME", remoteDisplayName)
+                        putExtra("CALLER_URI", remoteAddress)
+                    }
+                    ctx.startActivity(intent)
+                }
+
+                scope.launch {
+                    _incomingCallEvents.emit(data)
+                }
+            }
+
+            Call.State.OutgoingInit -> {
+                _activeCallData.value = ActiveCallData(
+                    remoteAddress = remoteAddress,
+                    remoteDisplayName = remoteDisplayName,
+                    state = VoipCallState.OutgoingInit
+                )
+            }
+
+            Call.State.OutgoingProgress, Call.State.OutgoingRinging -> {
+                _activeCallData.value = _activeCallData.value?.copy(
+                    state = VoipCallState.OutgoingRinging
+                ) ?: ActiveCallData(
+                    remoteAddress = remoteAddress,
+                    remoteDisplayName = remoteDisplayName,
+                    state = VoipCallState.OutgoingRinging
+                )
+            }
+
+            Call.State.Connected, Call.State.StreamsRunning -> {
+                val codec = call.currentParams.usedAudioPayloadType?.mimeType ?: "Opus"
+                _activeCallData.value = _activeCallData.value?.copy(
+                    state = VoipCallState.Connected,
+                    codec = codec
+                ) ?: ActiveCallData(
+                    remoteAddress = remoteAddress,
+                    remoteDisplayName = remoteDisplayName,
+                    state = VoipCallState.Connected,
+                    codec = codec
+                )
+                startCallTimer()
+            }
+
+            Call.State.Paused -> {
+                _activeCallData.value = _activeCallData.value?.copy(
+                    state = VoipCallState.Paused,
+                    isOnHold = true
+                )
+            }
+
+            Call.State.Resuming -> {
+                _activeCallData.value = _activeCallData.value?.copy(
+                    state = VoipCallState.Connected,
+                    isOnHold = false
+                )
+            }
+
+            Call.State.End, Call.State.Released, Call.State.Error -> {
+                stopCallTimer()
+                _activeCallData.value = _activeCallData.value?.copy(
+                    state = VoipCallState.Terminated
+                )
+                scope.launch {
+                    delay(1200)
+                    _activeCallData.value = null
+                }
+                stopForegroundService()
+            }
+
+            else -> Unit
+        }
+    }
+
+    private fun startCallTimer() {
+        stopCallTimer()
+        callDurationJob = scope.launch {
+            var seconds = 0L
+            while (isActive) {
+                delay(1000)
+                seconds++
+                val current = _activeCallData.value ?: break
+                _activeCallData.value = current.copy(durationSeconds = seconds)
+            }
+        }
+    }
+
+    private fun stopCallTimer() {
+        callDurationJob?.cancel()
+        callDurationJob = null
+    }
+
+    private fun startForegroundService(callerText: String) {
+        val ctx = appContext ?: return
+        val serviceIntent = Intent(ctx, SipForegroundService::class.java).apply {
+            action = SipForegroundService.ACTION_START_CALL
+            putExtra(SipForegroundService.EXTRA_CALLER, callerText)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ctx.startForegroundService(serviceIntent)
+        } else {
+            ctx.startService(serviceIntent)
+        }
+    }
+
+    private fun stopForegroundService() {
+        val ctx = appContext ?: return
+        val serviceIntent = Intent(ctx, SipForegroundService::class.java).apply {
+            action = SipForegroundService.ACTION_STOP_CALL
+        }
+        ctx.startService(serviceIntent)
+    }
+
+    fun destroy() {
+        core?.removeListener(coreListener)
+        core?.stop()
+        core = null
+        appContext = null
+    }
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Theme Colors -->
+    <color name="primary">#00E5FF</color>
+    <color name="primary_variant">#00B0FF</color>
+    <color name="on_primary">#0B111E</color>
+
+    <!-- Dark Futuristic Backgrounds -->
+    <color name="background_dark">#0B111E</color>
+    <color name="surface_dark">#152033</color>
+    <color name="surface_variant">#1E2C44</color>
+    <color name="surface_glass">#2A3B59</color>
+    <color name="card_stroke">#2E4166</color>
+
+    <!-- Call Action Colors -->
+    <color name="call_green">#00E676</color>
+    <color name="call_green_pressed">#00C853</color>
+    <color name="call_green_glow">#4000E676</color>
+    <color name="call_red">#FF1744</color>
+    <color name="call_red_pressed">#D50000</color>
+    <color name="call_red_glow">#40FF1744</color>
+
+    <!-- Registration Status Colors -->
+    <color name="status_registered">#00E676</color>
+    <color name="status_registering">#FFD600</color>
+    <color name="status_error">#FF5252</color>
+    <color name="status_offline">#90A4AE</color>
+
+    <!-- Text & Content Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#94A3B8</color>
+    <color name="text_hint">#64748B</color>
+
+    <!-- Dialpad Colors -->
+    <color name="dialpad_button_bg">#182338</color>
+    <color name="dialpad_button_pressed">#243554</color>
+    <color name="dialpad_digit">#FFFFFF</color>
+    <color name="dialpad_letters">#64748B</color>
+
+    <!-- In-Call Control Buttons -->
+    <color name="call_btn_bg">#1E2C44</color>
+    <color name="call_btn_active">#00E5FF</color>
+    <color name="call_btn_active_tint">#0B111E</color>
+    <color name="call_btn_inactive_tint">#FFFFFF</color>
+</resources>

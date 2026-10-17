@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">SIP Phone</string>
+    <string name="title_sip_settings">SIP Account Settings</string>
+
+    <!-- Registration Status -->
+    <string name="status_unregistered">Not Configured</string>
+    <string name="status_registering">Connecting to PBX…</string>
+    <string name="status_registered">Online &amp; Registered</string>
+    <string name="status_failed">Registration Failed</string>
+    <string name="status_offline">Offline</string>
+
+    <!-- Dialer -->
+    <string name="dialer_hint">Enter number or SIP address…</string>
+    <string name="btn_call">Call</string>
+    <string name="configure_account_banner">Configure your SIP extension to start making and receiving VoIP calls.</string>
+    <string name="btn_configure">Setup SIP Account</string>
+
+    <!-- In-Call Strings -->
+    <string name="calling">Calling…</string>
+    <string name="ringing">Ringing…</string>
+    <string name="call_connected">Connected</string>
+    <string name="call_ended">Call Ended</string>
+    <string name="call_on_hold">On Hold</string>
+    <string name="incoming_call_title">Incoming SIP Call</string>
+    <string name="action_accept">Answer</string>
+    <string name="action_decline">Decline</string>
+    <string name="action_mute">Mute</string>
+    <string name="action_speaker">Speaker</string>
+    <string name="action_keypad">Keypad</string>
+    <string name="action_hold">Hold</string>
+    <string name="action_end_call">End Call</string>
+
+    <!-- Settings -->
+    <string name="settings_header">SIP Account Details</string>
+    <string name="settings_domain">SIP Domain / PBX Host</string>
+    <string name="settings_domain_hint">e.g. sip.linphone.org or 192.168.1.100</string>
+    <string name="settings_port">SIP Port</string>
+    <string name="settings_port_hint">5060</string>
+    <string name="settings_username">Username / Extension</string>
+    <string name="settings_username_hint">e.g. 101 or alice</string>
+    <string name="settings_display_name">Display Name (Optional)</string>
+    <string name="settings_display_name_hint">e.g. Alice Smith</string>
+    <string name="settings_password">SIP Password</string>
+    <string name="settings_password_hint">••••••••</string>
+    <string name="settings_transport">Transport Protocol</string>
+    <string name="transport_udp">UDP (Default)</string>
+    <string name="transport_tcp">TCP</string>
+    <string name="transport_tls">TLS (Secure)</string>
+    <string name="settings_stun">STUN Server (NAT Traversal)</string>
+    <string name="settings_stun_hint">e.g. stun.l.google.com:19302</string>
+    <string name="btn_save_register">Save &amp; Connect</string>
+    <string name="btn_disconnect">Disconnect / Unregister</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">SIP Calling Service</string>
+    <string name="notification_channel_desc">Handles background SIP connectivity and active VoIP calls</string>
+    <string name="notification_active_call">Active Call in progress</string>
+    <string name="notification_tap_to_return">Tap to return to call</string>
+</resources>
