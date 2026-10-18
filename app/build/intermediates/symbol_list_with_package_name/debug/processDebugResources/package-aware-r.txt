@@ -3120,6 +3120,7 @@ drawable ic_call_missed
 drawable ic_call_received
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
+drawable ic_close
 drawable ic_contacts
 drawable ic_delete
 drawable ic_dialpad
@@ -3346,7 +3347,9 @@ id btnCancelContact
 id btnClearHistory
 id btnDecline
 id btnDisconnect
+id btnDtmfBackspace
 id btnDtmfClose
+id btnDtmfHeaderClose
 id btnEmptyImport
 id btnEndCall
 id btnHold
@@ -3413,7 +3416,7 @@ id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
 id dialog_button
-id dialpadGrid
+id dialpadContainer
 id dimensions
 id direct
 id disableHome
@@ -3441,8 +3444,8 @@ id dtmf6
 id dtmf7
 id dtmf8
 id dtmf9
-id dtmfGrid
 id dtmfHash
+id dtmfKeypadContainer
 id dtmfStar
 id easeIn
 id easeInOut
@@ -4119,6 +4122,7 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 layout view_dialpad_key
+layout view_dtmf_key
 mipmap leak_canary_icon
 plurals leak_canary_distinct_leaks
 plurals leak_canary_group_screen_title

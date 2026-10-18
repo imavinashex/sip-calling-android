@@ -8,31 +8,51 @@
         "source": "com.antigravity.sipcalling.app-main-6:/layout/view_dialpad_key.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-mergeDebugResources-3:/layout/activity_sip_settings.xml",
-        "source": "com.antigravity.sipcalling.app-main-6:/layout/activity_sip_settings.xml"
-    },
-    {
         "merged": "com.antigravity.sipcalling.app-mergeDebugResources-3:/layout/activity_main.xml",
         "source": "com.antigravity.sipcalling.app-main-6:/layout/activity_main.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-mergeDebugResources-3:/layout/item_call_log.xml",
-        "source": "com.antigravity.sipcalling.app-main-6:/layout/item_call_log.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-mergeDebugResources-3:\\layout\\activity_incoming_call.xml",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\activity_incoming_call.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-mergeDebugResources-3:/layout/item_contact.xml",
-        "source": "com.antigravity.sipcalling.app-main-6:/layout/item_contact.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-mergeDebugResources-3:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-mergeDebugResources-3:/layout/activity_call.xml",
-        "source": "com.antigravity.sipcalling.app-main-6:/layout/activity_call.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-mergeDebugResources-3:\\layout\\activity_sip_settings.xml",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\activity_sip_settings.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-mergeDebugResources-3:/layout/activity_incoming_call.xml",
-        "source": "com.antigravity.sipcalling.app-main-6:/layout/activity_incoming_call.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-mergeDebugResources-3:\\layout\\item_call_log.xml",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\item_call_log.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-mergeDebugResources-3:/layout/dialog_add_contact.xml",
-        "source": "com.antigravity.sipcalling.app-main-6:/layout/dialog_add_contact.xml"
+        "merged": "com.antigravity.sipcalling.app-mergeDebugResources-3:/layout/view_dtmf_key.xml",
+        "source": "com.antigravity.sipcalling.app-main-6:/layout/view_dtmf_key.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-mergeDebugResources-3:\\layout\\dialog_add_contact.xml",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\dialog_add_contact.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-mergeDebugResources-3:\\layout\\dialog_dtmf.xml",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\dialog_dtmf.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-mergeDebugResources-3:\\layout\\activity_call.xml",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\activity_call.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-mergeDebugResources-3:\\layout\\view_dialpad_key.xml",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\view_dialpad_key.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-mergeDebugResources-3:\\layout\\view_dtmf_key.xml",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\view_dtmf_key.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-mergeDebugResources-3:\\layout\\item_contact.xml",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\item_contact.xml"
     }
 ]

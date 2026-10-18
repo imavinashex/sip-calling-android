@@ -174,40 +174,137 @@
                 app:tint="@color/text_secondary" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Dialpad Grid Container -->
-        <GridLayout
-            android:id="@+id/dialpadGrid"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:alignmentMode="alignMargins"
-            android:columnCount="3"
-            android:rowCount="4"
-            android:useDefaultMargins="true"
+        <!-- Dialpad Container (4 Rows) -->
+        <LinearLayout
+            android:id="@+id/dialpadContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/callActionContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/displayContainer">
 
             <!-- Row 1: 1, 2, 3 -->
-            <include layout="@layout/view_dialpad_key" android:id="@+id/key1" />
-            <include layout="@layout/view_dialpad_key" android:id="@+id/key2" />
-            <include layout="@layout/view_dialpad_key" android:id="@+id/key3" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <include
+                    android:id="@+id/key1"
+                    layout="@layout/view_dialpad_key"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginHorizontal="14dp" />
+
+                <include
+                    android:id="@+id/key2"
+                    layout="@layout/view_dialpad_key"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginHorizontal="14dp" />
+
+                <include
+                    android:id="@+id/key3"
+                    layout="@layout/view_dialpad_key"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginHorizontal="14dp" />
+            </LinearLayout>
 
             <!-- Row 2: 4, 5, 6 -->
-            <include layout="@layout/view_dialpad_key" android:id="@+id/key4" />
-            <include layout="@layout/view_dialpad_key" android:id="@+id/key5" />
-            <include layout="@layout/view_dialpad_key" android:id="@+id/key6" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <include
+                    android:id="@+id/key4"
+                    layout="@layout/view_dialpad_key"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginHorizontal="14dp" />
+
+                <include
+                    android:id="@+id/key5"
+                    layout="@layout/view_dialpad_key"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginHorizontal="14dp" />
+
+                <include
+                    android:id="@+id/key6"
+                    layout="@layout/view_dialpad_key"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginHorizontal="14dp" />
+            </LinearLayout>
 
             <!-- Row 3: 7, 8, 9 -->
-            <include layout="@layout/view_dialpad_key" android:id="@+id/key7" />
-            <include layout="@layout/view_dialpad_key" android:id="@+id/key8" />
-            <include layout="@layout/view_dialpad_key" android:id="@+id/key9" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <include
+                    android:id="@+id/key7"
+                    layout="@layout/view_dialpad_key"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginHorizontal="14dp" />
+
+                <include
+                    android:id="@+id/key8"
+                    layout="@layout/view_dialpad_key"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginHorizontal="14dp" />
+
+                <include
+                    android:id="@+id/key9"
+                    layout="@layout/view_dialpad_key"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginHorizontal="14dp" />
+            </LinearLayout>
 
             <!-- Row 4: *, 0, # -->
-            <include layout="@layout/view_dialpad_key" android:id="@+id/keyStar" />
-            <include layout="@layout/view_dialpad_key" android:id="@+id/key0" />
-            <include layout="@layout/view_dialpad_key" android:id="@+id/keyHash" />
-        </GridLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <include
+                    android:id="@+id/keyStar"
+                    layout="@layout/view_dialpad_key"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginHorizontal="14dp" />
+
+                <include
+                    android:id="@+id/key0"
+                    layout="@layout/view_dialpad_key"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginHorizontal="14dp" />
+
+                <include
+                    android:id="@+id/keyHash"
+                    layout="@layout/view_dialpad_key"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginHorizontal="14dp" />
+            </LinearLayout>
+        </LinearLayout>
 
         <!-- Call Action Button Container -->
         <LinearLayout
@@ -216,15 +313,15 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingBottom="12dp"
+            android:paddingBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageButton
                 android:id="@+id/btnCall"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 android:background="@drawable/bg_call_btn"
                 android:contentDescription="@string/btn_call"
                 android:elevation="6dp"

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -65,7 +64,7 @@ public final class ActivityMainBinding implements ViewBinding {
   public final LinearLayout contactsHeaderBar;
 
   @NonNull
-  public final GridLayout dialpadGrid;
+  public final LinearLayout dialpadContainer;
 
   @NonNull
   public final ConstraintLayout displayContainer;
@@ -187,7 +186,7 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull ImageButton btnClearHistory, @NonNull MaterialButton btnEmptyImport,
       @NonNull MaterialButton btnImportContacts, @NonNull ImageButton btnSettings,
       @NonNull MaterialButton btnSetupAccount, @NonNull LinearLayout callActionContainer,
-      @NonNull LinearLayout contactsHeaderBar, @NonNull GridLayout dialpadGrid,
+      @NonNull LinearLayout contactsHeaderBar, @NonNull LinearLayout dialpadContainer,
       @NonNull ConstraintLayout displayContainer, @NonNull EditText etSearchContacts,
       @NonNull EditText etTargetNumber, @NonNull ConstraintLayout headerLayout,
       @NonNull ImageView ivTabContacts, @NonNull ImageView ivTabDialer,
@@ -219,7 +218,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.btnSetupAccount = btnSetupAccount;
     this.callActionContainer = callActionContainer;
     this.contactsHeaderBar = contactsHeaderBar;
-    this.dialpadGrid = dialpadGrid;
+    this.dialpadContainer = dialpadContainer;
     this.displayContainer = displayContainer;
     this.etSearchContacts = etSearchContacts;
     this.etTargetNumber = etTargetNumber;
@@ -359,9 +358,9 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.dialpadGrid;
-      GridLayout dialpadGrid = ViewBindings.findChildViewById(rootView, id);
-      if (dialpadGrid == null) {
+      id = R.id.dialpadContainer;
+      LinearLayout dialpadContainer = ViewBindings.findChildViewById(rootView, id);
+      if (dialpadContainer == null) {
         break missingId;
       }
 
@@ -608,7 +607,7 @@ public final class ActivityMainBinding implements ViewBinding {
       return new ActivityMainBinding((ConstraintLayout) rootView, bannerConfigure,
           bottomNavigationCard, btnAddContact, btnBackspace, btnCall, btnClearHistory,
           btnEmptyImport, btnImportContacts, btnSettings, btnSetupAccount, callActionContainer,
-          contactsHeaderBar, dialpadGrid, displayContainer, etSearchContacts, etTargetNumber,
+          contactsHeaderBar, dialpadContainer, displayContainer, etSearchContacts, etTargetNumber,
           headerLayout, ivTabContacts, ivTabDialer, ivTabRecents, binding_key0, binding_key1,
           binding_key2, binding_key3, binding_key4, binding_key5, binding_key6, binding_key7,
           binding_key8, binding_key9, binding_keyHash, binding_keyStar, layoutContacts,

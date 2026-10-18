@@ -42,6 +42,7 @@ drawable ic_call_end
 drawable ic_call_made
 drawable ic_call_missed
 drawable ic_call_received
+drawable ic_close
 drawable ic_contacts
 drawable ic_delete
 drawable ic_dialpad
@@ -69,7 +70,9 @@ id btnCancelContact
 id btnClearHistory
 id btnDecline
 id btnDisconnect
+id btnDtmfBackspace
 id btnDtmfClose
+id btnDtmfHeaderClose
 id btnEmptyImport
 id btnEndCall
 id btnHold
@@ -84,7 +87,7 @@ id btnSpeaker
 id callActionContainer
 id contactsHeaderBar
 id controlsContainer
-id dialpadGrid
+id dialpadContainer
 id displayContainer
 id dtmf0
 id dtmf1
@@ -96,8 +99,8 @@ id dtmf6
 id dtmf7
 id dtmf8
 id dtmf9
-id dtmfGrid
 id dtmfHash
+id dtmfKeypadContainer
 id dtmfStar
 id etContactName
 id etContactNumber
@@ -189,6 +192,7 @@ layout dialog_dtmf
 layout item_call_log
 layout item_contact
 layout view_dialpad_key
+layout view_dtmf_key
 string action_accept
 string action_decline
 string action_end_call

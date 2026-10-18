@@ -12,9 +12,9 @@
 .externalNativeBuild
 .cxx
 
-# Build outputs & APKs
-app/build/outputs/
-build/outputs/
-**/build/outputs/
+# Build directories & outputs
+build/
+app/build/
+**/build/
 *.apk
 *.aab

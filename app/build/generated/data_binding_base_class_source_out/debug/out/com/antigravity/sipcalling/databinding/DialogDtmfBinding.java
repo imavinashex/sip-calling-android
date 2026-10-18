@@ -4,7 +4,7 @@ package com.antigravity.sipcalling.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -22,46 +22,52 @@ public final class DialogDtmfBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final ImageButton btnDtmfBackspace;
+
+  @NonNull
   public final MaterialButton btnDtmfClose;
 
   @NonNull
-  public final ViewDialpadKeyBinding dtmf0;
+  public final ImageButton btnDtmfHeaderClose;
 
   @NonNull
-  public final ViewDialpadKeyBinding dtmf1;
+  public final ViewDtmfKeyBinding dtmf0;
 
   @NonNull
-  public final ViewDialpadKeyBinding dtmf2;
+  public final ViewDtmfKeyBinding dtmf1;
 
   @NonNull
-  public final ViewDialpadKeyBinding dtmf3;
+  public final ViewDtmfKeyBinding dtmf2;
 
   @NonNull
-  public final ViewDialpadKeyBinding dtmf4;
+  public final ViewDtmfKeyBinding dtmf3;
 
   @NonNull
-  public final ViewDialpadKeyBinding dtmf5;
+  public final ViewDtmfKeyBinding dtmf4;
 
   @NonNull
-  public final ViewDialpadKeyBinding dtmf6;
+  public final ViewDtmfKeyBinding dtmf5;
 
   @NonNull
-  public final ViewDialpadKeyBinding dtmf7;
+  public final ViewDtmfKeyBinding dtmf6;
 
   @NonNull
-  public final ViewDialpadKeyBinding dtmf8;
+  public final ViewDtmfKeyBinding dtmf7;
 
   @NonNull
-  public final ViewDialpadKeyBinding dtmf9;
+  public final ViewDtmfKeyBinding dtmf8;
 
   @NonNull
-  public final GridLayout dtmfGrid;
+  public final ViewDtmfKeyBinding dtmf9;
 
   @NonNull
-  public final ViewDialpadKeyBinding dtmfHash;
+  public final ViewDtmfKeyBinding dtmfHash;
 
   @NonNull
-  public final ViewDialpadKeyBinding dtmfStar;
+  public final LinearLayout dtmfKeypadContainer;
+
+  @NonNull
+  public final ViewDtmfKeyBinding dtmfStar;
 
   @NonNull
   public final TextView tvDtmfDigits;
@@ -69,17 +75,20 @@ public final class DialogDtmfBinding implements ViewBinding {
   @NonNull
   public final TextView tvDtmfTitle;
 
-  private DialogDtmfBinding(@NonNull LinearLayout rootView, @NonNull MaterialButton btnDtmfClose,
-      @NonNull ViewDialpadKeyBinding dtmf0, @NonNull ViewDialpadKeyBinding dtmf1,
-      @NonNull ViewDialpadKeyBinding dtmf2, @NonNull ViewDialpadKeyBinding dtmf3,
-      @NonNull ViewDialpadKeyBinding dtmf4, @NonNull ViewDialpadKeyBinding dtmf5,
-      @NonNull ViewDialpadKeyBinding dtmf6, @NonNull ViewDialpadKeyBinding dtmf7,
-      @NonNull ViewDialpadKeyBinding dtmf8, @NonNull ViewDialpadKeyBinding dtmf9,
-      @NonNull GridLayout dtmfGrid, @NonNull ViewDialpadKeyBinding dtmfHash,
-      @NonNull ViewDialpadKeyBinding dtmfStar, @NonNull TextView tvDtmfDigits,
+  private DialogDtmfBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnDtmfBackspace,
+      @NonNull MaterialButton btnDtmfClose, @NonNull ImageButton btnDtmfHeaderClose,
+      @NonNull ViewDtmfKeyBinding dtmf0, @NonNull ViewDtmfKeyBinding dtmf1,
+      @NonNull ViewDtmfKeyBinding dtmf2, @NonNull ViewDtmfKeyBinding dtmf3,
+      @NonNull ViewDtmfKeyBinding dtmf4, @NonNull ViewDtmfKeyBinding dtmf5,
+      @NonNull ViewDtmfKeyBinding dtmf6, @NonNull ViewDtmfKeyBinding dtmf7,
+      @NonNull ViewDtmfKeyBinding dtmf8, @NonNull ViewDtmfKeyBinding dtmf9,
+      @NonNull ViewDtmfKeyBinding dtmfHash, @NonNull LinearLayout dtmfKeypadContainer,
+      @NonNull ViewDtmfKeyBinding dtmfStar, @NonNull TextView tvDtmfDigits,
       @NonNull TextView tvDtmfTitle) {
     this.rootView = rootView;
+    this.btnDtmfBackspace = btnDtmfBackspace;
     this.btnDtmfClose = btnDtmfClose;
+    this.btnDtmfHeaderClose = btnDtmfHeaderClose;
     this.dtmf0 = dtmf0;
     this.dtmf1 = dtmf1;
     this.dtmf2 = dtmf2;
@@ -90,8 +99,8 @@ public final class DialogDtmfBinding implements ViewBinding {
     this.dtmf7 = dtmf7;
     this.dtmf8 = dtmf8;
     this.dtmf9 = dtmf9;
-    this.dtmfGrid = dtmfGrid;
     this.dtmfHash = dtmfHash;
+    this.dtmfKeypadContainer = dtmfKeypadContainer;
     this.dtmfStar = dtmfStar;
     this.tvDtmfDigits = tvDtmfDigits;
     this.tvDtmfTitle = tvDtmfTitle;
@@ -124,9 +133,21 @@ public final class DialogDtmfBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnDtmfBackspace;
+      ImageButton btnDtmfBackspace = ViewBindings.findChildViewById(rootView, id);
+      if (btnDtmfBackspace == null) {
+        break missingId;
+      }
+
       id = R.id.btnDtmfClose;
       MaterialButton btnDtmfClose = ViewBindings.findChildViewById(rootView, id);
       if (btnDtmfClose == null) {
+        break missingId;
+      }
+
+      id = R.id.btnDtmfHeaderClose;
+      ImageButton btnDtmfHeaderClose = ViewBindings.findChildViewById(rootView, id);
+      if (btnDtmfHeaderClose == null) {
         break missingId;
       }
 
@@ -135,90 +156,90 @@ public final class DialogDtmfBinding implements ViewBinding {
       if (dtmf0 == null) {
         break missingId;
       }
-      ViewDialpadKeyBinding binding_dtmf0 = ViewDialpadKeyBinding.bind(dtmf0);
+      ViewDtmfKeyBinding binding_dtmf0 = ViewDtmfKeyBinding.bind(dtmf0);
 
       id = R.id.dtmf1;
       View dtmf1 = ViewBindings.findChildViewById(rootView, id);
       if (dtmf1 == null) {
         break missingId;
       }
-      ViewDialpadKeyBinding binding_dtmf1 = ViewDialpadKeyBinding.bind(dtmf1);
+      ViewDtmfKeyBinding binding_dtmf1 = ViewDtmfKeyBinding.bind(dtmf1);
 
       id = R.id.dtmf2;
       View dtmf2 = ViewBindings.findChildViewById(rootView, id);
       if (dtmf2 == null) {
         break missingId;
       }
-      ViewDialpadKeyBinding binding_dtmf2 = ViewDialpadKeyBinding.bind(dtmf2);
+      ViewDtmfKeyBinding binding_dtmf2 = ViewDtmfKeyBinding.bind(dtmf2);
 
       id = R.id.dtmf3;
       View dtmf3 = ViewBindings.findChildViewById(rootView, id);
       if (dtmf3 == null) {
         break missingId;
       }
-      ViewDialpadKeyBinding binding_dtmf3 = ViewDialpadKeyBinding.bind(dtmf3);
+      ViewDtmfKeyBinding binding_dtmf3 = ViewDtmfKeyBinding.bind(dtmf3);
 
       id = R.id.dtmf4;
       View dtmf4 = ViewBindings.findChildViewById(rootView, id);
       if (dtmf4 == null) {
         break missingId;
       }
-      ViewDialpadKeyBinding binding_dtmf4 = ViewDialpadKeyBinding.bind(dtmf4);
+      ViewDtmfKeyBinding binding_dtmf4 = ViewDtmfKeyBinding.bind(dtmf4);
 
       id = R.id.dtmf5;
       View dtmf5 = ViewBindings.findChildViewById(rootView, id);
       if (dtmf5 == null) {
         break missingId;
       }
-      ViewDialpadKeyBinding binding_dtmf5 = ViewDialpadKeyBinding.bind(dtmf5);
+      ViewDtmfKeyBinding binding_dtmf5 = ViewDtmfKeyBinding.bind(dtmf5);
 
       id = R.id.dtmf6;
       View dtmf6 = ViewBindings.findChildViewById(rootView, id);
       if (dtmf6 == null) {
         break missingId;
       }
-      ViewDialpadKeyBinding binding_dtmf6 = ViewDialpadKeyBinding.bind(dtmf6);
+      ViewDtmfKeyBinding binding_dtmf6 = ViewDtmfKeyBinding.bind(dtmf6);
 
       id = R.id.dtmf7;
       View dtmf7 = ViewBindings.findChildViewById(rootView, id);
       if (dtmf7 == null) {
         break missingId;
       }
-      ViewDialpadKeyBinding binding_dtmf7 = ViewDialpadKeyBinding.bind(dtmf7);
+      ViewDtmfKeyBinding binding_dtmf7 = ViewDtmfKeyBinding.bind(dtmf7);
 
       id = R.id.dtmf8;
       View dtmf8 = ViewBindings.findChildViewById(rootView, id);
       if (dtmf8 == null) {
         break missingId;
       }
-      ViewDialpadKeyBinding binding_dtmf8 = ViewDialpadKeyBinding.bind(dtmf8);
+      ViewDtmfKeyBinding binding_dtmf8 = ViewDtmfKeyBinding.bind(dtmf8);
 
       id = R.id.dtmf9;
       View dtmf9 = ViewBindings.findChildViewById(rootView, id);
       if (dtmf9 == null) {
         break missingId;
       }
-      ViewDialpadKeyBinding binding_dtmf9 = ViewDialpadKeyBinding.bind(dtmf9);
-
-      id = R.id.dtmfGrid;
-      GridLayout dtmfGrid = ViewBindings.findChildViewById(rootView, id);
-      if (dtmfGrid == null) {
-        break missingId;
-      }
+      ViewDtmfKeyBinding binding_dtmf9 = ViewDtmfKeyBinding.bind(dtmf9);
 
       id = R.id.dtmfHash;
       View dtmfHash = ViewBindings.findChildViewById(rootView, id);
       if (dtmfHash == null) {
         break missingId;
       }
-      ViewDialpadKeyBinding binding_dtmfHash = ViewDialpadKeyBinding.bind(dtmfHash);
+      ViewDtmfKeyBinding binding_dtmfHash = ViewDtmfKeyBinding.bind(dtmfHash);
+
+      id = R.id.dtmfKeypadContainer;
+      LinearLayout dtmfKeypadContainer = ViewBindings.findChildViewById(rootView, id);
+      if (dtmfKeypadContainer == null) {
+        break missingId;
+      }
 
       id = R.id.dtmfStar;
       View dtmfStar = ViewBindings.findChildViewById(rootView, id);
       if (dtmfStar == null) {
         break missingId;
       }
-      ViewDialpadKeyBinding binding_dtmfStar = ViewDialpadKeyBinding.bind(dtmfStar);
+      ViewDtmfKeyBinding binding_dtmfStar = ViewDtmfKeyBinding.bind(dtmfStar);
 
       id = R.id.tvDtmfDigits;
       TextView tvDtmfDigits = ViewBindings.findChildViewById(rootView, id);
@@ -232,10 +253,10 @@ public final class DialogDtmfBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DialogDtmfBinding((LinearLayout) rootView, btnDtmfClose, binding_dtmf0,
-          binding_dtmf1, binding_dtmf2, binding_dtmf3, binding_dtmf4, binding_dtmf5, binding_dtmf6,
-          binding_dtmf7, binding_dtmf8, binding_dtmf9, dtmfGrid, binding_dtmfHash, binding_dtmfStar,
-          tvDtmfDigits, tvDtmfTitle);
+      return new DialogDtmfBinding((LinearLayout) rootView, btnDtmfBackspace, btnDtmfClose,
+          btnDtmfHeaderClose, binding_dtmf0, binding_dtmf1, binding_dtmf2, binding_dtmf3,
+          binding_dtmf4, binding_dtmf5, binding_dtmf6, binding_dtmf7, binding_dtmf8, binding_dtmf9,
+          binding_dtmfHash, dtmfKeypadContainer, binding_dtmfStar, tvDtmfDigits, tvDtmfTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

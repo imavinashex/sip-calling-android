@@ -4,139 +4,163 @@
         "source": "com.antigravity.sipcalling.app-main-6:/layout/activity_main.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_person_add.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_person_add.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_call_received.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_call_received.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_settings.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_settings.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\layout_view_dialpad_key.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\view_dialpad_key.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_search.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_search.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\layout_activity_call.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\activity_call.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_call_missed.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_call_missed.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\layout_dialog_add_contact.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\dialog_add_contact.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_call_received.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_call_received.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_search.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_search.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_call_made.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_call_made.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_mic_off.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_mic_off.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/layout_dialog_add_contact.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/layout/dialog_add_contact.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_backspace.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_backspace.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/layout_activity_call.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/layout/activity_call.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_call_made.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_call_made.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_call.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_call.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_close.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_close.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_dialpad.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_dialpad.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_history.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_history.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\layout_dialog_dtmf.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\dialog_dtmf.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_bg_dialpad_btn.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/bg_dialpad_btn.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_person_add.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_person_add.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/layout_activity_sip_settings.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/layout/activity_sip_settings.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_history.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_history.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/layout_activity_incoming_call.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/layout/activity_incoming_call.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\layout_activity_incoming_call.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\activity_incoming_call.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_backspace.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_backspace.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_call_end.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_call_end.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_mic.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_mic.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_download.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_download.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_bg_in_call_action.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/bg_in_call_action.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_bg_in_call_action.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\bg_in_call_action.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_person.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_person.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_dialpad.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_dialpad.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_mic_off.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_mic_off.xml"
-    },
-    {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/layout_item_contact.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/layout/item_contact.xml"
+        "merged": "com.antigravity.sipcalling.app-debug-4:/layout_view_dtmf_key.xml.flat",
+        "source": "com.antigravity.sipcalling.app-main-6:/layout/view_dtmf_key.xml"
     },
     {
         "merged": "com.antigravity.sipcalling.app-debug-4:/layout_dialog_dtmf.xml.flat",
         "source": "com.antigravity.sipcalling.app-main-6:/layout/dialog_dtmf.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_bg_card_dark.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/bg_card_dark.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\layout_item_contact.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\item_contact.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_bg_status_badge.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/bg_status_badge.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_bg_card_dark.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\bg_card_dark.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_bg_call_btn.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/bg_call_btn.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_bg_call_btn.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\bg_call_btn.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_bg_input_field.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/bg_input_field.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_call_missed.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_call_missed.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_contacts.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_contacts.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_contacts.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_contacts.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_volume_up.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_volume_up.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_bg_status_badge.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\bg_status_badge.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_delete.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_delete.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\layout_activity_sip_settings.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\activity_sip_settings.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_pause.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_pause.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\layout_view_dtmf_key.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\view_dtmf_key.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_download.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_download.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_bg_dialpad_btn.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\bg_dialpad_btn.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_bg_end_call_btn.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/bg_end_call_btn.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_mic.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_mic.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/drawable_ic_call_end.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/drawable/ic_call_end.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_person.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_person.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_bg_end_call_btn.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\bg_end_call_btn.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_volume_up.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_volume_up.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_bg_input_field.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\bg_input_field.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_pause.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_pause.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_call.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_call.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_settings.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\layout_item_call_log.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\layout\\item_call_log.xml"
     },
     {
         "merged": "com.antigravity.sipcalling.app-debug-4:/layout_view_dialpad_key.xml.flat",
         "source": "com.antigravity.sipcalling.app-main-6:/layout/view_dialpad_key.xml"
     },
     {
-        "merged": "com.antigravity.sipcalling.app-debug-4:/layout_item_call_log.xml.flat",
-        "source": "com.antigravity.sipcalling.app-main-6:/layout/item_call_log.xml"
+        "merged": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-debug-4:\\drawable_ic_delete.xml.flat",
+        "source": "C:\\Users\\theao\\.gradle\\daemon\\8.7\\com.antigravity.sipcalling.app-main-6:\\drawable\\ic_delete.xml"
     }
 ]

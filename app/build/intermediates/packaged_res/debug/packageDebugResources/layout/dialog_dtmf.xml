@@ -1,100 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_card_dark"
     android:orientation="vertical"
     android:padding="20dp">
 
-    <TextView
-        android:id="@+id/tvDtmfTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="In-Call Keypad (DTMF)"
-        android:textColor="@color/text_primary"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvDtmfDigits"
+    <!-- Header: Title + Close Icon -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvDtmfTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="In-Call Keypad (DTMF)"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnDtmfHeaderClose"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Close"
+            android:src="@drawable/ic_close"
+            app:tint="@color/text_secondary" />
+    </LinearLayout>
+
+    <!-- Dialed Digits Display Bar with Backspace -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_input_field"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:minHeight="48dp"
-        android:padding="8dp"
-        android:textColor="@color/primary"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="8dp">
 
-    <GridLayout
-        android:id="@+id/dtmfGrid"
-        android:layout_width="108dp"
+        <TextView
+            android:id="@+id/tvDtmfDigits"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="Digits"
+            android:textColor="@color/primary"
+            android:textColorHint="@color/text_hint"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnDtmfBackspace"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Backspace"
+            android:src="@drawable/ic_backspace"
+            app:tint="@color/text_secondary" />
+    </LinearLayout>
+
+    <!-- DTMF Keypad Container (4 Rows) -->
+    <LinearLayout
+        android:id="@+id/dtmfKeypadContainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="3"
-        android:rowCount="4">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <!-- 1, 2, 3 -->
-        <include
-            android:id="@+id/dtmf1"
-            layout="@layout/view_dialpad_key" />
+        <!-- Row 1: 1, 2, 3 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
 
-        <include
-            android:id="@+id/dtmf2"
-            layout="@layout/view_dialpad_key" />
+            <include
+                android:id="@+id/dtmf1"
+                layout="@layout/view_dtmf_key"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="10dp" />
 
-        <include
-            android:id="@+id/dtmf3"
-            layout="@layout/view_dialpad_key" />
+            <include
+                android:id="@+id/dtmf2"
+                layout="@layout/view_dtmf_key"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="10dp" />
 
-        <!-- 4, 5, 6 -->
-        <include
-            android:id="@+id/dtmf4"
-            layout="@layout/view_dialpad_key" />
+            <include
+                android:id="@+id/dtmf3"
+                layout="@layout/view_dtmf_key"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="10dp" />
+        </LinearLayout>
 
-        <include
-            android:id="@+id/dtmf5"
-            layout="@layout/view_dialpad_key" />
+        <!-- Row 2: 4, 5, 6 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
 
-        <include
-            android:id="@+id/dtmf6"
-            layout="@layout/view_dialpad_key" />
+            <include
+                android:id="@+id/dtmf4"
+                layout="@layout/view_dtmf_key"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="10dp" />
 
-        <!-- 7, 8, 9 -->
-        <include
-            android:id="@+id/dtmf7"
-            layout="@layout/view_dialpad_key" />
+            <include
+                android:id="@+id/dtmf5"
+                layout="@layout/view_dtmf_key"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="10dp" />
 
-        <include
-            android:id="@+id/dtmf8"
-            layout="@layout/view_dialpad_key" />
+            <include
+                android:id="@+id/dtmf6"
+                layout="@layout/view_dtmf_key"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="10dp" />
+        </LinearLayout>
 
-        <include
-            android:id="@+id/dtmf9"
-            layout="@layout/view_dialpad_key" />
+        <!-- Row 3: 7, 8, 9 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
 
-        <!-- *, 0, # -->
-        <include
-            android:id="@+id/dtmfStar"
-            layout="@layout/view_dialpad_key" />
+            <include
+                android:id="@+id/dtmf7"
+                layout="@layout/view_dtmf_key"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="10dp" />
 
-        <include
-            android:id="@+id/dtmf0"
-            layout="@layout/view_dialpad_key" />
+            <include
+                android:id="@+id/dtmf8"
+                layout="@layout/view_dtmf_key"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="10dp" />
 
-        <include
-            android:id="@+id/dtmfHash"
-            layout="@layout/view_dialpad_key" />
-    </GridLayout>
+            <include
+                android:id="@+id/dtmf9"
+                layout="@layout/view_dtmf_key"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="10dp" />
+        </LinearLayout>
 
+        <!-- Row 4: *, 0, # -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/dtmfStar"
+                layout="@layout/view_dtmf_key"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="10dp" />
+
+            <include
+                android:id="@+id/dtmf0"
+                layout="@layout/view_dtmf_key"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="10dp" />
+
+            <include
+                android:id="@+id/dtmfHash"
+                layout="@layout/view_dtmf_key"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Close button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnDtmfClose"
         style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
-        android:text="Hide Keypad" />
+        android:text="Hide Keypad"
+        app:cornerRadius="12dp" />
 </LinearLayout>

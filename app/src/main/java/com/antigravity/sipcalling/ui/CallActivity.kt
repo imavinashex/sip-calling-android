@@ -225,6 +225,23 @@ class CallActivity : AppCompatActivity() {
             dialog.dismiss()
         }
 
+        dialogBinding.btnDtmfHeaderClose.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogBinding.btnDtmfBackspace.setOnClickListener {
+            if (digitsBuilder.isNotEmpty()) {
+                digitsBuilder.deleteCharAt(digitsBuilder.length - 1)
+                dialogBinding.tvDtmfDigits.text = digitsBuilder.toString()
+            }
+        }
+
+        dialogBinding.btnDtmfBackspace.setOnLongClickListener {
+            digitsBuilder.clear()
+            dialogBinding.tvDtmfDigits.text = ""
+            true
+        }
+
         dialog.show()
         dtmfDialog = dialog
     }
