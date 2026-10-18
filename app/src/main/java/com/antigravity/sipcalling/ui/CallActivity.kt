@@ -17,6 +17,7 @@ import com.antigravity.sipcalling.databinding.ActivityCallBinding
 import com.antigravity.sipcalling.databinding.DialogDtmfBinding
 import com.antigravity.sipcalling.model.ActiveCallData
 import com.antigravity.sipcalling.model.VoipCallState
+import android.os.PowerManager
 import com.antigravity.sipcalling.util.SoundManager
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -25,12 +26,14 @@ class CallActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCallBinding
     private var dtmfDialog: Dialog? = null
+    private var proximityWakeLock: PowerManager.WakeLock? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCallBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupProximitySensor()
         setupButtons()
         observeCallData()
     }
@@ -129,6 +132,41 @@ class CallActivity : AppCompatActivity() {
         binding.btnSpeaker.isSelected = isSpeakerOn
         val colorRes = if (isSpeakerOn) R.color.call_btn_active_tint else R.color.call_btn_inactive_tint
         binding.btnSpeaker.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, colorRes))
+        binding.tvSpeakerLabel.text = if (isSpeakerOn) "Speaker" else getString(R.string.action_speaker)
+        binding.tvSpeakerLabel.setTextColor(
+            ContextCompat.getColor(this, if (isSpeakerOn) R.color.primary else R.color.text_secondary)
+        )
+        updateProximitySensor(!isSpeakerOn)
+    }
+
+    private fun setupProximitySensor() {
+        try {
+            val powerManager = getSystemService(POWER_SERVICE) as? PowerManager
+            if (powerManager?.isWakeLockLevelSupported(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK) == true) {
+                proximityWakeLock = powerManager.newWakeLock(
+                    PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK,
+                    "SipCallingApp::ProximityWakeLock"
+                )
+            }
+        } catch (_: Exception) {
+            // Proximity sensor not available or supported on this device
+        }
+    }
+
+    private fun updateProximitySensor(enable: Boolean) {
+        try {
+            if (enable) {
+                if (proximityWakeLock?.isHeld != true) {
+                    proximityWakeLock?.acquire(30 * 60 * 1000L) // 30 min max
+                }
+            } else {
+                if (proximityWakeLock?.isHeld == true) {
+                    proximityWakeLock?.release()
+                }
+            }
+        } catch (_: Exception) {
+            // Ignore
+        }
     }
 
     private fun updateHoldButton(isOnHold: Boolean) {
@@ -192,6 +230,13 @@ class CallActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        try {
+            if (proximityWakeLock?.isHeld == true) {
+                proximityWakeLock?.release()
+            }
+        } catch (_: Exception) {
+            // Ignore
+        }
         dtmfDialog?.dismiss()
         super.onDestroy()
     }
