@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-17T10:18:23" hostname="DESKTOP-U0HDV1D" time="0.171">
+<testsuite name="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-18T06:13:00" hostname="DESKTOP-U0HDV1D" time="0.152">
   <properties/>
-  <testcase name="test numbers already starting with 0 maintain single 0 without duplication" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.065"/>
+  <testcase name="test numbers already starting with 0 maintain single 0 without duplication" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.053"/>
   <testcase name="test typed number without plus or leading zero gets 0 prepended without removing starting digits" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.001"/>
   <testcase name="test internal short PBX extensions are preserved" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.0"/>
-  <testcase name="test international numbers with 00 prefix are normalized with leading 0" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.076"/>
+  <testcase name="test international numbers with 00 prefix are normalized with leading 0" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.075"/>
   <testcase name="test international numbers with plus are normalized with leading 0 and country code stripped" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.008"/>
-  <testcase name="test local subscriber number missing leading 0 gets 0 prepended" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.001"/>
-  <testcase name="test formatCallerDisplay for incoming calls" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.007"/>
-  <testcase name="test SIP URI normalization" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.01"/>
+  <testcase name="test local subscriber number missing leading 0 gets 0 prepended" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.0"/>
+  <testcase name="test formatCallerDisplay for incoming calls" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.004"/>
+  <testcase name="test SIP URI normalization" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.009"/>
   <testcase name="test non-numeric SIP service addresses are preserved" classname="com.antigravity.sipcalling.util.PhoneNumberNormalizerTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

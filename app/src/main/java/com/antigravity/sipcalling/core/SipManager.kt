@@ -285,17 +285,79 @@ object SipManager {
      * Toggles speakerphone on/off.
      */
     fun toggleSpeaker(context: Context): Boolean {
-        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager ?: return false
         isSpeakerphoneOn = !isSpeakerphoneOn
+        setSpeakerphone(context, isSpeakerphoneOn)
+        return isSpeakerphoneOn
+    }
 
-        audioManager.mode = AudioManager.MODE_IN_COMMUNICATION
-        audioManager.isSpeakerphoneOn = isSpeakerphoneOn
+    /**
+     * Routes audio output to Speaker or Earpiece across both Liblinphone SDK and Android AudioManager.
+     */
+    fun setSpeakerphone(context: Context, enableSpeaker: Boolean) {
+        isSpeakerphoneOn = enableSpeaker
+        val c = core
+        val call = c?.currentCall ?: c?.calls?.firstOrNull()
+
+        // 1. Android AudioManager switching
+        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
+        if (audioManager != null) {
+            try {
+                audioManager.mode = AudioManager.MODE_IN_COMMUNICATION
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    if (enableSpeaker) {
+                        val speakerDevice = audioManager.availableCommunicationDevices.firstOrNull {
+                            it.type == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER
+                        }
+                        if (speakerDevice != null) {
+                            val success = audioManager.setCommunicationDevice(speakerDevice)
+                            Log.d(TAG, "Android setCommunicationDevice(Speaker): $success")
+                        }
+                    } else {
+                        val earpieceDevice = audioManager.availableCommunicationDevices.firstOrNull {
+                            it.type == AudioDeviceInfo.TYPE_BUILTIN_EARPIECE
+                        }
+                        if (earpieceDevice != null) {
+                            val success = audioManager.setCommunicationDevice(earpieceDevice)
+                            Log.d(TAG, "Android setCommunicationDevice(Earpiece): $success")
+                        } else {
+                            audioManager.clearCommunicationDevice()
+                        }
+                    }
+                } else {
+                    @Suppress("DEPRECATION")
+                    audioManager.isSpeakerphoneOn = enableSpeaker
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error setting Android AudioManager communication device", e)
+            }
+        }
+
+        // 2. Liblinphone native AudioDevice routing
+        if (c != null) {
+            try {
+                val targetType = if (enableSpeaker) AudioDevice.Type.Speaker else AudioDevice.Type.Earpiece
+                val targetDevice = c.audioDevices.firstOrNull {
+                    it.hasCapability(AudioDevice.Capabilities.CapabilityPlay) && it.type == targetType
+                } ?: c.audioDevices.firstOrNull { it.type == targetType }
+
+                if (targetDevice != null) {
+                    if (call != null) {
+                        call.outputAudioDevice = targetDevice
+                    }
+                    c.outputAudioDevice = targetDevice
+                    Log.i(TAG, "Linphone audio output routed to: ${targetDevice.deviceName} (type=${targetDevice.type})")
+                } else {
+                    Log.w(TAG, "Linphone AudioDevice for $targetType not found. Available: ${c.audioDevices.map { "${it.deviceName}:${it.type}" }}")
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error routing Linphone audio device", e)
+            }
+        }
 
         val current = _activeCallData.value
         if (current != null) {
             _activeCallData.value = current.copy(isSpeakerOn = isSpeakerphoneOn)
         }
-        return isSpeakerphoneOn
     }
 
     /**
@@ -404,6 +466,9 @@ object SipManager {
                     codec = codec
                 )
                 startCallTimer()
+                appContext?.let { ctx ->
+                    setSpeakerphone(ctx, isSpeakerphoneOn)
+                }
             }
 
             Call.State.Paused -> {
@@ -422,6 +487,7 @@ object SipManager {
 
             Call.State.End, Call.State.Released, Call.State.Error -> {
                 stopCallTimer()
+                resetAudioRouting()
 
                 if (trackingPhoneNumber.isNotBlank()) {
                     val finalType = if (trackingCallType == CallType.INCOMING) {
@@ -492,6 +558,25 @@ object SipManager {
             action = SipForegroundService.ACTION_STOP_CALL
         }
         ctx.startService(serviceIntent)
+    }
+
+    private fun resetAudioRouting() {
+        isSpeakerphoneOn = false
+        appContext?.let { ctx ->
+            val audioManager = ctx.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
+            if (audioManager != null) {
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                        audioManager.clearCommunicationDevice()
+                    }
+                    @Suppress("DEPRECATION")
+                    audioManager.isSpeakerphoneOn = false
+                    audioManager.mode = AudioManager.MODE_NORMAL
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error resetting audio routing on call end", e)
+                }
+            }
+        }
     }
 
     fun destroy() {

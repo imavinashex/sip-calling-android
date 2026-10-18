@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_dark"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/tvDtmfTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="In-Call Keypad (DTMF)"
+        android:textColor="@color/text_primary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvDtmfDigits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_input_field"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:padding="8dp"
+        android:textColor="@color/primary"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <GridLayout
+        android:id="@+id/dtmfGrid"
+        android:layout_width="108dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:columnCount="3"
+        android:rowCount="4">
+
+        <!-- 1, 2, 3 -->
+        <include
+            android:id="@+id/dtmf1"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf2"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf3"
+            layout="@layout/view_dialpad_key" />
+
+        <!-- 4, 5, 6 -->
+        <include
+            android:id="@+id/dtmf4"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf5"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf6"
+            layout="@layout/view_dialpad_key" />
+
+        <!-- 7, 8, 9 -->
+        <include
+            android:id="@+id/dtmf7"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf8"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf9"
+            layout="@layout/view_dialpad_key" />
+
+        <!-- *, 0, # -->
+        <include
+            android:id="@+id/dtmfStar"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmf0"
+            layout="@layout/view_dialpad_key" />
+
+        <include
+            android:id="@+id/dtmfHash"
+            layout="@layout/view_dialpad_key" />
+    </GridLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDtmfClose"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Hide Keypad" />
+</LinearLayout>
