@@ -3,6 +3,7 @@ package com.antigravity.sipcalling.ui
 import android.app.Dialog
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.os.PowerManager
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -17,7 +18,6 @@ import com.antigravity.sipcalling.databinding.ActivityCallBinding
 import com.antigravity.sipcalling.databinding.DialogDtmfBinding
 import com.antigravity.sipcalling.model.ActiveCallData
 import com.antigravity.sipcalling.model.VoipCallState
-import android.os.PowerManager
 import com.antigravity.sipcalling.util.SoundManager
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

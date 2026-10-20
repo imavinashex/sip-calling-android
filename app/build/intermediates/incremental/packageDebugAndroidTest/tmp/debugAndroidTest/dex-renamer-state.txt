@@ -1,4 +1,0 @@
-#Fri Oct 16 20:06:41 IST 2026
-base.0=C\:\\Users\\theao\\.gemini\\antigravity-ide\\scratch\\sip-calling-android\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
-path.0=0/classes.dex
-renamed.0=classes.dex
