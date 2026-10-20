@@ -3,6 +3,8 @@ package com.antigravity.sipcalling
 import android.app.Application
 import android.util.Log
 import com.antigravity.sipcalling.core.SipManager
+import com.antigravity.sipcalling.data.CallLogRepository
+import com.antigravity.sipcalling.data.ContactRepository
 
 class SipApplication : Application() {
 
@@ -10,8 +12,8 @@ class SipApplication : Application() {
         super.onCreate()
         Log.i(TAG, "Initializing SIP Calling Application")
         SipManager.initialize(this)
-        com.antigravity.sipcalling.data.CallLogRepository.initialize(this)
-        com.antigravity.sipcalling.data.ContactRepository.initialize(this)
+        CallLogRepository.initialize(this)
+        ContactRepository.initialize(this)
     }
 
     companion object {

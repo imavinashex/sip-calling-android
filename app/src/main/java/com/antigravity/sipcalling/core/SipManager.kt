@@ -9,7 +9,6 @@ import android.util.Log
 import com.antigravity.sipcalling.data.CallLogRepository
 import com.antigravity.sipcalling.model.*
 import com.antigravity.sipcalling.service.SipForegroundService
-import com.antigravity.sipcalling.ui.CallActivity
 import com.antigravity.sipcalling.ui.IncomingCallActivity
 import com.antigravity.sipcalling.util.CallerIdResolver
 import com.antigravity.sipcalling.util.PhoneNumberNormalizer
@@ -388,8 +387,9 @@ object SipManager {
     }
 
     private fun handleCallStateChange(call: Call, state: Call.State, message: String) {
-        val rawRemoteAddress = call.remoteAddress?.asStringUriOnly() ?: "Unknown"
-        val rawDisplayName = call.remoteAddress?.displayName?.ifEmpty { null }
+        val rawRemoteAddress = call.remoteAddress.asStringUriOnly()
+        val rawDisplayName = call.remoteAddress.displayName?.ifEmpty { null }
+        Log.d(TAG, "Call state changed: $state, remote: $rawRemoteAddress, message: $message")
 
         val callerInfo = CallerIdResolver.resolve(rawRemoteAddress, rawDisplayName)
         val remoteDisplayName = callerInfo.name
