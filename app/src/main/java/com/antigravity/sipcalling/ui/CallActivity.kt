@@ -106,6 +106,8 @@ class CallActivity : AppCompatActivity() {
 
             VoipCallState.Paused -> {
                 binding.tvCallState.text = getString(R.string.call_on_hold)
+                binding.tvCallDuration.visibility = View.VISIBLE
+                binding.tvCallDuration.text = formatDuration(call.durationSeconds)
             }
 
             VoipCallState.Terminated, VoipCallState.Ending -> {
@@ -173,7 +175,11 @@ class CallActivity : AppCompatActivity() {
         binding.btnHold.isSelected = isOnHold
         val colorRes = if (isOnHold) R.color.call_btn_active_tint else R.color.call_btn_inactive_tint
         binding.btnHold.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, colorRes))
+        binding.btnHold.setImageResource(if (isOnHold) R.drawable.ic_play_arrow else R.drawable.ic_pause)
         binding.tvHoldLabel.text = if (isOnHold) "Resume" else getString(R.string.action_hold)
+        binding.tvHoldLabel.setTextColor(
+            ContextCompat.getColor(this, if (isOnHold) R.color.primary else R.color.text_secondary)
+        )
     }
 
     private fun formatDuration(seconds: Long): String {

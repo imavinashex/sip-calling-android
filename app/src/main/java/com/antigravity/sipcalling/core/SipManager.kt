@@ -363,14 +363,44 @@ object SipManager {
      * Toggles hold/resume on the active call.
      */
     fun toggleHold(): Boolean {
-        val call = core?.currentCall ?: return false
-        val isCurrentlyPaused = call.state == Call.State.Paused
-        if (isCurrentlyPaused) {
-            call.resume()
+        val c = core ?: return false
+        val call = c.currentCall
+            ?: c.calls.firstOrNull { it.state == Call.State.Paused || it.state == Call.State.PausedByRemote || it.state == Call.State.Pausing }
+            ?: c.calls.firstOrNull()
+            ?: return false
+
+        val isCurrentlyPaused = call.state == Call.State.Paused ||
+                call.state == Call.State.PausedByRemote ||
+                call.state == Call.State.Pausing
+
+        Log.d(TAG, "toggleHold: call state=${call.state}, isCurrentlyPaused=$isCurrentlyPaused")
+
+        val newHoldState = if (isCurrentlyPaused) {
+            try {
+                call.resume()
+                Log.i(TAG, "Resumed call: ${call.remoteAddress.asStringUriOnly()}")
+            } catch (e: Exception) {
+                Log.e(TAG, "Error resuming call", e)
+            }
+            false
         } else {
-            call.pause()
+            try {
+                call.pause()
+                Log.i(TAG, "Paused call: ${call.remoteAddress.asStringUriOnly()}")
+            } catch (e: Exception) {
+                Log.e(TAG, "Error pausing call", e)
+            }
+            true
         }
-        return !isCurrentlyPaused
+
+        val current = _activeCallData.value
+        if (current != null) {
+            _activeCallData.value = current.copy(
+                isOnHold = newHoldState,
+                state = if (newHoldState) VoipCallState.Paused else VoipCallState.Connected
+            )
+        }
+        return newHoldState
     }
 
     /**
@@ -458,12 +488,14 @@ object SipManager {
                 val codec = call.currentParams.usedAudioPayloadType?.mimeType ?: "Opus"
                 _activeCallData.value = _activeCallData.value?.copy(
                     state = VoipCallState.Connected,
-                    codec = codec
+                    codec = codec,
+                    isOnHold = false
                 ) ?: ActiveCallData(
                     remoteAddress = remoteAddress,
                     remoteDisplayName = remoteDisplayName,
                     state = VoipCallState.Connected,
-                    codec = codec
+                    codec = codec,
+                    isOnHold = false
                 )
                 startCallTimer()
                 appContext?.let { ctx ->
@@ -471,7 +503,7 @@ object SipManager {
                 }
             }
 
-            Call.State.Paused -> {
+            Call.State.Paused, Call.State.PausedByRemote -> {
                 _activeCallData.value = _activeCallData.value?.copy(
                     state = VoipCallState.Paused,
                     isOnHold = true
@@ -521,9 +553,9 @@ object SipManager {
     }
 
     private fun startCallTimer() {
-        stopCallTimer()
+        if (callDurationJob?.isActive == true) return
         callDurationJob = scope.launch {
-            var seconds = 0L
+            var seconds = trackingDurationSeconds
             while (isActive) {
                 delay(1000)
                 seconds++
