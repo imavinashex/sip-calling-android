@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "com.antigravity.sipcalling"
+    namespace = "com.imavinashexdev.sipcalling"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.antigravity.sipcalling"
+        applicationId = "com.sipphone.sipcalling"
         minSdk = 26
         targetSdk = 34
         versionCode = 3
-        versionName = "1.0.4"
+        versionName = "1.0.4-beta"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
