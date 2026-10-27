@@ -38,7 +38,7 @@ sip-calling-android/
 │   ├── proguard-rules.pro                 # Liblinphone SDK proguard rules
 │   └── src/main/
 │       ├── AndroidManifest.xml            # SIP permissions, activities & foreground service
-│       ├── java/com/antigravity/sipcalling/
+│       ├── java/com/imavinashexdev/sipcalling/
 │       │   ├── SipApplication.kt          # Global Application & Core initialization
 │       │   ├── core/
 │       │   │   └── SipManager.kt          # Liblinphone Core wrapper, Call lifecycle & StateFlows
@@ -75,7 +75,7 @@ sip-calling-android/
 2. Click **File -> Open...**
 3. Navigate to:
    ```
-   C:\Users\theao\.gemini\antigravity-ide\scratch\sip-calling-android
+   path/to/sip-calling-android
    ```
 4. Click **OK**. Android Studio will recognize the project and sync Gradle dependencies.
 
