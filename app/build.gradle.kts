@@ -11,8 +11,8 @@ android {
         applicationId = "com.sipphone.sipcalling"
         minSdk = 26
         targetSdk = 34
-        versionCode = 3
-        versionName = "1.0.4-beta"
+        versionCode = 4
+        versionName = "1.0.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
