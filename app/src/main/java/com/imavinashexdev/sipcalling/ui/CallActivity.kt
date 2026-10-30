@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.os.PowerManager
+import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -205,7 +206,9 @@ class CallActivity : AppCompatActivity() {
             val tvLetters = root.findViewById<TextView>(R.id.tvLetters)
             tvDigit.text = digit
             tvLetters.visibility = View.GONE
+            root.isHapticFeedbackEnabled = true
             root.setOnClickListener {
+                root.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
                 val char = digit.first()
                 SoundManager.playDtmfTone(char)
                 SipManager.sendDtmf(char)

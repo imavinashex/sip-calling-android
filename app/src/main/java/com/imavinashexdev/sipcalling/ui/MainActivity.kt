@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -101,7 +102,9 @@ class MainActivity : AppCompatActivity() {
             val tvLetters = root.findViewById<TextView>(R.id.tvLetters)
             tvDigit.text = digit
             tvLetters.text = letters
+            root.isHapticFeedbackEnabled = true
             root.setOnClickListener {
+                root.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
                 appendDigit(digit)
                 SoundManager.playDtmfTone(digit.first())
             }
@@ -122,29 +125,38 @@ class MainActivity : AppCompatActivity() {
 
         // Long press '0' for '+'
         binding.key0.root.setOnLongClickListener {
+            binding.key0.root.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
             appendDigit("+")
             true
         }
 
         // Backspace button
+        binding.btnBackspace.isHapticFeedbackEnabled = true
         binding.btnBackspace.setOnClickListener {
+            binding.btnBackspace.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
             val text = binding.etTargetNumber.text
             if (!text.isNullOrEmpty()) {
-                binding.etTargetNumber.setText(text.subSequence(0, text.length - 1))
-                binding.etTargetNumber.setSelection(binding.etTargetNumber.text?.length ?: 0)
+                val start = binding.etTargetNumber.selectionStart
+                val end = binding.etTargetNumber.selectionEnd
+                if (start > 0 && start == end) {
+                    text.delete(start - 1, start)
+                } else if (start != end) {
+                    text.delete(start, end)
+                } else {
+                    text.delete(text.length - 1, text.length)
+                }
             }
         }
 
         binding.btnBackspace.setOnLongClickListener {
-            binding.etTargetNumber.setText("")
+            binding.btnBackspace.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+            binding.etTargetNumber.text?.clear()
             true
         }
     }
 
     private fun appendDigit(digit: String) {
-        val current = binding.etTargetNumber.text?.toString() ?: ""
-        binding.etTargetNumber.setText(current + digit)
-        binding.etTargetNumber.setSelection(binding.etTargetNumber.text?.length ?: 0)
+        binding.etTargetNumber.append(digit)
     }
 
     private fun setupActions() {
