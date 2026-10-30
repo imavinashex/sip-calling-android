@@ -25,9 +25,7 @@ class PhoneNumberNormalizerTest {
 
     @Test
     fun `test international numbers with 00 prefix are normalized with leading 0`() {
-        // 0044 -> UK -> 0...
         assertEquals("07911123456", PhoneNumberNormalizer.normalize("00447911123456"))
-        // 0094 -> Sri Lanka -> 0...
         assertEquals("0771234567", PhoneNumberNormalizer.normalize("0094771234567"))
     }
 
@@ -44,7 +42,6 @@ class PhoneNumberNormalizerTest {
 
     @Test
     fun `test typed number without plus or leading zero gets 0 prepended without removing starting digits`() {
-        // User example: 9988998899 must become 09988998899 (never strip starting digits)
         assertEquals("09988998899", PhoneNumberNormalizer.normalize("9988998899"))
         assertEquals("0771234567", PhoneNumberNormalizer.normalize("771234567"))
     }
@@ -62,13 +59,20 @@ class PhoneNumberNormalizerTest {
     }
 
     @Test
+    fun `test SIP service addresses like music and echo are preserved completely`() {
+        assertEquals("sip:music@sip.linphone.org", PhoneNumberNormalizer.normalize("sip:music@sip.linphone.org"))
+        assertEquals("sip:echo@sip.linphone.org", PhoneNumberNormalizer.normalize("sip:echo@sip.linphone.org"))
+        assertEquals("sip:music@sip.linphone.org", PhoneNumberNormalizer.normalize("music@sip.linphone.org"))
+    }
+
+    @Test
     fun `test internal short PBX extensions are preserved`() {
         assertEquals("1001", PhoneNumberNormalizer.normalize("1001"))
         assertEquals("101", PhoneNumberNormalizer.normalize("101"))
     }
 
     @Test
-    fun `test non-numeric SIP service addresses are preserved`() {
+    fun `test non-numeric SIP service words are preserved`() {
         assertEquals("echo", PhoneNumberNormalizer.normalize("echo"))
         assertEquals("music", PhoneNumberNormalizer.normalize("music"))
     }
@@ -83,6 +87,9 @@ class PhoneNumberNormalizerTest {
             "John Doe",
             PhoneNumberNormalizer.formatCallerDisplay("sip:+94771234567@domain.com", "John Doe")
         )
+        assertEquals(
+            "music",
+            PhoneNumberNormalizer.formatCallerDisplay("sip:music@sip.linphone.org")
+        )
     }
 }
-

@@ -1,12 +1,15 @@
 package com.imavinashexdev.sipcalling.ui
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -152,6 +155,30 @@ class MainActivity : AppCompatActivity() {
             binding.btnBackspace.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
             binding.etTargetNumber.text?.clear()
             true
+        }
+
+        // Toggle software QWERTY keyboard for SIP addresses
+        binding.btnKeyboardToggle.isHapticFeedbackEnabled = true
+        binding.btnKeyboardToggle.setOnClickListener {
+            binding.btnKeyboardToggle.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
+            binding.etTargetNumber.requestFocus()
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        }
+
+        binding.etTargetNumber.setOnClickListener {
+            binding.etTargetNumber.requestFocus()
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.showSoftInput(binding.etTargetNumber, InputMethodManager.SHOW_IMPLICIT)
+        }
+
+        binding.etTargetNumber.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_SEND) {
+                initiateCall()
+                true
+            } else {
+                false
+            }
         }
     }
 
