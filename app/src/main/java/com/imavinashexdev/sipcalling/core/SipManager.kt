@@ -200,14 +200,10 @@ object SipManager {
         val rawDest = destination.trim()
         if (rawDest.isEmpty()) return false
 
-        val cleanDest = if (rawDest.startsWith("sip:") || rawDest.startsWith("sips:")) {
-            PhoneNumberNormalizer.normalizeSipUri(rawDest)
-        } else {
-            PhoneNumberNormalizer.normalize(rawDest)
-        }
+        val cleanDest = PhoneNumberNormalizer.normalize(rawDest)
 
         try {
-            val address = if (cleanDest.startsWith("sip:") || cleanDest.startsWith("sips:")) {
+            val address = if (cleanDest.startsWith("sip:", ignoreCase = true) || cleanDest.startsWith("sips:", ignoreCase = true)) {
                 Factory.instance().createAddress(cleanDest)
             } else {
                 val domain = currentAccount?.domain ?: ""

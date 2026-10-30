@@ -19,11 +19,17 @@ object SoundManager {
     private var toneGenerator: ToneGenerator? = null
     private var isVibrating = false
 
+    private val toneExecutor = java.util.concurrent.Executors.newSingleThreadExecutor()
+
     init {
         try {
-            toneGenerator = ToneGenerator(AudioManager.STREAM_VOICE_CALL, 80)
+            toneGenerator = ToneGenerator(AudioManager.STREAM_DTMF, 80)
         } catch (e: Exception) {
-            Log.w(TAG, "ToneGenerator init failed", e)
+            Log.w(TAG, "ToneGenerator init failed with STREAM_DTMF, trying STREAM_MUSIC", e)
+            try {
+                toneGenerator = ToneGenerator(AudioManager.STREAM_MUSIC, 80)
+            } catch (_: Exception) {
+            }
         }
     }
 
@@ -43,10 +49,12 @@ object SoundManager {
             '#' -> ToneGenerator.TONE_DTMF_P
             else -> return
         }
-        try {
-            toneGenerator?.startTone(toneType, 120)
-        } catch (e: Exception) {
-            Log.w(TAG, "Failed to play DTMF tone", e)
+        toneExecutor.execute {
+            try {
+                toneGenerator?.startTone(toneType, 60)
+            } catch (e: Exception) {
+                Log.w(TAG, "Failed to play DTMF tone", e)
+            }
         }
     }
 
