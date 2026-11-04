@@ -45,16 +45,17 @@ class RecentCallsAdapter(
             val displayName = callerInfo.name
             binding.tvNameOrNumber.text = displayName
 
-            // Avatar Initials (up to 2 chars)
-            val initials = if (entry.displayTitle.isNotBlank()) {
-                val clean = entry.displayTitle.trimStart('+', '0')
-                if (clean.length >= 2) clean.substring(0, 2) else clean
-            } else {
-                "#"
-            }
-            binding.tvAvatarInitials.text = initials.uppercase(Locale.getDefault())
+            // Avatar Initials derived cleanly from resolved name or number (Never "SI")
+            val initials = generateInitials(displayName)
+            binding.tvAvatarInitials.text = initials
 
             // Call Type & Duration
+            val callTypePrefix = if (callerInfo.hasContactMatch && callerInfo.number.isNotBlank()) {
+                "${callerInfo.number} · "
+            } else {
+                ""
+            }
+
             when (entry.type) {
                 CallType.OUTGOING -> {
                     binding.ivCallType.setImageResource(R.drawable.ic_call_made)
@@ -62,7 +63,7 @@ class RecentCallsAdapter(
                         ContextCompat.getColor(context, R.color.call_green)
                     )
                     val durationStr = if (entry.durationSeconds > 0) " · ${formatDuration(entry.durationSeconds)}" else ""
-                    binding.tvCallDetails.text = "Outgoing$durationStr"
+                    binding.tvCallDetails.text = "${callTypePrefix}Outgoing$durationStr"
                     binding.tvCallDetails.setTextColor(ContextCompat.getColor(context, R.color.text_secondary))
                 }
                 CallType.INCOMING -> {
@@ -71,7 +72,7 @@ class RecentCallsAdapter(
                         ContextCompat.getColor(context, R.color.primary)
                     )
                     val durationStr = if (entry.durationSeconds > 0) " · ${formatDuration(entry.durationSeconds)}" else ""
-                    binding.tvCallDetails.text = "Incoming$durationStr"
+                    binding.tvCallDetails.text = "${callTypePrefix}Incoming$durationStr"
                     binding.tvCallDetails.setTextColor(ContextCompat.getColor(context, R.color.text_secondary))
                 }
                 CallType.MISSED -> {
@@ -79,7 +80,7 @@ class RecentCallsAdapter(
                     binding.ivCallType.imageTintList = ColorStateList.valueOf(
                         ContextCompat.getColor(context, R.color.call_red)
                     )
-                    binding.tvCallDetails.text = "Missed Call"
+                    binding.tvCallDetails.text = "${callTypePrefix}Missed Call"
                     binding.tvCallDetails.setTextColor(ContextCompat.getColor(context, R.color.call_red))
                 }
             }
@@ -87,7 +88,7 @@ class RecentCallsAdapter(
             // Timestamp formatting
             binding.tvTimestamp.text = formatTimestamp(entry.timestamp)
 
-            // Click actions
+            // Click actions - call back using clean resolved number or entry's dialable target
             binding.root.setOnClickListener { onCallClick(entry) }
             binding.btnCallBack.setOnClickListener { onCallClick(entry) }
             binding.root.setOnLongClickListener {
@@ -96,26 +97,38 @@ class RecentCallsAdapter(
             }
         }
 
+        private fun generateInitials(title: String): String {
+            val clean = title.trimStart('+', '0').trim()
+            if (clean.isBlank()) return "#"
+
+            val words = clean.split("\\s+".toRegex()).filter { it.isNotBlank() }
+            return when {
+                words.size >= 2 -> "${words[0].first()}${words[1].first()}".uppercase(Locale.getDefault())
+                clean.length >= 2 -> clean.substring(0, 2).uppercase(Locale.getDefault())
+                else -> clean.uppercase(Locale.getDefault())
+            }
+        }
+
         private fun formatDuration(seconds: Long): String {
             val mins = seconds / 60
             val secs = seconds % 60
-            return String.format("%02d:%02d", mins, secs)
+            return "%02d:%02d".format(mins, secs)
         }
 
-        private fun formatTimestamp(timeMillis: Long): String {
+        private fun formatTimestamp(timestamp: Long): String {
             val now = System.currentTimeMillis()
-            val diff = now - timeMillis
+            val diff = now - timestamp
 
             return when {
-                diff < 60 * 1000L -> "Just now"
-                DateUtils.isToday(timeMillis) -> {
-                    SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(timeMillis))
+                diff < DateUtils.MINUTE_IN_MILLIS -> "Just now"
+                DateUtils.isToday(timestamp) -> {
+                    SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(timestamp))
                 }
-                diff < 48 * 60 * 60 * 1000L && DateUtils.isToday(timeMillis + 24 * 60 * 60 * 1000L) -> {
-                    "Yesterday"
+                diff < DateUtils.WEEK_IN_MILLIS -> {
+                    SimpleDateFormat("EEE h:mm a", Locale.getDefault()).format(Date(timestamp))
                 }
                 else -> {
-                    SimpleDateFormat("MMM d, h:mm a", Locale.getDefault()).format(Date(timeMillis))
+                    SimpleDateFormat("MMM d", Locale.getDefault()).format(Date(timestamp))
                 }
             }
         }

@@ -92,4 +92,14 @@ class PhoneNumberNormalizerTest {
             PhoneNumberNormalizer.formatCallerDisplay("sip:music@sip.linphone.org")
         )
     }
+
+    @Test
+    fun `test extractUserFromSip extracts clean extension or number from IP URIs`() {
+        assertEquals("064726747", PhoneNumberNormalizer.extractUserFromSip("sip:064726747@10.1.3.341"))
+        assertEquals("064726747", PhoneNumberNormalizer.extractUserFromSip("sip:064726747@10.1.3.341;transport=udp"))
+        assertEquals("064726747", PhoneNumberNormalizer.extractUserFromSip("<sip:064726747@10.1.3.341>"))
+        assertEquals("music", PhoneNumberNormalizer.extractUserFromSip("sip:music@sip.linphone.org"))
+        assertEquals("101", PhoneNumberNormalizer.extractUserFromSip("sips:101@pbx.local:5061"))
+        assertEquals("0771234567", PhoneNumberNormalizer.extractUserFromSip("0771234567"))
+    }
 }
