@@ -90,6 +90,7 @@ object SipManager {
 
     /**
      * Initializes the Linphone Core engine with application context.
+     * Binds listening ports and enables keep-alives so incoming calls work seamlessly.
      */
     fun initialize(context: Context) {
         if (core != null) return
@@ -104,9 +105,22 @@ object SipManager {
             // Set media codecs and audio settings
             createdCore.setEchoCancellationEnabled(true)
 
+            // CRITICAL FOR INCOMING CALLS: Bind listening ports!
+            // Default on Android SDK is DONTBIND (-2) which rejects all unsolicited incoming SIP packets.
+            // Using -1 (RANDOM) binds local listening sockets for UDP, TCP, and TLS.
+            val transports = createdCore.transports
+            transports.udpPort = -1
+            transports.tcpPort = -1
+            transports.tlsPort = -1
+            createdCore.transports = transports
+
+            // Keep UDP NAT mappings alive on Wi-Fi and mobile networks
+            createdCore.isKeepAliveEnabled = true
+            createdCore.isNetworkReachable = true
+
             createdCore.start()
             core = createdCore
-            Log.i(TAG, "Liblinphone Core initialized successfully, version: ${createdCore.version}")
+            Log.i(TAG, "Liblinphone Core initialized with listening sockets, version: ${createdCore.version}")
 
             // Auto-register if saved account exists
             val saved = SipAccount.load(context)
@@ -158,16 +172,21 @@ object SipManager {
 
             // 3. Configure Server Address with Port & Transport
             val transportParam = account.transport.name.lowercase()
-            val serverUri = "sip:${account.domain}:${account.port};transport=$transportParam"
+            val cleanDomain = if (account.domain.contains(":")) account.domain.substringBefore(":") else account.domain
+            val serverUri = "sip:$cleanDomain:${account.port};transport=$transportParam"
             val serverAddress = factory.createAddress(serverUri)
             accountParams.serverAddress = serverAddress
             accountParams.isRegisterEnabled = true
-            accountParams.expires = 300 // 5 minutes registration interval
+            accountParams.expires = 120 // 2 minutes interval keeps NAT pinholes open
 
-            // 4. Configure STUN Server for NAT traversal if specified
-            if (account.stunServer.isNotBlank()) {
-                accountParams.natPolicy?.stunServer = account.stunServer
-            }
+            // 4. Configure NAT Policy & STUN for public NAT traversal
+            val natPolicy = c.createNatPolicy()
+            natPolicy.isStunEnabled = true
+            val stunHost = if (account.stunServer.isNotBlank()) account.stunServer else "stun.linphone.org"
+            natPolicy.stunServer = stunHost
+            natPolicy.isIceEnabled = true
+            accountParams.natPolicy = natPolicy
+            c.natPolicy = natPolicy
 
             // 5. Create and activate account
             val linphoneAccount = c.createAccount(accountParams)
@@ -224,7 +243,7 @@ object SipManager {
             val call = c.inviteAddressWithParams(address, params)
             if (call != null) {
                 Log.i(TAG, "Outgoing call initiated to: ${address.asStringUriOnly()}")
-                startForegroundService(address.asStringUriOnly())
+                startActiveForegroundService(address.asStringUriOnly())
                 return true
             }
         } catch (e: Exception) {
@@ -299,59 +318,44 @@ object SipManager {
             try {
                 audioManager.mode = AudioManager.MODE_IN_COMMUNICATION
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    if (enableSpeaker) {
-                        val speakerDevice = audioManager.availableCommunicationDevices.firstOrNull {
-                            it.type == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER
-                        }
-                        if (speakerDevice != null) {
-                            val success = audioManager.setCommunicationDevice(speakerDevice)
-                            Log.d(TAG, "Android setCommunicationDevice(Speaker): $success")
-                        }
+                    val availableDevices = audioManager.availableCommunicationDevices
+                    val targetType = if (enableSpeaker) AudioDeviceInfo.TYPE_BUILTIN_SPEAKER else AudioDeviceInfo.TYPE_BUILTIN_EARPIECE
+                    val selectedDevice = availableDevices.firstOrNull { it.type == targetType }
+                    if (selectedDevice != null) {
+                        audioManager.setCommunicationDevice(selectedDevice)
                     } else {
-                        val earpieceDevice = audioManager.availableCommunicationDevices.firstOrNull {
-                            it.type == AudioDeviceInfo.TYPE_BUILTIN_EARPIECE
-                        }
-                        if (earpieceDevice != null) {
-                            val success = audioManager.setCommunicationDevice(earpieceDevice)
-                            Log.d(TAG, "Android setCommunicationDevice(Earpiece): $success")
-                        } else {
-                            audioManager.clearCommunicationDevice()
-                        }
+                        @Suppress("DEPRECATION")
+                        audioManager.isSpeakerphoneOn = enableSpeaker
                     }
                 } else {
                     @Suppress("DEPRECATION")
                     audioManager.isSpeakerphoneOn = enableSpeaker
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Error setting Android AudioManager communication device", e)
+                Log.e(TAG, "Failed to configure AudioManager speaker: $enableSpeaker", e)
             }
         }
 
-        // 2. Liblinphone native AudioDevice routing
-        if (c != null) {
+        // 2. Liblinphone audio device switching
+        if (c != null && call != null) {
             try {
-                val targetType = if (enableSpeaker) AudioDevice.Type.Speaker else AudioDevice.Type.Earpiece
-                val targetDevice = c.audioDevices.firstOrNull {
-                    it.hasCapability(AudioDevice.Capabilities.CapabilityPlay) && it.type == targetType
-                } ?: c.audioDevices.firstOrNull { it.type == targetType }
+                val audioDevices = c.audioDevices
+                val targetDeviceType = if (enableSpeaker) AudioDevice.Type.Speaker else AudioDevice.Type.Earpiece
+                val targetDevice = audioDevices.firstOrNull { it.type == targetDeviceType }
 
                 if (targetDevice != null) {
-                    if (call != null) {
-                        call.outputAudioDevice = targetDevice
-                    }
-                    c.outputAudioDevice = targetDevice
-                    Log.i(TAG, "Linphone audio output routed to: ${targetDevice.deviceName} (type=${targetDevice.type})")
-                } else {
-                    Log.w(TAG, "Linphone AudioDevice for $targetType not found. Available: ${c.audioDevices.map { "${it.deviceName}:${it.type}" }}")
+                    call.outputAudioDevice = targetDevice
+                    Log.i(TAG, "Linphone output audio device set to: ${targetDevice.deviceName} ($targetDeviceType)")
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Error routing Linphone audio device", e)
+                Log.e(TAG, "Failed to configure Linphone audio device", e)
             }
         }
 
+        // Update StateFlow
         val current = _activeCallData.value
         if (current != null) {
-            _activeCallData.value = current.copy(isSpeakerOn = isSpeakerphoneOn)
+            _activeCallData.value = current.copy(isSpeakerOn = enableSpeaker)
         }
     }
 
@@ -359,19 +363,11 @@ object SipManager {
      * Toggles hold/resume on the active call.
      */
     fun toggleHold(): Boolean {
-        val c = core ?: return false
-        val call = c.currentCall
-            ?: c.calls.firstOrNull { it.state == Call.State.Paused || it.state == Call.State.PausedByRemote || it.state == Call.State.Pausing }
-            ?: c.calls.firstOrNull()
-            ?: return false
+        val call = core?.currentCall ?: core?.calls?.firstOrNull() ?: return false
+        val currentlyOnHold = _activeCallData.value?.isOnHold == true
+        val newHoldState = !currentlyOnHold
 
-        val isCurrentlyPaused = call.state == Call.State.Paused ||
-                call.state == Call.State.PausedByRemote ||
-                call.state == Call.State.Pausing
-
-        Log.d(TAG, "toggleHold: call state=${call.state}, isCurrentlyPaused=$isCurrentlyPaused")
-
-        val newHoldState = if (isCurrentlyPaused) {
+        return if (!newHoldState) {
             try {
                 call.resume()
                 Log.i(TAG, "Resumed call: ${call.remoteAddress.asStringUriOnly()}")
@@ -436,16 +432,22 @@ object SipManager {
                     state = VoipCallState.IncomingReceived
                 )
                 _activeCallData.value = data
-                startForegroundService(remoteDisplayName)
 
-                // Launch Incoming Call Activity
+                // 1. Start Foreground Service with Incoming Call Action (Full-screen intent + heads up notification)
+                startIncomingForegroundService(remoteDisplayName, remoteAddress)
+
+                // 2. Launch Incoming Call Activity directly if possible
                 appContext?.let { ctx ->
-                    val intent = Intent(ctx, IncomingCallActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        putExtra("CALLER_NAME", remoteDisplayName)
-                        putExtra("CALLER_URI", remoteAddress)
+                    try {
+                        val intent = Intent(ctx, IncomingCallActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            putExtra("CALLER_NAME", remoteDisplayName)
+                            putExtra("CALLER_URI", remoteAddress)
+                        }
+                        ctx.startActivity(intent)
+                    } catch (e: Exception) {
+                        Log.w(TAG, "Direct activity launch restricted by background policy, relying on FullScreenIntent notification", e)
                     }
-                    ctx.startActivity(intent)
                 }
 
                 scope.launch {
@@ -494,6 +496,7 @@ object SipManager {
                     isOnHold = false
                 )
                 startCallTimer()
+                startActiveForegroundService(remoteDisplayName)
                 appContext?.let { ctx ->
                     setSpeakerphone(ctx, isSpeakerphoneOn)
                 }
@@ -567,11 +570,25 @@ object SipManager {
         callDurationJob = null
     }
 
-    private fun startForegroundService(callerText: String) {
+    private fun startIncomingForegroundService(callerName: String, callerUri: String) {
+        val ctx = appContext ?: return
+        val serviceIntent = Intent(ctx, SipForegroundService::class.java).apply {
+            action = SipForegroundService.ACTION_INCOMING_CALL
+            putExtra(SipForegroundService.EXTRA_CALLER_NAME, callerName)
+            putExtra(SipForegroundService.EXTRA_CALLER_URI, callerUri)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ctx.startForegroundService(serviceIntent)
+        } else {
+            ctx.startService(serviceIntent)
+        }
+    }
+
+    private fun startActiveForegroundService(callerText: String) {
         val ctx = appContext ?: return
         val serviceIntent = Intent(ctx, SipForegroundService::class.java).apply {
             action = SipForegroundService.ACTION_START_CALL
-            putExtra(SipForegroundService.EXTRA_CALLER, callerText)
+            putExtra(SipForegroundService.EXTRA_CALLER_NAME, callerText)
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             ctx.startForegroundService(serviceIntent)
@@ -604,6 +621,32 @@ object SipManager {
                     Log.e(TAG, "Error resetting audio routing on call end", e)
                 }
             }
+        }
+    }
+
+    /**
+     * Refreshes Linphone sockets and registrations when app resumes to foreground.
+     */
+    fun onAppResume() {
+        val c = core ?: return
+        try {
+            c.enterForeground()
+            c.isNetworkReachable = true
+            c.refreshRegisters()
+        } catch (e: Exception) {
+            Log.w(TAG, "Error in onAppResume", e)
+        }
+    }
+
+    /**
+     * Prepares Linphone sockets for background execution.
+     */
+    fun onAppPause() {
+        val c = core ?: return
+        try {
+            c.enterBackground()
+        } catch (e: Exception) {
+            Log.w(TAG, "Error in onAppPause", e)
         }
     }
 

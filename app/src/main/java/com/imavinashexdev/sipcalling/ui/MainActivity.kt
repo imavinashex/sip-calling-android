@@ -7,6 +7,8 @@ import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
+import android.os.PowerManager
+import android.util.Log
 import android.view.HapticFeedbackConstants
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -63,6 +65,8 @@ class MainActivity : AppCompatActivity() {
                 "Microphone permission is required to make and receive calls",
                 Toast.LENGTH_LONG
             ).show()
+        } else {
+            checkBatteryOptimization()
         }
     }
 
@@ -83,6 +87,16 @@ class MainActivity : AppCompatActivity() {
         observeContacts()
     }
 
+    override fun onResume() {
+        super.onResume()
+        SipManager.onAppResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        SipManager.onAppPause()
+    }
+
     private fun checkPermissions() {
         val permissionsToRequest = mutableListOf(Manifest.permission.RECORD_AUDIO)
 
@@ -96,6 +110,24 @@ class MainActivity : AppCompatActivity() {
 
         if (missing.isNotEmpty()) {
             permissionLauncher.launch(missing.toTypedArray())
+        } else {
+            checkBatteryOptimization()
+        }
+    }
+
+    private fun checkBatteryOptimization() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val powerManager = getSystemService(Context.POWER_SERVICE) as? PowerManager
+            if (powerManager != null && !powerManager.isIgnoringBatteryOptimizations(packageName)) {
+                try {
+                    val intent = Intent(android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
+                        data = android.net.Uri.parse("package:$packageName")
+                    }
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    Log.w("MainActivity", "Failed to request battery optimization exemption", e)
+                }
+            }
         }
     }
 
@@ -126,49 +158,47 @@ class MainActivity : AppCompatActivity() {
         setupKey(binding.key0.root, "0", "+")
         setupKey(binding.keyHash.root, "#", "")
 
-        // Long press '0' for '+'
+        // Long click '0' adds '+'
         binding.key0.root.setOnLongClickListener {
             binding.key0.root.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
             appendDigit("+")
             true
         }
 
-        // Backspace button
-        binding.btnBackspace.isHapticFeedbackEnabled = true
         binding.btnBackspace.setOnClickListener {
             binding.btnBackspace.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
-            val text = binding.etTargetNumber.text
-            if (!text.isNullOrEmpty()) {
-                val start = binding.etTargetNumber.selectionStart
-                val end = binding.etTargetNumber.selectionEnd
-                if (start > 0 && start == end) {
-                    text.delete(start - 1, start)
-                } else if (start != end) {
-                    text.delete(start, end)
-                } else {
-                    text.delete(text.length - 1, text.length)
-                }
-            }
+            removeLastDigit()
         }
 
         binding.btnBackspace.setOnLongClickListener {
             binding.btnBackspace.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
-            binding.etTargetNumber.text?.clear()
+            binding.etTargetNumber.setText("")
             true
         }
+    }
 
-        // Toggle software QWERTY keyboard for SIP addresses
-        binding.btnKeyboardToggle.isHapticFeedbackEnabled = true
-        binding.btnKeyboardToggle.setOnClickListener {
-            binding.btnKeyboardToggle.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
-            binding.etTargetNumber.requestFocus()
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-            imm?.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+    private fun appendDigit(digit: String) {
+        val current = binding.etTargetNumber.text?.toString().orEmpty()
+        val cursorPosition = binding.etTargetNumber.selectionStart.coerceAtLeast(0)
+        val updated = StringBuilder(current).insert(cursorPosition, digit).toString()
+        binding.etTargetNumber.setText(updated)
+        binding.etTargetNumber.setSelection((cursorPosition + digit.length).coerceAtMost(updated.length))
+    }
+
+    private fun removeLastDigit() {
+        val current = binding.etTargetNumber.text?.toString().orEmpty()
+        val cursorPosition = binding.etTargetNumber.selectionStart
+        if (cursorPosition > 0 && current.isNotEmpty()) {
+            val updated = StringBuilder(current).deleteCharAt(cursorPosition - 1).toString()
+            binding.etTargetNumber.setText(updated)
+            binding.etTargetNumber.setSelection(cursorPosition - 1)
         }
+    }
 
-        binding.etTargetNumber.setOnClickListener {
-            binding.etTargetNumber.requestFocus()
+    private fun setupActions() {
+        binding.btnKeyboardToggle.setOnClickListener {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            binding.etTargetNumber.requestFocus()
             imm?.showSoftInput(binding.etTargetNumber, InputMethodManager.SHOW_IMPLICIT)
         }
 
@@ -180,13 +210,7 @@ class MainActivity : AppCompatActivity() {
                 false
             }
         }
-    }
 
-    private fun appendDigit(digit: String) {
-        binding.etTargetNumber.append(digit)
-    }
-
-    private fun setupActions() {
         binding.btnSettings.setOnClickListener {
             startActivity(Intent(this, SipSettingsActivity::class.java))
         }
@@ -249,7 +273,7 @@ class MainActivity : AppCompatActivity() {
     private fun showDeleteEntryDialog(entry: CallLogEntry) {
         AlertDialog.Builder(this)
             .setTitle(R.string.delete_call_log)
-            .setMessage("${getString(R.string.delete_call_confirm)}\n${entry.displayTitle}")
+            .setMessage(getString(R.string.delete_call_confirm))
             .setPositiveButton(R.string.delete_call_log) { _, _ ->
                 CallLogRepository.deleteCall(entry.id)
             }
@@ -268,25 +292,22 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
-    enum class MainTab {
-        DIALER,
-        RECENTS,
-        CONTACTS
-    }
-
     private fun setupTabs() {
         binding.tabDialer.setOnClickListener { switchTab(MainTab.DIALER) }
         binding.tabRecents.setOnClickListener { switchTab(MainTab.RECENTS) }
         binding.tabContacts.setOnClickListener { switchTab(MainTab.CONTACTS) }
+        switchTab(MainTab.DIALER)
     }
 
-    private fun switchTab(tab: MainTab) {
-        val primaryColor = ContextCompat.getColor(this, R.color.primary)
-        val hintColor = ContextCompat.getColor(this, R.color.text_hint)
+    private enum class MainTab { DIALER, RECENTS, CONTACTS }
 
+    private fun switchTab(tab: MainTab) {
         binding.layoutDialer.visibility = if (tab == MainTab.DIALER) View.VISIBLE else View.GONE
         binding.layoutRecents.visibility = if (tab == MainTab.RECENTS) View.VISIBLE else View.GONE
         binding.layoutContacts.visibility = if (tab == MainTab.CONTACTS) View.VISIBLE else View.GONE
+
+        val primaryColor = ContextCompat.getColor(this, R.color.primary)
+        val hintColor = ContextCompat.getColor(this, R.color.text_hint)
 
         // Tab Dialer
         val isDialer = tab == MainTab.DIALER
