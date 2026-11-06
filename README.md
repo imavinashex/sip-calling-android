@@ -1,131 +1,132 @@
-# 📞 Android SIP Calling App (Kotlin + Liblinphone SDK)
+# 📞 SIP Phone — Android VoIP & SIP Client
 
-A modern, production-grade Android VoIP/SIP calling application built with **Kotlin**, **Liblinphone Android SDK 5.3+**, and **Material 3**.
+[![Android](https://img.shields.io/badge/Platform-Android_8.0+_(API_26+)-3DDC84?logo=android&logoColor=white)](https://android.com)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.0-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org)
+[![Liblinphone SDK](https://img.shields.io/badge/Liblinphone-5.3+-007ACC?logo=cplusplus&logoColor=white)](https://linphone.org)
+[![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+
+A modern, production-grade Android VoIP/SIP calling application built with **Kotlin**, **Liblinphone Android SDK 5.3+**, and **Material 3**. Engineered for low-latency voice calling, carrier NAT traversal, and high reliability across Wi-Fi and mobile data.
 
 ---
-Beta version released https://github.com/imavinashex/sip-calling-android/releases/tag/sip-phoneBeta
+
+## 📚 Complete Project Documentation
+
+| Document | Description |
+|---|---|
+| [🏛️ **Architecture & Technical Design**](docs/ARCHITECTURE.md) | Component hierarchy, StateFlows, SQLite databases, and audio routing. |
+| [🔄 **VoIP Call Flows & Lifecycles**](docs/CALL_FLOWS.md) | Sequence diagrams for Registration, Outgoing, Incoming (Foreground & Lock Screen), and Termination. |
+| [⚙️ **SIP Server & PBX Setup Guide**](docs/SIP_CONFIGURATION.md) | Connecting to Linphone, Asterisk, FreePBX, OpenSIPS, Kamailio, NAT & STUN config. |
+| [📱 **App Store Release & Publishing**](docs/APP_STORE_RELEASE_GUIDE.md) | Production Keystore, PhonePe Appstore & Google Play guidelines, avoiding rejections. |
+| [🚀 **Development & Branching Pipeline**](docs/DEVELOPMENT_PIPELINE.md) | Git workflow (`dev` ➔ `main`), SemVer versioning rules, and pre-release gates. |
+
+---
+
 ## 🚀 Key Features
 
-- **Standard SIP Protocol Support**: Compatible with Asterisk, FreePBX, OpenSIPS, Kamailio, Freeswitch, Linphone SIP service, Twilio, and standard PBX systems.
-- **Multiple Transports**: Supports **UDP**, **TCP**, and **TLS (Encrypted SIP signaling)**.
-- **NAT Traversal**: Built-in **STUN** server support for smooth call traversal behind NAT/routers.
-- **Full In-Call Management**:
-  - 🎙️ **Microphone Mute / Unmute**
-  - 🔊 **Speakerphone / Earpiece Toggle**
-  - ⏸️ **Call Hold & Resume**
-  - 🔢 **In-Call DTMF Keypad** (Send RFC 2833 / SIP INFO tones for IVR menus: *"Press 1 for Sales"*)
-  - ⏱️ **Real-time Call Duration Timer** & Codec indicator (Opus HD, PCMU/PCMA, etc.)
-- **Incoming Call Handling**:
-  - Full-screen incoming call UI (`showWhenLocked` & `turnScreenOn`)
-  - Ringtone & vibration alerts using Android `RingtoneManager` and `Vibrator`
-  - Quick **Answer** and **Decline** actions
-- **Android 14 Ready Foreground Service**:
-  - `FOREGROUND_SERVICE_PHONE_CALL` integration
-  - Ongoing call notifications with quick "End Call" and "Return to Call" actions
-  - `WakeLock` and `WifiLock` to prevent the device from entering deep sleep during VoIP calls
-- **Material 3 Dark UI**:
-  - Sleek cyber/midnight aesthetics with vibrant dialpad feedback and haptic DTMF audio
-  - Live SIP registration status pill (🟢 Registered / 🟡 Connecting / 🔴 Offline)
+### 📡 SIP Protocols & Media Engine
+- **Standard RFC 3261 Compliance**: Works with Asterisk, FreePBX, OpenSIPS, Kamailio, Freeswitch, Linphone SIP, and Twilio.
+- **Multiple Transports**: Full support for **UDP**, **TCP**, and **TLS (Encrypted SIP signaling)**.
+- **Dynamic NAT Traversal**: Built-in **STUN** (`stun.linphone.org` / custom) and ICE keep-alive handling.
+- **Listening Sockets**: Ephemeral listening port binding (`transports.udpPort = -1`) enabling incoming calls without third-party push servers.
+
+### 🎙️ In-Call Management
+- **Audio Routing**: Seamless switching between Earpiece and Speakerphone across Android `AudioManager` and Liblinphone `AudioDevice`.
+- **Microphone Control**: Instant mute / unmute toggle.
+- **Call Hold & Resume**: Pauses and resumes RTP media streams with SIP re-INVITE signaling.
+- **In-Call DTMF Keypad**: Sends RFC 2833 / 4733 telephony tones for IVR phone trees (*"Press 1 for Sales"*).
+- **Live Call Timer & Codec Badge**: Displays active duration and negotiated payload (Opus HD, PCMU/PCMA).
+
+### 🔔 Incoming Call Handling (Lock Screen & Background)
+- **Full-Screen Intent**: Wakes up locked screens and displays `IncomingCallActivity` directly.
+- **Heads-Up Banner**: High-priority notification banner with instant **Answer** and **Decline** buttons when using other apps.
+- **Battery Optimization Exemption**: Prevents Android Doze mode from sleeping SIP sockets.
+- **Android 14 Ready**: Compliant with `FOREGROUND_SERVICE_PHONE_CALL` and `USE_FULL_SCREEN_INTENT`.
+
+### 📇 Contacts & Call History
+- **Clean Caller ID Resolution**: Strips raw URIs (`sip:064726747@10.1.3.341` ➔ `064726747`) and matches against contacts database.
+- **Recent Calls Tab**: Call logs with call direction icons, formatted duration, timestamp, dynamic initials (never `"SI"`), and one-tap callback.
+- **Contacts Tab**: Add, search, and import phonebook contacts with automated international number normalization via Google `libphonenumber`.
+- **QWERTY Toggle**: Integrated soft keyboard toggle for direct SIP address dialing (e.g. `sip:echo@sip.linphone.org`).
 
 ---
 
-## 📁 Project Architecture
+## 📁 Repository Structure
 
 ```
 sip-calling-android/
 ├── app/
-│   ├── build.gradle.kts                   # App configuration & Liblinphone dependency
-│   ├── proguard-rules.pro                 # Liblinphone SDK proguard rules
+│   ├── build.gradle.kts                   # Dependencies, SDK targets (Min 26, Target 34)
+│   ├── proguard-rules.pro                 # Liblinphone SDK JNI proguard preservation
 │   └── src/main/
-│       ├── AndroidManifest.xml            # SIP permissions, activities & foreground service
+│       ├── AndroidManifest.xml            # Permissions, activities & foreground service
 │       ├── java/com/imavinashexdev/sipcalling/
 │       │   ├── SipApplication.kt          # Global Application & Core initialization
 │       │   ├── core/
-│       │   │   └── SipManager.kt          # Liblinphone Core wrapper, Call lifecycle & StateFlows
-│       │   ├── model/
-│       │   │   ├── SipAccount.kt          # Account model & SharedPreferences persistence
-│       │   │   └── CallStateInfo.kt       # Registration & Call state sealed classes
+│       │   │   └── SipManager.kt          # Linphone Core wrapper, Call lifecycle & StateFlows
 │       │   ├── service/
-│       │   │   └── SipForegroundService.kt# Android Foreground Service for calls
-│       │   ├── ui/
-│       │   │   ├── MainActivity.kt        # Dialer, registration badge & settings trigger
-│       │   │   ├── CallActivity.kt        # Active Call screen with Mute/Speaker/Hold/DTMF
-│       │   │   ├── IncomingCallActivity.kt# Full-screen incoming ringing UI
-│       │   │   └── SipSettingsActivity.kt # SIP PBX credentials & transport setup
-│       │   └── util/
-│       │       └── SoundManager.kt        # Ringtone playback & DTMF tones
-│       └── res/
-│           ├── layout/                    # Material 3 responsive layouts
-│           ├── drawable/                  # Vector icons & button ripples
-│           └── values/                    # Colors, strings, themes
-├── gradle/
-│   ├── libs.versions.toml                 # Version Catalog (AGP 8.4, Kotlin 1.9, Linphone SDK 5.3)
-│   └── wrapper/
+│       │   │   └── SipForegroundService.kt# Background Foreground Service for calls
+│       │   ├── data/                      # SQLite DBs: CallLogRepository & ContactRepository
+│       │   ├── model/                     # Data models (SipAccount, CallLogEntry, Contact)
+│       │   ├── ui/                        # Activities, Dialogs & Adapters
+│       │   └── util/                      # CallerIdResolver, PhoneNumberNormalizer, SoundManager
+│       └── res/                           # Material 3 layouts, vector drawables & icons
+├── docs/                                  # Comprehensive technical & release documentation
+├── gradle/libs.versions.toml              # Version Catalog
 ├── build.gradle.kts                       # Root build configuration
-├── settings.gradle.kts                    # Linphone Maven repository configuration
-└── README.md
+└── settings.gradle.kts                    # Maven repository configuration
 ```
 
 ---
 
-## 🛠️ Getting Started in Android Studio
+## 🛠️ Quick Start & Build
 
-### 1. Open the Project
-1. Launch **Android Studio** (Giraffe, Hedgehog, Iguana, Jellyfish, Koala or newer).
-2. Click **File -> Open...**
-3. Navigate to:
-   ```
-   path/to/sip-calling-android
-   ```
-4. Click **OK**. Android Studio will recognize the project and sync Gradle dependencies.
+### 1. Requirements
+- **Android Studio**: Hedgehog (2023.1.1) or newer.
+- **JDK**: Java 17.
+- **Android SDK**: Compile SDK 34, Min SDK 26 (Android 8.0 Oreo).
 
-> **Note on Maven Repository**: Liblinphone SDK is hosted on Belledonne Communications' Maven repository configured in `settings.gradle.kts`:
-> ```kotlin
-> maven {
->     url = uri("https://download.linphone.org/maven_repository/")
-> }
-> ```
+### 2. Gradle Commands
+```powershell
+# Stop Gradle daemons
+.\gradlew --stop
 
-### 2. Run the App
-- Connect a physical Android device (with USB debugging enabled) or start an Android Emulator (API 26+).
-- Press **Run ▶ (Shift + F10)**.
+# Run all unit tests
+.\gradlew test
 
----
+# Build Debug APK (outputs to app/build/outputs/apk/debug/app-debug.apk)
+.\gradlew assembleDebug
 
-## 🧪 How to Test SIP Calling
-
-### Option A: Free Linphone Account (Easiest)
-1. Create a free SIP account at [sip.linphone.org](https://subscribe.linphone.org/).
-2. In the app, tap the **Settings ⚙️** icon in the top right.
-3. Fill in:
-   - **SIP Domain / Host**: `sip.linphone.org`
-   - **SIP Port**: `5060` (or `5061` for TLS)
-   - **Username**: Your chosen username
-   - **Password**: Your SIP password
-   - **Transport**: `UDP` (or `TLS`)
-4. Tap **Save & Connect**.
-5. Once registered, the status pill will turn **🟢 Online: sip:username@sip.linphone.org**.
-6. **Test Echo Call**: Dial `sip:music@sip.linphone.org` or `sip:echo@sip.linphone.org` to test two-way audio playback!
-
-### Option B: Local Asterisk / FreePBX / Docker
-If you have a local Asterisk or FreePBX server (e.g. running on `192.168.1.100`):
-1. Create two PJSIP or SIP extensions (e.g. `1001` and `1002`).
-2. Configure Device 1 with Extension `1001`, and Device 2 with Extension `1002`.
-3. In the dialpad on Device 1, type `1002` and press the **Green Call Button**.
-4. Device 2 will instantly show the **Incoming Call** screen with ringtone and vibration!
+# Build Signed Release APK
+.\gradlew assembleRelease
+```
 
 ---
 
-## 🔒 Permissions Used
+## 🧪 Testing SIP Audio
 
-| Permission | Reason |
-|---|---|
-| `RECORD_AUDIO` | Required to capture microphone audio during VoIP calls |
-| `MODIFY_AUDIO_SETTINGS` | Required for switching between earpiece and speakerphone |
-| `FOREGROUND_SERVICE_PHONE_CALL` | Required on Android 14+ for background audio stream continuity |
-| `POST_NOTIFICATIONS` | Required on Android 13+ to display call notifications |
-| `USE_FULL_SCREEN_INTENT` | Allows displaying the incoming call screen when phone is locked |
-| `WAKE_LOCK` | Keeps the CPU active during an ongoing voice conversation |
+1. Open the app and tap **Settings ⚙️** (top right).
+2. Enter your SIP server credentials (e.g. [sip.linphone.org](https://subscribe.linphone.org/)).
+3. Tap **Save & Connect**. Once registered, the status pill turns **🟢 Online: sip:username@domain**.
+4. Test with free echo services:
+   - **Echo Test**: Dial `sip:echo@sip.linphone.org` (verifies microphone and two-way playback).
+   - **Music Stream**: Dial `sip:music@sip.linphone.org` (verifies downlink audio).
 
+---
 
-Beta version released https://github.com/imavinashex/sip-calling-android/releases/tag/sip-phoneBeta
+## 🔒 Permissions Overview
+
+| Permission | Category | Purpose |
+|---|---|---|
+| `RECORD_AUDIO` | Dangerous (Runtime) | Capture microphone audio during VoIP calls. |
+| `MODIFY_AUDIO_SETTINGS` | Normal | Toggle between earpiece and speakerphone. |
+| `FOREGROUND_SERVICE_PHONE_CALL` | Foreground Service | Keep active VoIP audio streams alive on Android 14+. |
+| `USE_FULL_SCREEN_INTENT` | Normal | Wake up locked device screen on incoming calls. |
+| `POST_NOTIFICATIONS` | Dangerous (Runtime) | Display active and incoming call notifications on Android 13+. |
+| `READ_CONTACTS` | Dangerous (Runtime) | Import device contacts into local contacts tab. |
+| `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` | Normal | Prevent OEM power managers from killing background SIP sockets. |
+| `WAKE_LOCK` | Normal | Keep CPU awake during ongoing voice calls. |
+
+---
+
+## 📄 License
+This project is licensed under the terms of the GNU General Public License v3.0.
