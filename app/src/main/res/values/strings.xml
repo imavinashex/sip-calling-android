@@ -14,6 +14,8 @@
     <string name="btn_call">Call</string>
     <string name="configure_account_banner">Configure your SIP extension to start making and receiving VoIP calls.</string>
     <string name="btn_configure">Setup SIP Account</string>
+    <string name="switch_to_keyboard">Switch to keyboard</string>
+    <string name="switch_to_dialpad">Switch to dialpad</string>
 
     <!-- In-Call Strings -->
     <string name="calling">Calling…</string>

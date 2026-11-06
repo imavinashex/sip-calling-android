@@ -10,20 +10,27 @@ import android.os.Bundle
 import android.os.PowerManager
 import android.util.Log
 import android.view.HapticFeedbackConstants
+import android.view.MotionEvent
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.AutoTransition
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.imavinashexdev.sipcalling.R
 import com.imavinashexdev.sipcalling.core.SipManager
 import com.imavinashexdev.sipcalling.data.CallLogRepository
@@ -44,6 +51,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var recentCallsAdapter: RecentCallsAdapter
     private lateinit var contactsAdapter: ContactsAdapter
+    private var isKeyboardMode = false
+    private var wasImeVisible = false
 
     private val contactsPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -196,11 +205,54 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupActions() {
+        // Primary mode is dialpad: disable soft keyboard auto-popup on focus
+        binding.etTargetNumber.showSoftInputOnFocus = false
+
+        // Toggle button switches between Dialpad and Soft Keyboard
         binding.btnKeyboardToggle.setOnClickListener {
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-            binding.etTargetNumber.requestFocus()
-            imm?.showSoftInput(binding.etTargetNumber, InputMethodManager.SHOW_IMPLICIT)
+            setKeyboardMode(!isKeyboardMode)
         }
+
+        // Tapping the input box or display container smoothly switches to keyboard mode
+        binding.etTargetNumber.setOnClickListener {
+            if (!isKeyboardMode) {
+                setKeyboardMode(true)
+            }
+        }
+        binding.displayContainer.setOnClickListener {
+            if (!isKeyboardMode) {
+                setKeyboardMode(true)
+            }
+        }
+        binding.etTargetNumber.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_UP && !isKeyboardMode) {
+                setKeyboardMode(true)
+            }
+            false
+        }
+
+        // Detect soft keyboard dismiss (down arrow / IME close) to smoothly bring back the dialpad
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
+            if (wasImeVisible && !imeVisible && isKeyboardMode) {
+                setKeyboardMode(false)
+            }
+            wasImeVisible = imeVisible
+            insets
+        }
+
+        // Intercept back button when in keyboard mode to restore the primary dialpad view
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (isKeyboardMode) {
+                    setKeyboardMode(false)
+                } else {
+                    isEnabled = false
+                    onBackPressedDispatcher.onBackPressed()
+                    isEnabled = true
+                }
+            }
+        })
 
         binding.etTargetNumber.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_SEND) {
@@ -221,6 +273,35 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnCall.setOnClickListener {
             initiateCall()
+        }
+    }
+
+    private fun setKeyboardMode(enableKeyboard: Boolean, animate: Boolean = true) {
+        if (isKeyboardMode == enableKeyboard) return
+        isKeyboardMode = enableKeyboard
+
+        if (animate) {
+            val transition = AutoTransition().apply {
+                duration = 200
+                ordering = TransitionSet.ORDERING_TOGETHER
+            }
+            TransitionManager.beginDelayedTransition(binding.layoutDialer, transition)
+        }
+
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        if (enableKeyboard) {
+            binding.dialpadContainer.visibility = View.GONE
+            binding.btnKeyboardToggle.setImageResource(R.drawable.ic_dialpad)
+            binding.btnKeyboardToggle.contentDescription = getString(R.string.switch_to_dialpad)
+            binding.etTargetNumber.showSoftInputOnFocus = true
+            binding.etTargetNumber.requestFocus()
+            imm?.showSoftInput(binding.etTargetNumber, InputMethodManager.SHOW_IMPLICIT)
+        } else {
+            binding.dialpadContainer.visibility = View.VISIBLE
+            binding.btnKeyboardToggle.setImageResource(R.drawable.ic_keyboard)
+            binding.btnKeyboardToggle.contentDescription = getString(R.string.switch_to_keyboard)
+            binding.etTargetNumber.showSoftInputOnFocus = false
+            imm?.hideSoftInputFromWindow(binding.etTargetNumber.windowToken, 0)
         }
     }
 
@@ -302,6 +383,10 @@ class MainActivity : AppCompatActivity() {
     private enum class MainTab { DIALER, RECENTS, CONTACTS }
 
     private fun switchTab(tab: MainTab) {
+        if (tab != MainTab.DIALER && isKeyboardMode) {
+            setKeyboardMode(false, animate = false)
+        }
+
         binding.layoutDialer.visibility = if (tab == MainTab.DIALER) View.VISIBLE else View.GONE
         binding.layoutRecents.visibility = if (tab == MainTab.RECENTS) View.VISIBLE else View.GONE
         binding.layoutContacts.visibility = if (tab == MainTab.CONTACTS) View.VISIBLE else View.GONE
