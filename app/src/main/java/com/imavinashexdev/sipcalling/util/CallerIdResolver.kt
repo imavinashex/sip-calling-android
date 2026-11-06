@@ -11,16 +11,27 @@ data class CallerInfo(
 object CallerIdResolver {
 
     /**
-     * Resolves the Caller ID for incoming and active calls.
-     * Looks up the normalized number in the Contacts database.
-     * If matched, returns the contact's name as the caller title and the normalized '0' number.
-     * If not matched, returns the formatted '0' number.
+     * Resolves the Caller ID for incoming, active, and recent calls.
+     * 1. Extracts the user/extension from SIP URI (e.g. sip:064726747@10.1.3.341 -> 064726747).
+     * 2. Matches against Contacts database using clean number, extracted user, or raw address.
+     * 3. If matched, returns contact name and clean phone number.
+     * 4. If SIP header provided a legitimate caller display name (not a SIP address), returns it.
+     * 5. Fallback: Displays the clean phone number (e.g. 064726747) instead of raw SIP URI.
      */
     fun resolve(rawAddressOrUri: String, rawDisplayName: String? = null): CallerInfo {
-        val normalized = PhoneNumberNormalizer.normalize(rawAddressOrUri)
+        val trimmed = rawAddressOrUri.trim()
+        if (trimmed.isEmpty()) {
+            return CallerInfo(name = "", number = "", hasContactMatch = false)
+        }
+
+        val extractedUser = PhoneNumberNormalizer.extractUserFromSip(trimmed)
+        val cleanNumber = PhoneNumberNormalizer.normalize(extractedUser)
 
         // 1. Check if number matches a saved contact
-        val contact = ContactRepository.findContactByNumber(rawAddressOrUri)
+        val contact = ContactRepository.findContactByNumber(cleanNumber)
+            ?: ContactRepository.findContactByNumber(extractedUser)
+            ?: ContactRepository.findContactByNumber(trimmed)
+
         if (contact != null) {
             return CallerInfo(
                 name = contact.name,
@@ -30,22 +41,35 @@ object CallerIdResolver {
         }
 
         // 2. If SIP header provided a legitimate caller display name (e.g. "Customer Support")
-        if (!rawDisplayName.isNullOrBlank() && rawDisplayName != rawAddressOrUri) {
-            val normalizedName = PhoneNumberNormalizer.normalize(rawDisplayName)
+        // Must NOT be a SIP URI, must NOT contain '@', must NOT start with 'sip:'
+        val cleanDisplayName = rawDisplayName?.trim()?.trim('"', '\'')
+        if (!cleanDisplayName.isNullOrBlank() &&
+            cleanDisplayName != rawAddressOrUri &&
+            cleanDisplayName != trimmed &&
+            !PhoneNumberNormalizer.isSipAddress(cleanDisplayName) &&
+            !cleanDisplayName.contains("@")
+        ) {
+            val normalizedName = PhoneNumberNormalizer.normalize(cleanDisplayName)
             if (!normalizedName.all { it.isDigit() }) {
+                val effectiveNumber = if (cleanNumber.isNotBlank()) cleanNumber else extractedUser
                 return CallerInfo(
-                    name = rawDisplayName,
-                    number = normalized,
+                    name = cleanDisplayName,
+                    number = effectiveNumber,
                     hasContactMatch = false
                 )
             }
         }
 
-        // 3. Fallback: Normalized '0' prefixed number
-        val fallbackDisplay = if (normalized.isNotBlank()) normalized else rawAddressOrUri
+        // 3. Fallback: Clean phone number or extracted username (e.g. "064726747")
+        val displayFallback = when {
+            cleanNumber.isNotBlank() -> cleanNumber
+            extractedUser.isNotBlank() -> extractedUser
+            else -> trimmed
+        }
+
         return CallerInfo(
-            name = fallbackDisplay,
-            number = fallbackDisplay,
+            name = displayFallback,
+            number = displayFallback,
             hasContactMatch = false
         )
     }

@@ -3,7 +3,7 @@
 A modern, production-grade Android VoIP/SIP calling application built with **Kotlin**, **Liblinphone Android SDK 5.3+**, and **Material 3**.
 
 ---
-
+Beta version released https://github.com/imavinashex/sip-calling-android/releases/tag/sip-phoneBeta
 ## 🚀 Key Features
 
 - **Standard SIP Protocol Support**: Compatible with Asterisk, FreePBX, OpenSIPS, Kamailio, Freeswitch, Linphone SIP service, Twilio, and standard PBX systems.
@@ -126,3 +126,6 @@ If you have a local Asterisk or FreePBX server (e.g. running on `192.168.1.100`)
 | `POST_NOTIFICATIONS` | Required on Android 13+ to display call notifications |
 | `USE_FULL_SCREEN_INTENT` | Allows displaying the incoming call screen when phone is locked |
 | `WAKE_LOCK` | Keeps the CPU active during an ongoing voice conversation |
+
+
+Beta version released https://github.com/imavinashex/sip-calling-android/releases/tag/sip-phoneBeta

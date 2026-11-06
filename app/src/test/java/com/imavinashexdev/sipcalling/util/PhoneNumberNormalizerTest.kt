@@ -1,6 +1,7 @@
 package com.imavinashexdev.sipcalling.util
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Test
 
 class PhoneNumberNormalizerTest {
@@ -91,5 +92,33 @@ class PhoneNumberNormalizerTest {
             "music",
             PhoneNumberNormalizer.formatCallerDisplay("sip:music@sip.linphone.org")
         )
+    }
+
+    @Test
+    fun `test extractUserFromSip extracts clean extension or number from IP URIs`() {
+        assertEquals("064726747", PhoneNumberNormalizer.extractUserFromSip("sip:064726747@10.1.3.341"))
+        assertEquals("064726747", PhoneNumberNormalizer.extractUserFromSip("sip:064726747@10.1.3.341;transport=udp"))
+        assertEquals("064726747", PhoneNumberNormalizer.extractUserFromSip("<sip:064726747@10.1.3.341>"))
+        assertEquals("064726747", PhoneNumberNormalizer.extractUserFromSip("\"064726747\" <sip:064726747@10.1.3.341>"))
+        assertEquals("064726747", PhoneNumberNormalizer.extractUserFromSip("064726747@10.1.3.341"))
+        assertEquals("music", PhoneNumberNormalizer.extractUserFromSip("sip:music@sip.linphone.org"))
+        assertEquals("101", PhoneNumberNormalizer.extractUserFromSip("sips:101@pbx.local:5061"))
+        assertEquals("0771234567", PhoneNumberNormalizer.extractUserFromSip("0771234567"))
+    }
+
+    @Test
+    fun `test CallerIdResolver strips SIP URIs from display and number`() {
+        val resolved = CallerIdResolver.resolve("sip:064726747@10.1.3.341")
+        assertEquals("064726747", resolved.name)
+        assertEquals("064726747", resolved.number)
+        assertFalse(resolved.hasContactMatch)
+
+        val resolvedWithUriDisplayName = CallerIdResolver.resolve("sip:064726747@10.1.3.341", "sip:064726747@10.1.3.341")
+        assertEquals("064726747", resolvedWithUriDisplayName.name)
+        assertEquals("064726747", resolvedWithUriDisplayName.number)
+
+        val resolvedWithRealName = CallerIdResolver.resolve("sip:064726747@10.1.3.341", "Customer Support")
+        assertEquals("Customer Support", resolvedWithRealName.name)
+        assertEquals("064726747", resolvedWithRealName.number)
     }
 }

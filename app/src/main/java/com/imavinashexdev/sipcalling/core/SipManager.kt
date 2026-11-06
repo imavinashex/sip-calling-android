@@ -456,17 +456,16 @@ object SipManager {
             }
 
             Call.State.OutgoingInit -> {
-                val outgoingInfo = CallerIdResolver.resolve(remoteAddress, remoteDisplayName)
                 trackingCallType = CallType.OUTGOING
-                trackingPhoneNumber = outgoingInfo.number
-                trackingDisplayName = outgoingInfo.name
+                trackingPhoneNumber = callerInfo.number
+                trackingDisplayName = callerInfo.name
                 trackingStartTime = System.currentTimeMillis()
                 trackingCallConnected = false
                 trackingDurationSeconds = 0L
 
                 _activeCallData.value = ActiveCallData(
-                    remoteAddress = outgoingInfo.number,
-                    remoteDisplayName = outgoingInfo.name,
+                    remoteAddress = callerInfo.number,
+                    remoteDisplayName = callerInfo.name,
                     state = VoipCallState.OutgoingInit
                 )
             }

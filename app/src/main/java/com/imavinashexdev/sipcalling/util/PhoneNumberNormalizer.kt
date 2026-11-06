@@ -139,8 +139,24 @@ object PhoneNumberNormalizer {
         }
     }
 
-    private fun extractUserFromSip(input: String): String {
-        var result = input
+    /**
+     * Extracts the user/extension portion from a SIP URI or address.
+     * Example: "sip:064726747@10.1.3.341" -> "064726747"
+     * Example: "sip:music@sip.linphone.org" -> "music"
+     * Example: "064726747" -> "064726747"
+     */
+    fun extractUserFromSip(input: String): String {
+        var result = input.trim()
+        if (result.startsWith("<") && result.endsWith(">")) {
+            result = result.substring(1, result.length - 1).trim()
+        } else if (result.contains("<") && result.contains(">")) {
+            val start = result.indexOf('<')
+            val end = result.indexOf('>', startIndex = start)
+            if (start != -1 && end != -1) {
+                result = result.substring(start + 1, end).trim()
+            }
+        }
+        result = result.trim('"', '\'')
         if (result.startsWith("sip:", ignoreCase = true)) {
             result = result.substring(4)
         } else if (result.startsWith("sips:", ignoreCase = true)) {
@@ -154,7 +170,7 @@ object PhoneNumberNormalizer {
         if (semicolonIndex != -1) {
             result = result.substring(0, semicolonIndex)
         }
-        return result
+        return result.trim('"', '\'')
     }
 
     private fun cleanFormatting(input: String): String {
