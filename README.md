@@ -16,7 +16,6 @@ A modern, production-grade Android VoIP/SIP calling application built with **Kot
 | [🏛️ **Architecture & Technical Design**](docs/ARCHITECTURE.md) | Component hierarchy, StateFlows, SQLite databases, and audio routing. |
 | [🔄 **VoIP Call Flows & Lifecycles**](docs/CALL_FLOWS.md) | Sequence diagrams for Registration, Outgoing, Incoming (Foreground & Lock Screen), and Termination. |
 | [⚙️ **SIP Server & PBX Setup Guide**](docs/SIP_CONFIGURATION.md) | Connecting to Linphone, Asterisk, FreePBX, OpenSIPS, Kamailio, NAT & STUN config. |
-| [📱 **App Store Release & Publishing**](docs/APP_STORE_RELEASE_GUIDE.md) | Production Keystore, PhonePe Appstore & Google Play guidelines, avoiding rejections. |
 | [🚀 **Development & Branching Pipeline**](docs/DEVELOPMENT_PIPELINE.md) | Git workflow (`dev` ➔ `main`), SemVer versioning rules, and pre-release gates. |
 
 ---

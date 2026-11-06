@@ -42,3 +42,9 @@ proguard/
 # OS-specific files
 .DS_Store
 Thumbs.db
+
+# Private / Internal guides
+docs/APP_STORE_RELEASE_GUIDE.md
+*.jks
+keystore.properties
+
