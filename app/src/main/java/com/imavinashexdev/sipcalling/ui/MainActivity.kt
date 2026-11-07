@@ -1,5 +1,6 @@
 package com.imavinashexdev.sipcalling.ui
 
+import android.annotation.SuppressLint
 import android.Manifest
 import android.content.Context
 import android.content.Intent
@@ -9,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.util.Log
+import android.view.GestureDetector
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.inputmethod.EditorInfo
@@ -48,11 +50,15 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
+    private enum class MainTab { DIALER, RECENTS, CONTACTS }
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var recentCallsAdapter: RecentCallsAdapter
     private lateinit var contactsAdapter: ContactsAdapter
     private var isKeyboardMode = false
     private var wasImeVisible = false
+    private var currentTab = MainTab.DIALER
+    private lateinit var swipeGestureDetector: GestureDetector
 
     private val contactsPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -204,12 +210,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupActions() {
         // Primary mode is dialpad: disable soft keyboard auto-popup on focus
         binding.etTargetNumber.showSoftInputOnFocus = false
 
         // Toggle button switches between Dialpad and Soft Keyboard
         binding.btnKeyboardToggle.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
             setKeyboardMode(!isKeyboardMode)
         }
 
@@ -373,19 +381,76 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupTabs() {
         binding.tabDialer.setOnClickListener { switchTab(MainTab.DIALER) }
         binding.tabRecents.setOnClickListener { switchTab(MainTab.RECENTS) }
         binding.tabContacts.setOnClickListener { switchTab(MainTab.CONTACTS) }
+
+        // Swipe gesture to switch between tabs
+        swipeGestureDetector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
+            private val SWIPE_THRESHOLD = 80
+            private val SWIPE_VELOCITY_THRESHOLD = 80
+
+            override fun onDown(e: MotionEvent): Boolean = true
+
+            override fun onFling(
+                e1: MotionEvent?,
+                e2: MotionEvent,
+                velocityX: Float,
+                velocityY: Float
+            ): Boolean {
+                val diffX = (e2.x) - (e1?.x ?: e2.x)
+                val diffY = (e2.y) - (e1?.y ?: e2.y)
+                if (Math.abs(diffX) > Math.abs(diffY) &&
+                    Math.abs(diffX) > SWIPE_THRESHOLD &&
+                    Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD
+                ) {
+                    if (diffX < 0) {
+                        // Swipe Left -> next tab
+                        swipeToNextTab()
+                    } else {
+                        // Swipe Right -> previous tab
+                        swipeToPreviousTab()
+                    }
+                    return true
+                }
+                return false
+            }
+        })
+
         switchTab(MainTab.DIALER)
     }
 
-    private enum class MainTab { DIALER, RECENTS, CONTACTS }
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        if (::swipeGestureDetector.isInitialized) {
+            swipeGestureDetector.onTouchEvent(ev)
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
+    private val tabOrder = listOf(MainTab.DIALER, MainTab.RECENTS, MainTab.CONTACTS)
+
+    private fun swipeToNextTab() {
+        val currentIndex = tabOrder.indexOf(currentTab)
+        if (currentIndex < tabOrder.size - 1) {
+            switchTab(tabOrder[currentIndex + 1])
+        }
+    }
+
+    private fun swipeToPreviousTab() {
+        val currentIndex = tabOrder.indexOf(currentTab)
+        if (currentIndex > 0) {
+            switchTab(tabOrder[currentIndex - 1])
+        }
+    }
 
     private fun switchTab(tab: MainTab) {
         if (tab != MainTab.DIALER && isKeyboardMode) {
             setKeyboardMode(false, animate = false)
         }
+
+        currentTab = tab
 
         binding.layoutDialer.visibility = if (tab == MainTab.DIALER) View.VISIBLE else View.GONE
         binding.layoutRecents.visibility = if (tab == MainTab.RECENTS) View.VISIBLE else View.GONE
