@@ -47,6 +47,11 @@ A modern, production-grade Android VoIP/SIP calling application built with **Kot
 - **Contacts Tab**: Add, search, and import phonebook contacts with automated international number normalization via Google `libphonenumber`.
 - **QWERTY Toggle**: Integrated soft keyboard toggle for direct SIP address dialing (e.g. `sip:echo@sip.linphone.org`).
 
+### 👆 Gestures tab switching right/left
+- We added gesture feature so user can easily switch tab without pressing button.
+
+
+
 ---
 
 ## 📁 Repository Structure
