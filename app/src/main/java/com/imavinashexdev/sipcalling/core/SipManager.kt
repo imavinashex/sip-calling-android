@@ -177,16 +177,19 @@ object SipManager {
             val serverAddress = factory.createAddress(serverUri)
             accountParams.serverAddress = serverAddress
             accountParams.isRegisterEnabled = true
-            accountParams.expires = 120 // 2 minutes interval keeps NAT pinholes open
+            accountParams.expires = 300 // 5 minutes registration interval (v1.0.5 setting)
 
-            // 4. Configure NAT Policy & STUN for public NAT traversal
-            val natPolicy = c.createNatPolicy()
-            natPolicy.isStunEnabled = true
-            val stunHost = if (account.stunServer.isNotBlank()) account.stunServer else "stun.linphone.org"
-            natPolicy.stunServer = stunHost
-            natPolicy.isIceEnabled = true
-            accountParams.natPolicy = natPolicy
-            c.natPolicy = natPolicy
+            // 4. Configure STUN Server for NAT traversal only if specified by user (disable ICE which causes PBX 486 busy)
+            if (account.stunServer.isNotBlank()) {
+                val natPolicy = c.createNatPolicy()
+                natPolicy.stunServer = account.stunServer
+                natPolicy.isStunEnabled = true
+                natPolicy.isIceEnabled = false
+                accountParams.natPolicy = natPolicy
+            } else {
+                accountParams.natPolicy = null
+                c.natPolicy = null
+            }
 
             // 5. Create and activate account
             val linphoneAccount = c.createAccount(accountParams)
