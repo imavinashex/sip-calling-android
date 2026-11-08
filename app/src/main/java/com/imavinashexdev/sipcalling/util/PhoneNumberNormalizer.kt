@@ -50,6 +50,11 @@ object PhoneNumberNormalizer {
             return trimmed
         }
 
+        // PBX feature codes (e.g. *97 for voicemail, *65 for extension info, #123)
+        if (trimmed.contains("*") || trimmed.contains("#")) {
+            return trimmed
+        }
+
         // Clean formatting characters (spaces, dashes, parentheses, dots)
         val cleaned = cleanFormatting(trimmed)
         if (cleaned.isEmpty()) return trimmed

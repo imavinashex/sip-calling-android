@@ -125,4 +125,12 @@ class PhoneNumberNormalizerTest {
         assertEquals("Customer Support", resolvedWithRealName.name)
         assertEquals("064726747", resolvedWithRealName.number)
     }
+
+    @Test
+    fun `test PBX feature codes with star and hash are preserved`() {
+        assertEquals("*97", PhoneNumberNormalizer.normalize("*97"))
+        assertEquals("*65", PhoneNumberNormalizer.normalize("*65"))
+        assertEquals("#123", PhoneNumberNormalizer.normalize("#123"))
+        assertEquals("*123#", PhoneNumberNormalizer.normalize("*123#"))
+    }
 }
