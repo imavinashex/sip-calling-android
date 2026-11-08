@@ -42,8 +42,16 @@ class PhoneNumberNormalizerTest {
     }
 
     @Test
-    fun `test typed number without plus or leading zero gets 0 prepended without removing starting digits`() {
-        assertEquals("09988998899", PhoneNumberNormalizer.normalize("9988998899"))
+    fun `test indian 10-digit mobile numbers preserve clean 10-digit format without extra leading zero`() {
+        assertEquals("9988998899", PhoneNumberNormalizer.normalize("9988998899"))
+        assertEquals("9876543210", PhoneNumberNormalizer.normalize("9876543210"))
+        assertEquals("9876543210", PhoneNumberNormalizer.normalize("+919876543210"))
+        assertEquals("9876543210", PhoneNumberNormalizer.normalize("+91 98765 43210"))
+        assertEquals("9876543210", PhoneNumberNormalizer.normalize("09876543210"))
+    }
+
+    @Test
+    fun `test typed 9-digit subscriber number gets leading 0`() {
         assertEquals("0771234567", PhoneNumberNormalizer.normalize("771234567"))
     }
 

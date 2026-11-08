@@ -54,30 +54,49 @@ object PhoneNumberNormalizer {
         val cleaned = cleanFormatting(trimmed)
         if (cleaned.isEmpty()) return trimmed
 
-        // If it's a short extension (typically 2-4 digits, e.g. 101, 1001)
-        if (preserveShortExtensions && cleaned.length in 2..4 && !cleaned.startsWith("+") && !cleaned.startsWith("00")) {
+        // If it's a short extension (typically 2-6 digits, e.g. 101, 1001, 20001)
+        if (preserveShortExtensions && cleaned.length in 2..6 && !cleaned.startsWith("+") && !cleaned.startsWith("00")) {
             return cleaned
         }
 
-        // Case 1: Starts with international '+' (e.g. +447911123456, +94771234567)
+        // Indian 10-digit mobile numbers (e.g. 9876543210, 9988998899)
+        if (cleaned.length == 10 && cleaned.first() in '6'..'9') {
+            return cleaned
+        }
+
+        // Indian 10-digit mobile dialed with leading 0 (e.g. 09876543210 -> 9876543210)
+        if (cleaned.length == 11 && cleaned.startsWith("0") && cleaned[1] in '6'..'9') {
+            return cleaned.substring(1)
+        }
+
+        // Case 1: Starts with international '+' (e.g. +919876543210, +447911123456, +94771234567)
         if (cleaned.startsWith("+")) {
             return formatWithLeadingZeroFromInternational(cleaned)
         }
 
-        // Case 2: Starts with international '00' (e.g. 00447911123456, 0094771234567)
+        // Case 2: Starts with international '00' (e.g. 00919876543210, 00447911123456)
         if (cleaned.startsWith("00") && cleaned.length > 5) {
             val withPlus = "+" + cleaned.substring(2)
             return formatWithLeadingZeroFromInternational(withPlus)
         }
 
-        // Case 3: Already starts with '0' (e.g. 09988998899, 0771234567)
+        // Case 3: Sri Lankan 9-digit local subscriber number missing leading 0 (e.g. 771234567 -> 0771234567)
+        if (cleaned.length == 9 && cleaned.startsWith("7")) {
+            return "0$cleaned"
+        }
+
+        // Case 4: Already starts with '0' (e.g. 0771234567)
         if (cleaned.startsWith("0")) {
             val withoutExtraZeros = cleaned.trimStart('0')
             return "0$withoutExtraZeros"
         }
 
-        // Case 4: Typed number without '0' (e.g. 9988998899 -> 09988998899)
-        return "0$cleaned"
+        // Case 5: Generic 10-digit number
+        if (cleaned.length == 10) {
+            return cleaned
+        }
+
+        return cleaned
     }
 
     /**
@@ -128,9 +147,16 @@ object PhoneNumberNormalizer {
         try {
             val parsed: PhoneNumber = phoneUtil.parse(numberWithPlus, null)
             val nationalNumber = parsed.nationalNumber.toString()
+            if (parsed.countryCode == 91) {
+                // India (+91): standard mobile is 10 digits without leading 0
+                return nationalNumber
+            }
             return "0$nationalNumber"
         } catch (_: Exception) {
             val digits = numberWithPlus.filter { it.isDigit() }
+            if (digits.startsWith("91") && digits.length == 12) {
+                return digits.substring(2)
+            }
             return if (digits.length >= 10) {
                 "0" + digits.drop(2)
             } else {

@@ -225,7 +225,8 @@ object SipManager {
             val address = if (cleanDest.startsWith("sip:", ignoreCase = true) || cleanDest.startsWith("sips:", ignoreCase = true)) {
                 Factory.instance().createAddress(cleanDest)
             } else {
-                val domain = currentAccount?.domain ?: ""
+                val account = currentAccount ?: appContext?.let { SipAccount.load(it) }
+                val domain = account?.domain.orEmpty()
                 if (domain.isNotEmpty()) {
                     Factory.instance().createAddress("sip:$cleanDest@$domain")
                 } else {
@@ -239,6 +240,9 @@ object SipManager {
             val params = c.createCallParams(null) ?: return false
             params.setAudioEnabled(true)
             params.setVideoEnabled(isVideo)
+            if (c.defaultAccount != null) {
+                params.account = c.defaultAccount
+            }
 
             val call = c.inviteAddressWithParams(address, params)
             if (call != null) {
