@@ -246,6 +246,7 @@ object SipManager {
             if (c.defaultAccount != null) {
                 params.account = c.defaultAccount
             }
+            c.isMicEnabled = true
 
             val call = c.inviteAddressWithParams(address, params)
             if (call != null) {
@@ -263,8 +264,10 @@ object SipManager {
      * Accepts the currently incoming call.
      */
     fun acceptCall(): Boolean {
-        val call = core?.currentCall ?: core?.calls?.firstOrNull() ?: return false
+        val c = core ?: return false
+        val call = c.currentCall ?: c.calls.firstOrNull() ?: return false
         try {
+            c.isMicEnabled = true
             call.accept()
             Log.i(TAG, "Incoming call accepted")
             return true
@@ -488,6 +491,7 @@ object SipManager {
             }
 
             Call.State.Connected, Call.State.StreamsRunning -> {
+                core?.isMicEnabled = true
                 trackingCallConnected = true
                 val codec = call.currentParams.usedAudioPayloadType?.mimeType ?: "Opus"
                 _activeCallData.value = _activeCallData.value?.copy(
@@ -638,7 +642,9 @@ object SipManager {
         try {
             c.enterForeground()
             c.isNetworkReachable = true
-            c.refreshRegisters()
+            if (c.callsNb == 0 && c.currentCall == null) {
+                c.refreshRegisters()
+            }
         } catch (e: Exception) {
             Log.w(TAG, "Error in onAppResume", e)
         }
@@ -646,9 +652,15 @@ object SipManager {
 
     /**
      * Prepares Linphone sockets for background execution.
+     * CRITICAL: Never enter background if a call is in progress!
+     * Calling enterBackground() causes Liblinphone to suspend audio devices and microphone capture.
      */
     fun onAppPause() {
         val c = core ?: return
+        if (c.callsNb > 0 || c.currentCall != null) {
+            Log.i(TAG, "Active call in progress (${c.callsNb} calls), skipping enterBackground to keep microphone alive")
+            return
+        }
         try {
             c.enterBackground()
         } catch (e: Exception) {
