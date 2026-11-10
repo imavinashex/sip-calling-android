@@ -17,6 +17,7 @@ import com.imavinashexdev.sipcalling.R
 import com.imavinashexdev.sipcalling.core.SipManager
 import com.imavinashexdev.sipcalling.ui.CallActivity
 import com.imavinashexdev.sipcalling.ui.IncomingCallActivity
+import com.imavinashexdev.sipcalling.util.SoundManager
 
 class SipForegroundService : Service() {
 
@@ -36,6 +37,7 @@ class SipForegroundService : Service() {
 
         when (action) {
             ACTION_INCOMING_CALL -> {
+                SoundManager.startRingtoneAndVibration(this)
                 val notification = buildIncomingCallNotification(callerName, callerUri)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     startForeground(
@@ -74,6 +76,7 @@ class SipForegroundService : Service() {
             }
 
             ACTION_ACCEPT_CALL -> {
+                SoundManager.stopRingtoneAndVibration(this)
                 SipManager.acceptCall()
                 val callIntent = Intent(this, CallActivity::class.java).apply {
                     setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -85,17 +88,20 @@ class SipForegroundService : Service() {
             }
 
             ACTION_DECLINE_CALL -> {
+                SoundManager.stopRingtoneAndVibration(this)
                 SipManager.terminateCall()
                 stopForeground(STOP_FOREGROUND_REMOVE)
                 stopSelf()
             }
 
             ACTION_STOP_CALL -> {
+                SoundManager.stopRingtoneAndVibration(this)
                 stopForeground(STOP_FOREGROUND_REMOVE)
                 stopSelf()
             }
 
             ACTION_TERMINATE -> {
+                SoundManager.stopRingtoneAndVibration(this)
                 SipManager.terminateCall()
                 stopForeground(STOP_FOREGROUND_REMOVE)
                 stopSelf()
@@ -210,7 +216,15 @@ class SipForegroundService : Service() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val manager = getSystemService(NotificationManager::class.java)
 
-            // High priority channel for incoming calls (ringtone + heads up)
+            // Clean up legacy incoming call channel so old channel settings don't conflict
+            try {
+                manager?.deleteNotificationChannel("sip_incoming_calls_channel")
+            } catch (_: Exception) {
+            }
+
+            // High priority channel for incoming calls (heads up / full-screen intent)
+            // Explicitly set sound and vibration to null/disabled on the notification channel
+            // so Android system ringtone handled by SoundManager plays cleanly without overlap or suppression.
             val incomingChannel = NotificationChannel(
                 INCOMING_CHANNEL_ID,
                 "Incoming VoIP Calls",
@@ -218,7 +232,8 @@ class SipForegroundService : Service() {
             ).apply {
                 description = "Shows incoming SIP calls with answer/decline controls"
                 lockscreenVisibility = Notification.VISIBILITY_PUBLIC
-                enableVibration(true)
+                setSound(null, null)
+                enableVibration(false)
             }
             manager?.createNotificationChannel(incomingChannel)
 
@@ -272,6 +287,7 @@ class SipForegroundService : Service() {
     }
 
     override fun onDestroy() {
+        SoundManager.stopRingtoneAndVibration(this)
         releaseLocks()
         super.onDestroy()
     }
@@ -279,7 +295,7 @@ class SipForegroundService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
     companion object {
-        const val INCOMING_CHANNEL_ID = "sip_incoming_calls_channel"
+        const val INCOMING_CHANNEL_ID = "sip_incoming_calls_channel_v2"
         const val ACTIVE_CHANNEL_ID = "sip_call_foreground_channel"
         const val NOTIFICATION_ID = 1001
 

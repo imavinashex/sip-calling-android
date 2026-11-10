@@ -12,6 +12,7 @@ import com.imavinashexdev.sipcalling.service.SipForegroundService
 import com.imavinashexdev.sipcalling.ui.IncomingCallActivity
 import com.imavinashexdev.sipcalling.util.CallerIdResolver
 import com.imavinashexdev.sipcalling.util.PhoneNumberNormalizer
+import com.imavinashexdev.sipcalling.util.SoundManager
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -104,6 +105,11 @@ object SipManager {
 
             // Set media codecs and audio settings
             createdCore.setEchoCancellationEnabled(true)
+
+            // Disable Linphone's internal ringtone completely so it never overlaps with Android default system ringtone
+            createdCore.isNativeRingingEnabled = false
+            createdCore.ring = null
+            createdCore.config.setInt("sound", "disable_ringing", 1)
 
             // CRITICAL FOR INCOMING CALLS: Bind listening ports!
             // Default on Android SDK is DONTBIND (-2) which rejects all unsolicited incoming SIP packets.
@@ -264,7 +270,9 @@ object SipManager {
      * Accepts the currently incoming call.
      */
     fun acceptCall(): Boolean {
+        appContext?.let { SoundManager.stopRingtoneAndVibration(it) }
         val c = core ?: return false
+        try { c.stopRinging() } catch (_: Exception) {}
         val call = c.currentCall ?: c.calls.firstOrNull() ?: return false
         try {
             c.isMicEnabled = true
@@ -281,7 +289,9 @@ object SipManager {
      * Terminates or declines the current active/incoming call.
      */
     fun terminateCall() {
+        appContext?.let { SoundManager.stopRingtoneAndVibration(it) }
         val c = core ?: return
+        try { c.stopRinging() } catch (_: Exception) {}
         val call = c.currentCall ?: c.calls.firstOrNull()
         try {
             call?.terminate()
@@ -429,6 +439,7 @@ object SipManager {
 
         when (state) {
             Call.State.IncomingReceived -> {
+                try { core?.stopRinging() } catch (_: Exception) {}
                 trackingCallType = CallType.INCOMING
                 trackingPhoneNumber = callerInfo.number
                 trackingDisplayName = callerInfo.name
@@ -444,21 +455,9 @@ object SipManager {
                 _activeCallData.value = data
 
                 // 1. Start Foreground Service with Incoming Call Action (Full-screen intent + heads up notification)
+                // The foreground service notification's fullScreenIntent will launch IncomingCallActivity.
+                // Do NOT also launch IncomingCallActivity directly here — that causes duplicate screens.
                 startIncomingForegroundService(remoteDisplayName, remoteAddress)
-
-                // 2. Launch Incoming Call Activity directly if possible
-                appContext?.let { ctx ->
-                    try {
-                        val intent = Intent(ctx, IncomingCallActivity::class.java).apply {
-                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                            putExtra("CALLER_NAME", remoteDisplayName)
-                            putExtra("CALLER_URI", remoteAddress)
-                        }
-                        ctx.startActivity(intent)
-                    } catch (e: Exception) {
-                        Log.w(TAG, "Direct activity launch restricted by background policy, relying on FullScreenIntent notification", e)
-                    }
-                }
 
                 scope.launch {
                     _incomingCallEvents.emit(data)
@@ -491,6 +490,8 @@ object SipManager {
             }
 
             Call.State.Connected, Call.State.StreamsRunning -> {
+                appContext?.let { SoundManager.stopRingtoneAndVibration(it) }
+                try { core?.stopRinging() } catch (_: Exception) {}
                 core?.isMicEnabled = true
                 trackingCallConnected = true
                 val codec = call.currentParams.usedAudioPayloadType?.mimeType ?: "Opus"
@@ -527,6 +528,8 @@ object SipManager {
             }
 
             Call.State.End, Call.State.Released, Call.State.Error -> {
+                appContext?.let { SoundManager.stopRingtoneAndVibration(it) }
+                try { core?.stopRinging() } catch (_: Exception) {}
                 stopCallTimer()
                 resetAudioRouting()
 

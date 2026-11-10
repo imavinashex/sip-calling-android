@@ -33,7 +33,7 @@ class IncomingCallActivity : AppCompatActivity() {
         binding.tvCallerName.text = PhoneNumberNormalizer.formatCallerDisplay(callerUri, callerName)
         binding.tvCallerUri.text = PhoneNumberNormalizer.normalizeSipUri(callerUri)
 
-        SoundManager.startRingtoneAndVibration(this)
+        // Ringtone is started by SipForegroundService — do NOT start it again here to prevent double-ring
 
         setupButtons()
         observeCallTermination()
@@ -77,7 +77,7 @@ class IncomingCallActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 SipManager.activeCallData.collectLatest { callData ->
-                    if (callData == null || callData.state == VoipCallState.Terminated) {
+                    if (callData == null || callData.state == VoipCallState.Terminated || callData.state == VoipCallState.Connected) {
                         SoundManager.stopRingtoneAndVibration(this@IncomingCallActivity)
                         finish()
                     }
