@@ -33,7 +33,7 @@ class IncomingCallActivity : AppCompatActivity() {
         binding.tvCallerName.text = PhoneNumberNormalizer.formatCallerDisplay(callerUri, callerName)
         binding.tvCallerUri.text = PhoneNumberNormalizer.normalizeSipUri(callerUri)
 
-        // Ringtone is started by SipForegroundService — do NOT start it again here to prevent double-ring
+        SoundManager.startRingtoneAndVibration(this)
 
         setupButtons()
         observeCallTermination()

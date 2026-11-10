@@ -7,6 +7,8 @@ import android.media.Ringtone
 import android.media.RingtoneManager
 import android.media.ToneGenerator
 import android.os.Build
+import android.os.CombinedVibration
+import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
 import android.util.Log
@@ -15,6 +17,7 @@ object SoundManager {
     private const val TAG = "SoundManager"
     private var ringtone: Ringtone? = null
     private var toneGenerator: ToneGenerator? = null
+    private var isVibrating = false
 
     private val toneExecutor = java.util.concurrent.Executors.newSingleThreadExecutor()
 
@@ -57,18 +60,12 @@ object SoundManager {
 
     @Synchronized
     fun startRingtoneAndVibration(context: Context) {
-        cancelVibration(context)
-        if (ringtone?.isPlaying == true) {
-            return
-        }
-
+        stopRingtoneAndVibration(context)
         try {
-            ringtone?.stop()
-            ringtone = null
             val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
             val ringerMode = audioManager?.ringerMode ?: AudioManager.RINGER_MODE_NORMAL
 
-            // Play default Android system ringtone only if ringer is normal (not silent/vibrate)
+            // 1. Play default Android system ringtone if ringer is normal
             if (ringerMode == AudioManager.RINGER_MODE_NORMAL) {
                 val uri = RingtoneManager.getActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE)
                     ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
@@ -86,7 +83,26 @@ object SoundManager {
                     play()
                 }
             }
-            // Vibration completely disabled to prevent loop/stuck issues
+
+            // 2. Vibrate only if phone is not on silent
+            if (ringerMode != AudioManager.RINGER_MODE_SILENT) {
+                val pattern = longArrayOf(0, 1000, 1000)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? VibratorManager
+                    val effect = VibrationEffect.createWaveform(pattern, 0)
+                    vibratorManager?.vibrate(CombinedVibration.createParallel(effect))
+                } else {
+                    @Suppress("DEPRECATION")
+                    val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
+                    } else {
+                        @Suppress("DEPRECATION")
+                        vibrator?.vibrate(pattern, 0)
+                    }
+                }
+                isVibrating = true
+            }
         } catch (e: Exception) {
             Log.e(TAG, "Error starting ringtone", e)
         }
@@ -94,17 +110,10 @@ object SoundManager {
 
     @Synchronized
     fun stopRingtoneAndVibration(context: Context) {
-        cancelVibration(context)
         try {
             ringtone?.stop()
             ringtone = null
-        } catch (e: Exception) {
-            Log.w(TAG, "Error stopping ringtone", e)
-        }
-    }
 
-    fun cancelVibration(context: Context) {
-        try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? VibratorManager
                 vibratorManager?.cancel()
@@ -112,7 +121,9 @@ object SoundManager {
             @Suppress("DEPRECATION")
             val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
             vibrator?.cancel()
-        } catch (_: Exception) {
+            isVibrating = false
+        } catch (e: Exception) {
+            Log.w(TAG, "Error stopping ringtone", e)
         }
     }
 }

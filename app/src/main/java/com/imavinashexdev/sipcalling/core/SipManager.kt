@@ -106,17 +106,8 @@ object SipManager {
             // Set media codecs and audio settings
             createdCore.setEchoCancellationEnabled(true)
 
-            // Disable Linphone's internal ringtone completely so it never overlaps with Android default system ringtone
-            createdCore.isNativeRingingEnabled = false
+            // Disable Linphone's internal ringtone so it doesn't overlap with device ringtone
             createdCore.ring = null
-            createdCore.config.setInt("sound", "disable_ringing", 1)
-
-            // Disable Linphone's internal vibration completely
-            try {
-                createdCore.isVibrationOnIncomingCallEnabled = false
-            } catch (_: Throwable) {
-            }
-            createdCore.config.setInt("sound", "vibrate_on_incoming_call", 0)
 
             // CRITICAL FOR INCOMING CALLS: Bind listening ports!
             // Default on Android SDK is DONTBIND (-2) which rejects all unsolicited incoming SIP packets.
@@ -264,7 +255,7 @@ object SipManager {
             val call = c.inviteAddressWithParams(address, params)
             if (call != null) {
                 Log.i(TAG, "Outgoing call initiated to: ${address.asStringUriOnly()}")
-                startActiveForegroundService(address.asStringUriOnly())
+                startForegroundService(address.asStringUriOnly())
                 return true
             }
         } catch (e: Exception) {
@@ -446,7 +437,6 @@ object SipManager {
 
         when (state) {
             Call.State.IncomingReceived -> {
-                try { core?.stopRinging() } catch (_: Exception) {}
                 trackingCallType = CallType.INCOMING
                 trackingPhoneNumber = callerInfo.number
                 trackingDisplayName = callerInfo.name
@@ -461,10 +451,15 @@ object SipManager {
                 )
                 _activeCallData.value = data
 
-                // 1. Start Foreground Service with Incoming Call Action (Full-screen intent + heads up notification)
-                // The foreground service notification's fullScreenIntent will launch IncomingCallActivity.
-                // Do NOT also launch IncomingCallActivity directly here — that causes duplicate screens.
-                startIncomingForegroundService(remoteDisplayName, remoteAddress)
+                // Launch Incoming Call Activity directly (Clean single incoming call UI, exactly as in v1.0.5)
+                appContext?.let { ctx ->
+                    val intent = Intent(ctx, IncomingCallActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        putExtra("CALLER_NAME", remoteDisplayName)
+                        putExtra("CALLER_URI", remoteAddress)
+                    }
+                    ctx.startActivity(intent)
+                }
 
                 scope.launch {
                     _incomingCallEvents.emit(data)
@@ -497,8 +492,6 @@ object SipManager {
             }
 
             Call.State.Connected, Call.State.StreamsRunning -> {
-                appContext?.let { SoundManager.stopRingtoneAndVibration(it) }
-                try { core?.stopRinging() } catch (_: Exception) {}
                 core?.isMicEnabled = true
                 trackingCallConnected = true
                 val codec = call.currentParams.usedAudioPayloadType?.mimeType ?: "Opus"
@@ -514,7 +507,7 @@ object SipManager {
                     isOnHold = false
                 )
                 startCallTimer()
-                startActiveForegroundService(remoteDisplayName)
+                startForegroundService(remoteDisplayName)
                 appContext?.let { ctx ->
                     setSpeakerphone(ctx, isSpeakerphoneOn)
                 }
@@ -590,25 +583,11 @@ object SipManager {
         callDurationJob = null
     }
 
-    private fun startIncomingForegroundService(callerName: String, callerUri: String) {
-        val ctx = appContext ?: return
-        val serviceIntent = Intent(ctx, SipForegroundService::class.java).apply {
-            action = SipForegroundService.ACTION_INCOMING_CALL
-            putExtra(SipForegroundService.EXTRA_CALLER_NAME, callerName)
-            putExtra(SipForegroundService.EXTRA_CALLER_URI, callerUri)
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            ctx.startForegroundService(serviceIntent)
-        } else {
-            ctx.startService(serviceIntent)
-        }
-    }
-
-    private fun startActiveForegroundService(callerText: String) {
+    private fun startForegroundService(callerText: String) {
         val ctx = appContext ?: return
         val serviceIntent = Intent(ctx, SipForegroundService::class.java).apply {
             action = SipForegroundService.ACTION_START_CALL
-            putExtra(SipForegroundService.EXTRA_CALLER_NAME, callerText)
+            putExtra(SipForegroundService.EXTRA_CALLER, callerText)
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             ctx.startForegroundService(serviceIntent)
