@@ -111,6 +111,13 @@ object SipManager {
             createdCore.ring = null
             createdCore.config.setInt("sound", "disable_ringing", 1)
 
+            // Disable Linphone's internal vibration completely
+            try {
+                createdCore.isVibrationOnIncomingCallEnabled = false
+            } catch (_: Throwable) {
+            }
+            createdCore.config.setInt("sound", "vibrate_on_incoming_call", 0)
+
             // CRITICAL FOR INCOMING CALLS: Bind listening ports!
             // Default on Android SDK is DONTBIND (-2) which rejects all unsolicited incoming SIP packets.
             // Using -1 (RANDOM) binds local listening sockets for UDP, TCP, and TLS.

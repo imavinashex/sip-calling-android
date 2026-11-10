@@ -160,6 +160,9 @@ class SipForegroundService : Service() {
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOngoing(true)
             .setAutoCancel(false)
+            .setVibrate(longArrayOf(0))
+            .setSound(null)
+            .setDefaults(0)
             .setFullScreenIntent(fullScreenPendingIntent, true)
             .setContentIntent(fullScreenPendingIntent)
             .addAction(
@@ -216,9 +219,10 @@ class SipForegroundService : Service() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val manager = getSystemService(NotificationManager::class.java)
 
-            // Clean up legacy incoming call channel so old channel settings don't conflict
+            // Clean up legacy incoming call channels so old channel settings don't persist
             try {
                 manager?.deleteNotificationChannel("sip_incoming_calls_channel")
+                manager?.deleteNotificationChannel("sip_incoming_calls_channel_v2")
             } catch (_: Exception) {
             }
 
@@ -234,6 +238,7 @@ class SipForegroundService : Service() {
                 lockscreenVisibility = Notification.VISIBILITY_PUBLIC
                 setSound(null, null)
                 enableVibration(false)
+                vibrationPattern = longArrayOf(0)
             }
             manager?.createNotificationChannel(incomingChannel)
 
@@ -295,7 +300,7 @@ class SipForegroundService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
     companion object {
-        const val INCOMING_CHANNEL_ID = "sip_incoming_calls_channel_v2"
+        const val INCOMING_CHANNEL_ID = "sip_incoming_calls_channel_v3"
         const val ACTIVE_CHANNEL_ID = "sip_call_foreground_channel"
         const val NOTIFICATION_ID = 1001
 

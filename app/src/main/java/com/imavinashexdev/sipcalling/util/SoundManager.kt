@@ -7,6 +7,8 @@ import android.media.Ringtone
 import android.media.RingtoneManager
 import android.media.ToneGenerator
 import android.os.Build
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.util.Log
 
 object SoundManager {
@@ -55,6 +57,7 @@ object SoundManager {
 
     @Synchronized
     fun startRingtoneAndVibration(context: Context) {
+        cancelVibration(context)
         if (ringtone?.isPlaying == true) {
             return
         }
@@ -91,11 +94,25 @@ object SoundManager {
 
     @Synchronized
     fun stopRingtoneAndVibration(context: Context) {
+        cancelVibration(context)
         try {
             ringtone?.stop()
             ringtone = null
         } catch (e: Exception) {
             Log.w(TAG, "Error stopping ringtone", e)
+        }
+    }
+
+    fun cancelVibration(context: Context) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? VibratorManager
+                vibratorManager?.cancel()
+            }
+            @Suppress("DEPRECATION")
+            val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
+            vibrator?.cancel()
+        } catch (_: Exception) {
         }
     }
 }
